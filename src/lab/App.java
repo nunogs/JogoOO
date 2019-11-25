@@ -27,6 +27,7 @@ public class App extends JFrame {
         iniciarObjetos();
         capturaTeclado();
         new Thread(cacto).start();
+        new Thread(heroi).start();
     }
     public void carregarJanela(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -95,20 +96,31 @@ public class App extends JFrame {
             @Override
             public void keyPressed(KeyEvent tecla) {
                 if (tecla.getKeyCode() == 32/*ESPAÇO*/) {
-
+                    if (tecla.getKeyCode() == 32/*ESPAÇO*/) {
+                        if (!(heroi.getPuloDinoS() || heroi.getPuloDinoS2() || heroi.getPuloDinoB() || heroi.getPuloDinoB2())) {
+                            heroi.setPuloDinoS(true);
+                            heroi.setPosAtualDinoY(heroi.lDino.getY());
+                        }
+                    }
                 }
                 if (tecla.getKeyCode() == 37 /*SETA ESQUERDA*/) {
-                    heroi.andarEsquerda();
+                    heroi.setMovEsqDinoS(true);
                 }
 
                 if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
-                    heroi.andarDireita();
+                    heroi.setMovDirDinoS(true);
                 }
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(KeyEvent tecla) {
+                if (tecla.getKeyCode() == 37 /*SETA ESQUERDA*/) {
+                    heroi.setMovEsqDinoS(false);
+                }
 
+                if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
+                    heroi.setMovDirDinoS(false);
+                }
             }
         });
     }

@@ -26,6 +26,7 @@ public class Cacto implements Runnable{
             try {sleep(1);} catch (Exception erro) {}
             try {movimentoDoCacto(); } catch (InterruptedException e) {e.printStackTrace(); }
             matarCactoPorSair();
+
         }
     }
     public void matarCactoPorSair(){

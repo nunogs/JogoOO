@@ -11,8 +11,11 @@ public class Heroi implements Runnable{
     private int entradaX;
     private int entradaY;
     private ImageIcon iDino;
-    private JLabel lDino;
+    public JLabel lDino;
     //------------------------------
+    private int posAtualDinoY;
+    private int posAtualDinoX;
+
     private Boolean puloDinoS;
     private Boolean puloDinoS2;
     private Boolean puloDinoB;
@@ -29,6 +32,12 @@ public class Heroi implements Runnable{
         tamHeroiY = 107;
         posHeroiX = 200;
         posHeroiY = 300;
+        this.puloDinoS = false;
+        this.puloDinoS2 = false;
+        this.puloDinoB = false;
+        this.puloDinoB2= false;
+        this.movEsqDinoS = false;
+        this.movDirDinoS = false;
         iDino = new ImageIcon(getClass().getResource("res\\dinoAnimadoDireita.gif"));
         lDino = new JLabel(iDino);
         this.lDino.setBounds(getPosHeroiX(), getPosHeroiY(), getTamHeroiX(),getTamHeroiY());
@@ -36,21 +45,72 @@ public class Heroi implements Runnable{
     }
 
 
+//    public void andarEsquerda(){
+//        this.lDino.setLocation(lDino.getX()-10, lDino.getY());
+//        this.lDino.setIcon(iDinoAnimadoEsquerda);
+//
+//    }
+//    public void andarDireita(){
+//        this.lDino.setLocation(lDino.getX()+10, lDino.getY());
+//        this.lDino.setIcon(iDinoAnimadoDireita);
+//    }
+    public void atualizarMovimentosDino(){
+        pular();
+        andarEsquerda();
+        andarDireita();
+    }
+    public void pular(){
+        // PULO DINO - MOVIMENTO PARA CIMA
+        int velPulo = 2 ;// Apenas numeros pares
+        Integer estagioLento = (velPulo/2);
+        Integer estagioRapido = velPulo;
+        if(this.puloDinoS) {
+            this.lDino.setLocation(this.lDino.getX(), this.lDino.getY() - estagioRapido);
+            if (this.lDino.getY() == this.posAtualDinoY - 112) {
+                this.puloDinoS = false;
+                this.puloDinoS2 = true;
+            }
+        }
+        if(puloDinoS2) {
+            lDino.setLocation(lDino.getX(), lDino.getY() - estagioLento);
+            if(lDino.getY() == posAtualDinoY -192){
+                puloDinoS2 = false;
+                puloDinoB = true;
+            }
+        }
+        //PULO DINO - MOVIMENTO PARA BAIXO
+        if(puloDinoB){
+            lDino.setLocation(lDino.getX(), lDino.getY()+estagioLento);
+            if(lDino.getY() == posAtualDinoY -112){
+                puloDinoB = false;
+                puloDinoB2 = true;
+            }
+        }
+        if(puloDinoB2){
+            lDino.setLocation(lDino.getX(), lDino.getY()+estagioRapido);
+            if(lDino.getY() == posAtualDinoY){
+                puloDinoB2 = false;
+            }
+        }
+    }
     public void andarEsquerda(){
-        this.lDino.setLocation(lDino.getX()-10, lDino.getY());
-        this.lDino.setIcon(iDinoAnimadoEsquerda);
-
+        if(getMovEsqDinoS()){
+            this.lDino.setIcon(iDinoAnimadoEsquerda);
+            this.lDino.setLocation(lDino.getX()-1, lDino.getY());
+        }
     }
     public void andarDireita(){
-        this.lDino.setLocation(lDino.getX()+10, lDino.getY());
-        this.lDino.setIcon(iDinoAnimadoDireita);
+        if(getMovDirDinoS()){
+            this.lDino.setIcon(iDinoAnimadoDireita);
+            this.lDino.setLocation(lDino.getX()+1, lDino.getY());
+        }
     }
-
     @Override
     public void run() {
-        try {sleep(1);} catch (Exception erro) {}
-
-
+        while (true) {
+            try {sleep(1);} catch (Exception erro) {}
+            atualizarMovimentosDino();
+        }
     }
 
 
@@ -168,6 +228,22 @@ public class Heroi implements Runnable{
 
     public void setMovDirDinoS(Boolean movDirDinoS) {
         this.movDirDinoS = movDirDinoS;
+    }
+
+    public int getPosAtualDinoY() {
+        return posAtualDinoY;
+    }
+
+    public void setPosAtualDinoY(int posAtualDinoY) {
+        this.posAtualDinoY = posAtualDinoY;
+    }
+
+    public int getPosAtualDinoX() {
+        return posAtualDinoX;
+    }
+
+    public void setPosAtualDinoX(int posAtualDinoX) {
+        this.posAtualDinoX = posAtualDinoX;
     }
 }
 

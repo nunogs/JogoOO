@@ -42,10 +42,14 @@ public class Tiro extends Heroi implements Runnable{
 
         }
     }
+    public void atualizarPosHeroi(int posHeroiX, int posHeroiY) {
+        this.posTiroX = posHeroiX;
+        this.posTiroY = posHeroiY;
+    }
 
     public void atirar(){
         if(this.tiroDado) {
-            this.lTiro.setLocation(getlDino().getX(), getlDino().getY());
+            this.lTiro.setLocation(posTiroX,posTiroY);
             this.setTiroDado(false);
             this.setTiroDadoP1(true);
         }
@@ -128,5 +132,6 @@ public class Tiro extends Heroi implements Runnable{
     public void setTiroDadoP1(Boolean tiroDadoP1) {
         this.tiroDadoP1 = tiroDadoP1;
     }
+
 
 }

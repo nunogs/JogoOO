@@ -4,24 +4,24 @@ import javax.swing.*;
 import static java.lang.Thread.sleep;
 
 public class Heroi implements Runnable{
-    private int tamHeroiX;
-    private int tamHeroiY;
-    private int posHeroiX;
-    private int posHeroiY;
-    private int entradaX;
-    private int entradaY;
-    private ImageIcon iDino;
+    protected int tamHeroiX;
+    protected int tamHeroiY;
+    protected int posHeroiX;
+    protected int posHeroiY;
+    protected int entradaX;
+    protected int entradaY;
+    protected ImageIcon iDino;
     public JLabel lDino;
     //------------------------------
-    private int posAtualDinoY;
-    private int posAtualDinoX;
+   protected int posAtualDinoY;
+   protected int posAtualDinoX;
 
-    private Boolean puloDinoS;
-    private Boolean puloDinoS2;
-    private Boolean puloDinoB;
-    private Boolean puloDinoB2;
-    private Boolean movEsqDinoS;
-    private Boolean movDirDinoS;
+   protected Boolean puloDinoS;
+   protected Boolean puloDinoS2;
+   protected Boolean puloDinoB;
+   protected Boolean puloDinoB2;
+   protected Boolean movEsqDinoS;
+   protected Boolean movDirDinoS;
     //------------------------------
     ImageIcon iDinoAnimadoDireita = new ImageIcon(getClass().getResource("res\\dinoAnimadoDireita.gif"));
     ImageIcon iDinoAnimadoEsquerda = new ImageIcon(getClass().getResource("res\\dinoAnimadoEsquerda.gif"));
@@ -44,22 +44,13 @@ public class Heroi implements Runnable{
         this.lDino.setVisible(true);
     }
 
-
-//    public void andarEsquerda(){
-//        this.lDino.setLocation(lDino.getX()-10, lDino.getY());
-//        this.lDino.setIcon(iDinoAnimadoEsquerda);
-//
-//    }
-//    public void andarDireita(){
-//        this.lDino.setLocation(lDino.getX()+10, lDino.getY());
-//        this.lDino.setIcon(iDinoAnimadoDireita);
-//    }
     public void atualizarMovimentosDino(){
         posHeroiX = lDino.getX();
         posHeroiY = lDino.getY();
         pular();
         andarEsquerda();
         andarDireita();
+        System.out.println(posHeroiX + posHeroiY);
     }
     public void pular(){
         // PULO DINO - MOVIMENTO PARA CIMA
@@ -112,9 +103,14 @@ public class Heroi implements Runnable{
         while (true) {
             try {sleep(1);} catch (Exception erro) {}
             atualizarMovimentosDino();
+            posHeroiX = lDino.getX();
+            posHeroiY = lDino.getY();
+
 
         }
     }
+
+
 
 
     //Metodos getters e setters
@@ -166,8 +162,6 @@ public class Heroi implements Runnable{
     public void setlDino(JLabel lDino) {
         this.lDino = lDino;
     }
-
-
 
     public int getEntradaX() {
         return entradaX;

@@ -23,6 +23,9 @@ public class App extends JFrame {
     protected JLabel lblTiro;
     protected JLabel lblChao;
     protected JLabel lblHeroi;
+    protected int posX;
+    protected int posY;
+
 
     public App(){
         setFocusable(true);
@@ -120,6 +123,9 @@ public class App extends JFrame {
                 }
                 if (tecla.getKeyCode() == 68/* D */) {
                     tiro.setTiroDado(true);
+                    posX = lblHeroi.getX()+30;
+                    posY = lblHeroi.getY()+30;
+                    tiro.atualizarPosHeroi(posX, posY);
                 }
             }
 

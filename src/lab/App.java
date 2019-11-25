@@ -39,7 +39,6 @@ public class App extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setLayout(null);
-
     }
 
     public void iniciarObjetos(){

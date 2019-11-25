@@ -16,7 +16,6 @@ public class Tiro extends Heroi implements Runnable{
     private Boolean iniciouOMovimento;
     private Boolean tiroDado;
     private Boolean tiroDadoP1;
-    private Component lDino;
 
     public Tiro() {
         this.tamTiroX = 10;
@@ -28,8 +27,6 @@ public class Tiro extends Heroi implements Runnable{
         this.tiroDado = false;
         this.tiroDadoP1 = false;
         this.lTiro.setVisible(true);
-//        this.posTiroX = lDino.getX();
-//        this.posTiroY = lDino.getY();
         this.lTiro.setBounds(1300, 760, tamTiroX,tamTiroY);
     }
 
@@ -50,8 +47,8 @@ public class Tiro extends Heroi implements Runnable{
     public void atirar(){
         if(this.tiroDado) {
             this.lTiro.setLocation(posTiroX,posTiroY);
-            this.setTiroDado(false);
-            this.setTiroDadoP1(true);
+            this.tiroDado =false;
+            this.tiroDadoP1 = true;
         }
         if (this.tiroDadoP1) {
             this.lTiro.setVisible(true);
@@ -60,78 +57,43 @@ public class Tiro extends Heroi implements Runnable{
     }
 
 
-
     public int getTamTiroX() {
         return tamTiroX;
-    }
-
-    public void setTamTiroX(int tamTiroX) {
-        this.tamTiroX = tamTiroX;
     }
 
     public int getTamTiroY() {
         return tamTiroY;
     }
 
-    public void setTamTiroY(int tamTiroY) {
-        this.tamTiroY = tamTiroY;
-    }
-
     public int getPosTiroX() {
         return posTiroX;
-    }
-
-    public void setPosTiroX(int posTiroX) {
-        this.posTiroX = posTiroX;
     }
 
     public int getPosTiroY() {
         return posTiroY;
     }
 
-    public void setPosTiroY(int posTiroY) {
-        this.posTiroY = posTiroY;
-    }
-
     public ImageIcon getiTiro() {
         return iTiro;
-    }
-
-    public void setiTiro(ImageIcon iTiro) {
-        this.iTiro = iTiro;
     }
 
     public JLabel getlTiro() {
         return lTiro;
     }
 
-    public void setlTiro(JLabel lTiro) {
-        this.lTiro = lTiro;
-    }
-
     public Boolean getIniciouOMovimento() {
         return iniciouOMovimento;
-    }
-
-    public void setIniciouOMovimento(Boolean iniciouOMovimento) {
-        this.iniciouOMovimento = iniciouOMovimento;
     }
 
     public Boolean getTiroDado() {
         return tiroDado;
     }
 
-    public void setTiroDado(Boolean tiroDado) {
-        this.tiroDado = tiroDado;
-    }
-
     public Boolean getTiroDadoP1() {
         return tiroDadoP1;
     }
 
-    public void setTiroDadoP1(Boolean tiroDadoP1) {
-        this.tiroDadoP1 = tiroDadoP1;
+    public void setTiroDado(Boolean tiroDado) {
+        this.tiroDado = tiroDado;
     }
-
-
 }

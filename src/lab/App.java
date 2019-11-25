@@ -47,7 +47,9 @@ public class App extends JFrame {
     public void iniciarObjetos(){
         loadHeroi();
         loadTiro();
-        loadCacto();loadCacto1();loadCacto2();
+        loadCacto();
+        loadCacto1();
+        loadCacto2();
         loadChao();
         loadFundo();
     }
@@ -121,6 +123,7 @@ public class App extends JFrame {
                 if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
                     heroi.setMovDirDinoS(true);
                 }
+
                 if (tecla.getKeyCode() == 68/* D */) {
                     tiro.setTiroDado(true);
                     posX = lblHeroi.getX()+30;

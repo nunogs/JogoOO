@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4f92d822-3bf8-4f4e-ab44-b271f2b11580" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/App$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Heroi.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Heroi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Tiro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Tiro.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/Cacto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Cacto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab/Heroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Heroi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab/Tiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Tiro.java" afterDir="false" />
     </list>

@@ -8,8 +8,6 @@ public class Heroi implements Runnable{
     protected int tamHeroiY;
     protected int posHeroiX;
     protected int posHeroiY;
-    protected int entradaX;
-    protected int entradaY;
     protected ImageIcon iDino;
     public JLabel lDino;
     //------------------------------
@@ -50,7 +48,6 @@ public class Heroi implements Runnable{
         pular();
         andarEsquerda();
         andarDireita();
-        System.out.println(posHeroiX + posHeroiY);
     }
     public void pular(){
         // PULO DINO - MOVIMENTO PARA CIMA
@@ -115,69 +112,32 @@ public class Heroi implements Runnable{
 
     //Metodos getters e setters
 
+
+
     public int getTamHeroiX() {
         return tamHeroiX;
-    }
-
-    public void setTamHeroiX(int tamHeroiX) {
-        this.tamHeroiX = tamHeroiX;
     }
 
     public int getTamHeroiY() {
         return tamHeroiY;
     }
 
-    public void setTamHeroiY(int tamHeroiY) {
-        this.tamHeroiY = tamHeroiY;
-    }
-
     public int getPosHeroiX() {
         return posHeroiX;
-    }
-
-    public void setPosHeroiX(int posHeroiX) {
-        this.posHeroiX = posHeroiX;
     }
 
     public int getPosHeroiY() {
         return posHeroiY;
     }
 
-    public void setPosHeroiY(int posHeroiY) {
-        this.posHeroiY = posHeroiY;
-    }
-
     public ImageIcon getiDino() {
         return iDino;
-    }
-
-    public void setiDino(ImageIcon iDino) {
-        this.iDino = iDino;
     }
 
     public JLabel getlDino() {
         return lDino;
     }
 
-    public void setlDino(JLabel lDino) {
-        this.lDino = lDino;
-    }
-
-    public int getEntradaX() {
-        return entradaX;
-    }
-
-    public void setEntradaX(int entradaX) {
-        this.entradaX = entradaX;
-    }
-
-    public int getEntradaY() {
-        return entradaY;
-    }
-
-    public void setEntradaY(int entradaY) {
-        this.entradaY = entradaY;
-    }
 
     public Boolean getPuloDinoS() {
         return puloDinoS;

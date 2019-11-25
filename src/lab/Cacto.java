@@ -11,7 +11,7 @@ public class Cacto implements Runnable{
     private int posCactoY;
     private ImageIcon iCacto;
     private JLabel lCacto;
-    Boolean iniciouOMovimento;
+    private Boolean iniciouOMovimento;
 
     public Cacto() {
         this.tamCactoX = 88;
@@ -19,10 +19,11 @@ public class Cacto implements Runnable{
         this.posCactoX = 1300;
         this.posCactoY = 295;
         this.iCacto = new ImageIcon(getClass().getResource("res\\cacto.png"));
-        this.lCacto = new JLabel(iCacto);
-        this.lCacto.setBounds(posCactoX, posCactoY, tamCactoX, tamCactoY);
+        this.lCacto = new JLabel(this.iCacto);
+        this.lCacto.setBounds(this.posCactoX, this.posCactoY, this.tamCactoX, this.tamCactoY);
         this.lCacto.setVisible(true);
         this.iniciouOMovimento = false;
+
     }
     @Override
     public void run() {
@@ -60,49 +61,25 @@ public class Cacto implements Runnable{
         return tamCactoX;
     }
 
-    public void setTamCactoX(int tamCactoX) {
-        this.tamCactoX = tamCactoX;
-    }
-
     public int getTamCactoY() {
         return tamCactoY;
-    }
-
-    public void setTamCactoY(int tamCactoY) {
-        this.tamCactoY = tamCactoY;
     }
 
     public int getPosCactoX() {
         return posCactoX;
     }
 
-    public void setPosCactoX(int posCactoX) {
-        this.posCactoX = posCactoX;
-    }
 
     public int getPosCactoY() {
         return posCactoY;
-    }
-
-    public void setPosCactoY(int posCactoY) {
-        this.posCactoY = posCactoY;
     }
 
     public ImageIcon getiCacto() {
         return iCacto;
     }
 
-    public void setiCacto(ImageIcon iCacto) {
-        this.iCacto = iCacto;
-    }
-
     public JLabel getlCacto() {
         return lCacto;
     }
-
-    public void setlCacto(JLabel lCacto) {
-        this.lCacto = lCacto;
-    }
-
 
 }

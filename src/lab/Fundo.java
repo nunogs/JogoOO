@@ -3,15 +3,19 @@ package lab;
 import javax.swing.*;
 
 public class Fundo {
-    private int tamFundoX = 1280;
-    private int tamFundoY = 720;
-    private int posFundoX = 0;
-    private int posFundoY = 0;
+    private int tamFundoX ;
+    private int tamFundoY ;
+    private int posFundoX ;
+    private int posFundoY ;
     private ImageIcon iFundo;
     private JLabel lfundo;
 
 
     public Fundo() {
+        tamFundoX = 1280;
+        tamFundoY = 720;
+        posFundoX = 0;
+        posFundoY = 0;
         iFundo = new ImageIcon(getClass().getResource("res\\fundo.png"));
         lfundo = new JLabel(iFundo);
         this.lfundo.setBounds(getPosFundoX(), getPosFundoY(), getTamFundoX(),getTamFundoY());

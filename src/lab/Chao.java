@@ -3,15 +3,19 @@ package lab;
 import javax.swing.*;
 
 public class Chao {
-    private int tamChaoX = 1280;
-    private int tamChaoY = 10;
-    private int posChaoX = 0;
-    private int posChaoY = 360;
+    private int tamChaoX;
+    private int tamChaoY;
+    private int posChaoX;
+    private int posChaoY;
     private ImageIcon iChao;
     private JLabel lChao;
 
 
     public Chao() {
+        tamChaoX = 1280;
+        tamChaoY = 10;
+        posChaoX = 0;
+        posChaoY = 360;
         iChao = new ImageIcon(getClass().getResource("res\\chao.png"));
         lChao = new JLabel(iChao);
         this.lChao.setBounds(getPosChaoX(), getPosChaoY(), getTamChaoX(), getTamChaoY());

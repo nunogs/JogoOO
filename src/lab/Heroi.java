@@ -1,10 +1,6 @@
 package lab;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 import static java.lang.Thread.sleep;
 
 public class Heroi implements Runnable{
@@ -38,10 +34,7 @@ public class Heroi implements Runnable{
         this.lDino.setBounds(getPosHeroiX(), getPosHeroiY(), getTamHeroiX(),getTamHeroiY());
         this.lDino.setVisible(true);
     }
-    public void atualizarHeroi(){
-        andarEsquerda();
-        andarDireita();
-    }
+
 
     public void andarEsquerda(){
         this.lDino.setLocation(lDino.getX()-10, lDino.getY());
@@ -56,7 +49,6 @@ public class Heroi implements Runnable{
     @Override
     public void run() {
         try {sleep(1);} catch (Exception erro) {}
-        atualizarHeroi();
 
 
     }

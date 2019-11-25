@@ -4,14 +4,20 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.Scanner;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
-
 
 public class App extends JFrame {
     protected Fundo fundo = new Fundo();
     protected Chao chao = new Chao();
+    protected Cacto cacto = new Cacto();
+    protected Cacto cacto1 = new Cacto();
+    protected Cacto cacto2 = new Cacto();
+
+
     protected Heroi heroi= new Heroi();
     protected JLabel lblFundo;
+    protected JLabel lblCacto;
+    protected JLabel lblCacto1;
+    protected JLabel lblCacto2;
     protected JLabel lblChao;
     protected JLabel lblHeroi;
 
@@ -20,6 +26,7 @@ public class App extends JFrame {
         carregarJanela();
         iniciarObjetos();
         capturaTeclado();
+        new Thread(cacto).start();
     }
     public void carregarJanela(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -32,6 +39,7 @@ public class App extends JFrame {
 
     public void iniciarObjetos(){
         loadHeroi();
+        loadCacto();loadCacto1();loadCacto2();
         loadChao();
         loadFundo();
     }
@@ -49,12 +57,20 @@ public class App extends JFrame {
         lblChao = chao.getlChao();
         add(lblChao);
     }
-
-    public static void main(String[] args) {
-        new App();
-
-
+    public void loadCacto(){
+        lblCacto = cacto.getlCacto();
+        add(lblCacto);
     }
+    public void loadCacto1(){
+        lblCacto1 = cacto1.getlCacto();
+        add(lblCacto1);
+    }
+    public void loadCacto2(){
+        lblCacto2 = cacto2.getlCacto();
+        add(lblCacto2);
+    }
+
+
 
     public void iniciarComPergunta(){
         Scanner tc = new Scanner(System.in);
@@ -95,6 +111,12 @@ public class App extends JFrame {
 
             }
         });
+    }
+
+    public static void main(String[] args) {
+        new App();
+
+
     }
 
 }

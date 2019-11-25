@@ -1,24 +1,25 @@
 package lab;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.Scanner;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 
 
-public class App extends JFrame{
+public class App extends JFrame {
     protected Fundo fundo = new Fundo();
+    protected Chao chao = new Chao();
     protected Heroi heroi= new Heroi();
     protected JLabel lblFundo;
+    protected JLabel lblChao;
     protected JLabel lblHeroi;
 
     public App(){
+        setFocusable(true);
         carregarJanela();
         iniciarObjetos();
         capturaTeclado();
-        new movimentoDino();
     }
     public void carregarJanela(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -31,6 +32,7 @@ public class App extends JFrame{
 
     public void iniciarObjetos(){
         loadHeroi();
+        loadChao();
         loadFundo();
     }
 
@@ -42,6 +44,10 @@ public class App extends JFrame{
     public void loadFundo(){
         lblFundo = fundo.getLfundo();
         add(lblFundo);
+    }
+    public void loadChao(){
+        lblChao = chao.getlChao();
+        add(lblChao);
     }
 
     public static void main(String[] args) {
@@ -62,6 +68,7 @@ public class App extends JFrame{
         System.out.println("fui");
     }
 
+
     public void capturaTeclado(){
         addKeyListener(new KeyListener() {
             @Override
@@ -70,36 +77,24 @@ public class App extends JFrame{
             }
 
             @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == 37 /*SETA ESQUERDA*/) {
+            public void keyPressed(KeyEvent tecla) {
+                if (tecla.getKeyCode() == 32/*ESPAÇO*/) {
+
+                }
+                if (tecla.getKeyCode() == 37 /*SETA ESQUERDA*/) {
                     heroi.andarEsquerda();
                 }
-                if (e.getKeyCode() == 39 /*SETA DIREITA*/) {
+
+                if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
                     heroi.andarDireita();
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode() == 37 /*SETA ESQUERDA*/) {
 
-                }
-                if (e.getKeyCode() == 39 /*SETA DIREITA*/) {
-
-                }
             }
         });
     }
-    public class movimentoDino extends Thread {
-        public void run() {
-            while (true) {
-                try {sleep(1);} catch (Exception erro) {}
 
-//                heroi.andarEsquerda();
-//                heroi.andarDireita();
-                heroi.atualizarHeroi();
-
-            }
-        }
-    }
 }

@@ -5,16 +5,25 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
+import static java.lang.Thread.sleep;
 
-public class Heroi {
+public class Heroi implements Runnable{
     private int tamHeroiX;
     private int tamHeroiY;
     private int posHeroiX;
     private int posHeroiY;
+    private int entradaX;
+    private int entradaY;
     private ImageIcon iDino;
     private JLabel lDino;
-    private boolean esqPressionada;
-    private boolean dirPressionada;
+    //------------------------------
+    private Boolean puloDinoS;
+    private Boolean puloDinoS2;
+    private Boolean puloDinoB;
+    private Boolean puloDinoB2;
+    private Boolean movEsqDinoS;
+    private Boolean movDirDinoS;
+    //------------------------------
     ImageIcon iDinoAnimadoDireita = new ImageIcon(getClass().getResource("res\\dinoAnimadoDireita.gif"));
     ImageIcon iDinoAnimadoEsquerda = new ImageIcon(getClass().getResource("res\\dinoAnimadoEsquerda.gif"));
     ImageIcon iDinoMorto = new ImageIcon(getClass().getResource("res\\morto.png"));
@@ -28,27 +37,29 @@ public class Heroi {
         lDino = new JLabel(iDino);
         this.lDino.setBounds(getPosHeroiX(), getPosHeroiY(), getTamHeroiX(),getTamHeroiY());
         this.lDino.setVisible(true);
-//        capturaTeclado();
     }
     public void atualizarHeroi(){
-        lDino.setLocation(posHeroiX, posHeroiY);
+        andarEsquerda();
+        andarDireita();
     }
 
     public void andarEsquerda(){
-        posHeroiX -= 5;
-        //        this.lDino.setLocation(lDino.getX()-5, lDino.getY());
-        System.out.println("esquerda");
+        this.lDino.setLocation(lDino.getX()-10, lDino.getY());
         this.lDino.setIcon(iDinoAnimadoEsquerda);
 
     }
     public void andarDireita(){
-        posHeroiX += 5;
-//        this.lDino.setLocation(lDino.getX()+5, lDino.getY());
-        System.out.println("direita");
+        this.lDino.setLocation(lDino.getX()+10, lDino.getY());
         this.lDino.setIcon(iDinoAnimadoDireita);
     }
 
+    @Override
+    public void run() {
+        try {sleep(1);} catch (Exception erro) {}
+        atualizarHeroi();
 
+
+    }
 
 
     //Metodos getters e setters
@@ -99,6 +110,72 @@ public class Heroi {
 
     public void setlDino(JLabel lDino) {
         this.lDino = lDino;
+    }
+
+
+
+    public int getEntradaX() {
+        return entradaX;
+    }
+
+    public void setEntradaX(int entradaX) {
+        this.entradaX = entradaX;
+    }
+
+    public int getEntradaY() {
+        return entradaY;
+    }
+
+    public void setEntradaY(int entradaY) {
+        this.entradaY = entradaY;
+    }
+
+    public Boolean getPuloDinoS() {
+        return puloDinoS;
+    }
+
+    public void setPuloDinoS(Boolean puloDinoS) {
+        this.puloDinoS = puloDinoS;
+    }
+
+    public Boolean getPuloDinoS2() {
+        return puloDinoS2;
+    }
+
+    public void setPuloDinoS2(Boolean puloDinoS2) {
+        this.puloDinoS2 = puloDinoS2;
+    }
+
+    public Boolean getPuloDinoB() {
+        return puloDinoB;
+    }
+
+    public void setPuloDinoB(Boolean puloDinoB) {
+        this.puloDinoB = puloDinoB;
+    }
+
+    public Boolean getPuloDinoB2() {
+        return puloDinoB2;
+    }
+
+    public void setPuloDinoB2(Boolean puloDinoB2) {
+        this.puloDinoB2 = puloDinoB2;
+    }
+
+    public Boolean getMovEsqDinoS() {
+        return movEsqDinoS;
+    }
+
+    public void setMovEsqDinoS(Boolean movEsqDinoS) {
+        this.movEsqDinoS = movEsqDinoS;
+    }
+
+    public Boolean getMovDirDinoS() {
+        return movDirDinoS;
+    }
+
+    public void setMovDirDinoS(Boolean movDirDinoS) {
+        this.movDirDinoS = movDirDinoS;
     }
 }
 

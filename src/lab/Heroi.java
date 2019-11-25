@@ -31,7 +31,7 @@ public class Heroi implements Runnable{
         tamHeroiX = 100;
         tamHeroiY = 107;
         posHeroiX = 200;
-        posHeroiY = 300;
+        posHeroiY = 280;
         this.puloDinoS = false;
         this.puloDinoS2 = false;
         this.puloDinoB = false;
@@ -55,6 +55,8 @@ public class Heroi implements Runnable{
 //        this.lDino.setIcon(iDinoAnimadoDireita);
 //    }
     public void atualizarMovimentosDino(){
+        posHeroiX = lDino.getX();
+        posHeroiY = lDino.getY();
         pular();
         andarEsquerda();
         andarDireita();
@@ -110,6 +112,7 @@ public class Heroi implements Runnable{
         while (true) {
             try {sleep(1);} catch (Exception erro) {}
             atualizarMovimentosDino();
+
         }
     }
 

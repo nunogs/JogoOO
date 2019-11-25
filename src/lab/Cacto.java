@@ -5,15 +5,19 @@ import javax.swing.*;
 import static java.lang.Thread.sleep;
 
 public class Cacto implements Runnable{
-    private int tamCactoX = 1280;
-    private int tamCactoY = 720;
-    private int posCactoX = 700;
-    private int posCactoY = 0;
+    private int tamCactoX;
+    private int tamCactoY;
+    private int posCactoX;
+    private int posCactoY;
     private ImageIcon iCacto;
     private JLabel lCacto;
     Boolean iniciouOMovimento;
 
     public Cacto() {
+        this.tamCactoX = 88;
+        this.tamCactoY = 90;
+        this.posCactoX = 1300;
+        this.posCactoY = 295;
         this.iCacto = new ImageIcon(getClass().getResource("res\\cacto.png"));
         this.lCacto = new JLabel(iCacto);
         this.lCacto.setBounds(posCactoX, posCactoY, tamCactoX, tamCactoY);
@@ -30,13 +34,13 @@ public class Cacto implements Runnable{
         }
     }
     public void matarCactoPorSair(){
-        if (this.lCacto.getX() < 0){
+        if (this.lCacto.getX() < 500){
             mateOCacto();
         }
     }
 
     private void mateOCacto() {
-        this.lCacto.setLocation(700,0);
+        this.lCacto.setLocation(posCactoX,posCactoY);
         this.iniciouOMovimento = false;
     }
 

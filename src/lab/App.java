@@ -1,6 +1,7 @@
 package lab;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.Scanner;
 
@@ -11,13 +12,15 @@ public class App extends JFrame {
     protected Cacto cacto = new Cacto();
     protected Cacto cacto1 = new Cacto();
     protected Cacto cacto2 = new Cacto();
-
-
     protected Heroi heroi= new Heroi();
+    protected Tiro tiro = new Tiro();
+
+
     protected JLabel lblFundo;
     protected JLabel lblCacto;
     protected JLabel lblCacto1;
     protected JLabel lblCacto2;
+    protected JLabel lblTiro;
     protected JLabel lblChao;
     protected JLabel lblHeroi;
 
@@ -28,6 +31,7 @@ public class App extends JFrame {
         capturaTeclado();
         new Thread(cacto).start();
         new Thread(heroi).start();
+        new Thread(tiro).start();
     }
     public void carregarJanela(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -40,6 +44,7 @@ public class App extends JFrame {
 
     public void iniciarObjetos(){
         loadHeroi();
+        loadTiro();
         loadCacto();loadCacto1();loadCacto2();
         loadChao();
         loadFundo();
@@ -69,6 +74,10 @@ public class App extends JFrame {
     public void loadCacto2(){
         lblCacto2 = cacto2.getlCacto();
         add(lblCacto2);
+    }
+    public void loadTiro(){
+        lblTiro = tiro.getlTiro();
+        add(lblTiro);
     }
 
 
@@ -109,6 +118,9 @@ public class App extends JFrame {
 
                 if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
                     heroi.setMovDirDinoS(true);
+                }
+                if (tecla.getKeyCode() == 68/* D */) {
+                    tiro.setTiroDado(true);
                 }
             }
 

@@ -9,6 +9,11 @@ import static java.lang.Thread.sleep;
 
 
 public class App extends JFrame implements Runnable{
+    //---MUDA A VELOCIDADE DO JOGO ---
+    public Integer velJogo = 2;
+    //---MUDA A VELOCIDADE DO JOGO ---
+
+
     ImageIcon iPlacar = new ImageIcon(getClass().getResource("res\\placar.png"));
 
 
@@ -212,7 +217,7 @@ public class App extends JFrame implements Runnable{
     public void run() {
         iniciarMovimentos();
         while (true){
-            try {sleep(1);} catch (Exception erro) {}
+            try {sleep(velJogo);} catch (Exception erro) {}
             atualizaPlacar();
             movimentosCactos();
             colisaoCactoTiro();
@@ -289,21 +294,23 @@ public class App extends JFrame implements Runnable{
 
     }
     public void colisaoCactoCacto(){
-        if (verificaColisao(cacto.getlCacto(), cacto1.getlCacto())) {
-            cacto.mateOCacto();
-        }
-        if (verificaColisao(cacto.getlCacto(), cacto2.getlCacto())) {
-            cacto.mateOCacto();
-        }
-        if (verificaColisao(cacto1.getlCacto(), cacto2.getlCacto())) {
-            cacto1.mateOCacto();
-        }
+
+//        if ((verificaColisao(cacto.getlCacto(), cacto1.getlCacto())) && cacto.getPosCactoX() < 1300
+//        ||cacto1.getPosCactoX() < 1300 ){
+//            cacto.mateOCacto();
+//        }
+//        if ((verificaColisao(cacto.getlCacto(), cacto2.getlCacto())) && cacto1.getPosCactoX() < 1300
+//        || cacto.getPosCactoX() < 1300 ) {
+//            cacto.mateOCacto();
+//        }
+//        if ((verificaColisao(cacto1.getlCacto(), cacto2.getlCacto()))&& cacto1.getPosCactoX() < 1300) {
+//            cacto1.mateOCacto();
+//        }
 
     }
 
     public void atualizaPlacar() {
         txtPlacar.setText(String.valueOf(mortesCactos));
-//                = mortesCactos;
     }
 
     public boolean verificaColisao(Component a, Component b) {

@@ -14,6 +14,8 @@ public class Cacto{
     private JLabel lCacto;
     private Boolean iniciouOMovimento;
     private int randCacto;
+    private int cont;
+    private int velCactos;
 
     public Cacto() {
         this.tamCactoX = 88;
@@ -27,6 +29,8 @@ public class Cacto{
         this.lCacto.setBounds(this.posCactoX, this.posCactoY, this.tamCactoX, this.tamCactoY);
         this.lCacto.setVisible(true);
         this.iniciouOMovimento = false;
+        cont = 0;
+        velCactos = (int)(1 + (Math.random() * 2));
 
     }
 
@@ -42,14 +46,13 @@ public class Cacto{
     }
 
     public void movimentoDoCacto(){
-        if (!this.iniciouOMovimento) {
-////            int random = 1 + (int) (Math.random() * 800);
-//            try {sleep( (int) (Math.random() * 800));} catch (Exception erro) {}
-
-            this.iniciouOMovimento = true;
+        if (cont == 0 || cont == velCactos) {
+            int velocidadeDoCacto = 1;
+            this.lCacto.setLocation((this.lCacto.getX() - velocidadeDoCacto), this.lCacto.getY());
+            cont ++;
+        }else{
+            cont = 0;
         }
-        int velocidadeDoCacto = 1;
-        this.lCacto.setLocation((this.lCacto.getX() - velocidadeDoCacto), this.lCacto.getY());
 
     }
 

@@ -55,6 +55,10 @@ public class Tiro extends Heroi implements Runnable{
             this.lTiro.setLocation(lTiro.getX() + 10, lTiro.getY());
         }
     }
+    public void tiroAcertou(){
+        this.lTiro.setLocation(1300,760);
+
+    }
 
 
     public int getTamTiroX() {

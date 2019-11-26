@@ -13,7 +13,7 @@ public class Heroi implements Runnable{
     //------------------------------
    protected int posAtualDinoY;
    protected int posAtualDinoX;
-
+   protected Boolean dinoVivo;
    protected Boolean puloDinoS;
    protected Boolean puloDinoS2;
    protected Boolean puloDinoB;
@@ -30,56 +30,61 @@ public class Heroi implements Runnable{
         tamHeroiY = 107;
         posHeroiX = 200;
         posHeroiY = 280;
-        this.puloDinoS = false;
-        this.puloDinoS2 = false;
-        this.puloDinoB = false;
-        this.puloDinoB2= false;
-        this.movEsqDinoS = false;
-        this.movDirDinoS = false;
+        puloDinoS = false;
+        puloDinoS2 = false;
+        puloDinoB = false;
+        puloDinoB2= false;
+        movEsqDinoS = false;
+        movDirDinoS = false;
+        dinoVivo = true;
         iDino = new ImageIcon(getClass().getResource("res\\dinoAnimadoDireita.gif"));
         lDino = new JLabel(iDino);
-        this.lDino.setBounds(getPosHeroiX(), getPosHeroiY(), getTamHeroiX(),getTamHeroiY());
-        this.lDino.setVisible(true);
+        lDino.setBounds(getPosHeroiX(), getPosHeroiY(), getTamHeroiX(),getTamHeroiY());
+        lDino.setVisible(true);
     }
 
     public void atualizarMovimentosDino(){
-        posHeroiX = lDino.getX();
-        posHeroiY = lDino.getY();
-        pular();
-        andarEsquerda();
-        andarDireita();
+        if(dinoVivo) {
+            posHeroiX = lDino.getX();
+            posHeroiY = lDino.getY();
+            pular();
+            andarEsquerda();
+            andarDireita();
+        }
     }
     public void pular(){
-        // PULO DINO - MOVIMENTO PARA CIMA
-        int velPulo = 2 ;// Apenas numeros pares
-        Integer estagioLento = (velPulo/2);
-        Integer estagioRapido = velPulo;
-        if(this.puloDinoS) {
-            this.lDino.setLocation(this.lDino.getX(), this.lDino.getY() - estagioRapido);
-            if (this.lDino.getY() == this.posAtualDinoY - 112) {
-                this.puloDinoS = false;
-                this.puloDinoS2 = true;
+        if(dinoVivo) {
+            // PULO DINO - MOVIMENTO PARA CIMA
+            int velPulo = 2;// Apenas numeros pares
+            Integer estagioLento = (velPulo / 2);
+            Integer estagioRapido = velPulo;
+            if (this.puloDinoS) {
+                this.lDino.setLocation(this.lDino.getX(), this.lDino.getY() - estagioRapido);
+                if (this.lDino.getY() == this.posAtualDinoY - 112) {
+                    this.puloDinoS = false;
+                    this.puloDinoS2 = true;
+                }
             }
-        }
-        if(puloDinoS2) {
-            lDino.setLocation(lDino.getX(), lDino.getY() - estagioLento);
-            if(lDino.getY() == posAtualDinoY -192){
-                puloDinoS2 = false;
-                puloDinoB = true;
+            if (puloDinoS2) {
+                lDino.setLocation(lDino.getX(), lDino.getY() - estagioLento);
+                if (lDino.getY() == posAtualDinoY - 192) {
+                    puloDinoS2 = false;
+                    puloDinoB = true;
+                }
             }
-        }
-        //PULO DINO - MOVIMENTO PARA BAIXO
-        if(puloDinoB){
-            lDino.setLocation(lDino.getX(), lDino.getY()+estagioLento);
-            if(lDino.getY() == posAtualDinoY -112){
-                puloDinoB = false;
-                puloDinoB2 = true;
+            //PULO DINO - MOVIMENTO PARA BAIXO
+            if (puloDinoB) {
+                lDino.setLocation(lDino.getX(), lDino.getY() + estagioLento);
+                if (lDino.getY() == posAtualDinoY - 112) {
+                    puloDinoB = false;
+                    puloDinoB2 = true;
+                }
             }
-        }
-        if(puloDinoB2){
-            lDino.setLocation(lDino.getX(), lDino.getY()+estagioRapido);
-            if(lDino.getY() == posAtualDinoY){
-                puloDinoB2 = false;
+            if (puloDinoB2) {
+                lDino.setLocation(lDino.getX(), lDino.getY() + estagioRapido);
+                if (lDino.getY() == posAtualDinoY) {
+                    puloDinoB2 = false;
+                }
             }
         }
     }
@@ -99,6 +104,7 @@ public class Heroi implements Runnable{
     public void run() {
         while (true) {
             try {sleep(1);} catch (Exception erro) {}
+
             atualizarMovimentosDino();
             posHeroiX = lDino.getX();
             posHeroiY = lDino.getY();
@@ -201,6 +207,11 @@ public class Heroi implements Runnable{
 
     public void setPosAtualDinoX(int posAtualDinoX) {
         this.posAtualDinoX = posAtualDinoX;
+    }
+
+    public void matarDino() {
+        dinoVivo = false;
+        lDino.setIcon(iDinoMorto);
     }
 }
 

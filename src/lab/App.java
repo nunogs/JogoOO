@@ -5,8 +5,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Scanner;
 
+import static java.lang.Thread.sleep;
 
-public class App extends JFrame {
+
+public class App extends JFrame implements Runnable{
     protected Fundo fundo = new Fundo();
     protected Chao chao = new Chao();
     protected Cacto cacto = new Cacto();
@@ -14,8 +16,6 @@ public class App extends JFrame {
     protected Cacto cacto2 = new Cacto();
     protected Heroi heroi= new Heroi();
     protected Tiro tiro = new Tiro();
-
-
     protected JLabel lblFundo;
     protected JLabel lblCacto;
     protected JLabel lblCacto1;
@@ -25,6 +25,7 @@ public class App extends JFrame {
     protected JLabel lblHeroi;
     protected int posX;
     protected int posY;
+    protected int mortesCactos;
 
 
     public App(){
@@ -32,9 +33,17 @@ public class App extends JFrame {
         carregarJanela();
         iniciarObjetos();
         capturaTeclado();
+        iniciarCactos();
+        run();
+//        new Thread(heroi).start();
+//        new Thread(tiro).start();
+    }
+    public void iniciarCactos(){
         new Thread(cacto).start();
-        new Thread(heroi).start();
-        new Thread(tiro).start();
+        try {sleep(20);} catch (Exception erro) {}
+        new Thread(cacto1).start();
+        try {sleep(20);} catch (Exception erro) {}
+        new Thread(cacto2).start();
     }
     public void carregarJanela(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -145,10 +154,96 @@ public class App extends JFrame {
         });
     }
 
+
+
     public static void main(String[] args) {
         new App();
 
 
     }
 
+    @Override
+    public void run() {
+        new Thread(heroi).start();
+        new Thread(tiro).start();
+        while (true){
+            try {sleep(1);} catch (Exception erro) {}
+            colisaoCactoTiro();
+            colisaoDinoCacto();
+
+        }
+    }
+
+    public void colisaoDinoCacto(){
+        if (verificaColisao(heroi.getlDino(), cacto.getlCacto()) ||
+                verificaColisao(heroi.getlDino(), cacto1.getlCacto()) ||
+                verificaColisao(heroi.getlDino(), cacto2.getlCacto())){
+            heroi.matarDino();
+            JOptionPane.showMessageDialog(null, "  Matou " + mortesCactos + " cactos.");
+//            try {sleep(300);} catch (Exception erro) {}
+            System.exit(0);
+        }
+    }
+    public void colisaoCactoTiro(){
+        if (verificaColisao(tiro.getlTiro(), cacto.getlCacto())) {
+            cacto.matarCactoPorTiro();
+            tiro.tiroAcertou();
+            mortesCactos ++;
+            System.out.println(mortesCactos);
+        }
+        if (verificaColisao(tiro.getlTiro(), cacto1.getlCacto())) {
+            cacto1.matarCactoPorTiro();
+            tiro.tiroAcertou();
+            mortesCactos ++;
+            System.out.println(mortesCactos);
+        }
+        if (verificaColisao(tiro.getlTiro(), cacto2.getlCacto())) {
+            cacto2.matarCactoPorTiro();
+            tiro.tiroAcertou();
+            mortesCactos ++;
+            System.out.println(mortesCactos);
+        }
+
+    }
+
+
+    public boolean verificaColisao(Component a, Component b) {
+        int aX = a.getX();
+        int aY = a.getY();
+        int ladoDireitoA = aX+a.getWidth();
+        int ladoEsquerdoA= aX;
+        int ladoBaixoA= aY+a.getHeight();
+        int ladoCimaA= aY;
+
+        int bX = b.getX();
+        int bY = b.getY();
+        int ladoDireitoB = bX+b.getWidth();
+        int ladoEsquerdoB= bX;
+        int ladoBaixoB= bY+b.getHeight();
+        int ladoCimaB= bY;
+
+        boolean colidiu = false;
+        boolean cDireita=false;
+        boolean cCima=false;
+        boolean cBaixo=false;
+        boolean cEsquerda=false;
+
+        if(ladoDireitoA>=ladoEsquerdoB) {
+            cDireita=true;
+        }
+        if(ladoCimaA<=ladoBaixoB) {
+            cCima=true;
+        }
+        if(ladoBaixoA>=ladoCimaB) {
+            cBaixo=true;
+        }
+        if(ladoEsquerdoA<=ladoDireitoB) {
+            cEsquerda=true;
+        }
+
+        if(cDireita && cEsquerda && cBaixo && cCima) {
+            colidiu = true;
+        }
+        return colidiu;
+    }
 }

@@ -32,6 +32,7 @@ public class Cacto implements Runnable{
             try {movimentoDoCacto(); } catch (InterruptedException e) {e.printStackTrace(); }
             matarCactoPorSair();
 
+
         }
     }
     public void matarCactoPorSair(){
@@ -82,4 +83,7 @@ public class Cacto implements Runnable{
         return lCacto;
     }
 
+    public void matarCactoPorTiro() {
+        mateOCacto();
+    }
 }

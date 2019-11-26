@@ -33,8 +33,10 @@ public class Tiro extends Heroi implements Runnable{
     @Override
     public void run() {
         while (true){
-            try {sleep(5);} catch (Exception erro) {}
-
+            try {sleep(4);} catch (Exception erro) {}
+            if(lTiro.getX() > 1300){
+                lTiro.setLocation(1300,760);
+            }
             atirar();
 
         }

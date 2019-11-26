@@ -13,12 +13,15 @@ public class Cacto{
     private ImageIcon iCacto;
     private JLabel lCacto;
     private Boolean iniciouOMovimento;
+    private int randCacto;
 
     public Cacto() {
         this.tamCactoX = 88;
         this.tamCactoY = 90;
         this.posCactoX = (int)( 1300 + (Math.random() * 2500));
         this.posCactoY = 295;
+//        this.randCacto =  (int)(1 + (Math.random() * 5 ));
+//        this.posCactoY = (294 + randCacto);
         this.iCacto = new ImageIcon(getClass().getResource("res\\cacto.png"));
         this.lCacto = new JLabel(this.iCacto);
         this.lCacto.setBounds(this.posCactoX, this.posCactoY, this.tamCactoX, this.tamCactoY);
@@ -34,7 +37,7 @@ public class Cacto{
     }
 
     public void mateOCacto() {
-        this.lCacto.setLocation(posCactoX,posCactoY);
+        this.lCacto.setLocation(this.posCactoX, this.posCactoY);
         this.iniciouOMovimento = false;
     }
 

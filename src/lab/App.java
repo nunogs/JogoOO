@@ -9,6 +9,9 @@ import static java.lang.Thread.sleep;
 
 
 public class App extends JFrame implements Runnable{
+    ImageIcon iPlacar = new ImageIcon(getClass().getResource("res\\placar.png"));
+
+
     protected Fundo fundo = new Fundo();
     protected Chao chao = new Chao();
     protected Cacto cacto = new Cacto();
@@ -31,10 +34,11 @@ public class App extends JFrame implements Runnable{
     protected JLabel lblTiro;
     protected JLabel lblChao;
     protected JLabel lblHeroi;
+    protected JLabel placar = new JLabel(iPlacar);
     protected int posX;
     protected int posY;
     protected int mortesCactos;
-
+    JLabel txtPlacar = new JLabel(String.valueOf(mortesCactos));
 
     public App(){
         setFocusable(true);
@@ -58,9 +62,11 @@ public class App extends JFrame implements Runnable{
         setLocationRelativeTo(null);
         setVisible(true);
         setLayout(null);
+
     }
 
     public void iniciarObjetos(){
+        loadPlacar();
         loadHeroi();
         loadTiro();
         loadCacto();
@@ -72,6 +78,19 @@ public class App extends JFrame implements Runnable{
         loadNuvens2();
         loadChao();
         loadFundo();
+    }
+
+    private void loadPlacar() {
+        placar.setVisible(true);
+        placar.setBounds(100,20,150,120);
+        txtPlacar.setVisible(true);
+//        txtPlacar.setBorder(10,10);
+        txtPlacar.setBounds(60,25,90,50);
+        Font fonteGeral = new Font("Arial", Font.BOLD, 50);
+        txtPlacar.setFont(fonteGeral);
+        placar.add(txtPlacar);
+        add(placar);
+
     }
 
     private void loadHeroi() {
@@ -194,7 +213,7 @@ public class App extends JFrame implements Runnable{
         iniciarMovimentos();
         while (true){
             try {sleep(1);} catch (Exception erro) {}
-
+            atualizaPlacar();
             movimentosCactos();
             colisaoCactoTiro();
             colisaoDinoCacto();
@@ -282,6 +301,10 @@ public class App extends JFrame implements Runnable{
 
     }
 
+    public void atualizaPlacar() {
+        txtPlacar.setText(String.valueOf(mortesCactos));
+//                = mortesCactos;
+    }
 
     public boolean verificaColisao(Component a, Component b) {
         int aX = a.getX();

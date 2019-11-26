@@ -27,7 +27,7 @@ public class Tiro extends Heroi implements Runnable{
         this.tiroDado = false;
         this.tiroDadoP1 = false;
         this.lTiro.setVisible(true);
-        this.lTiro.setBounds(1300, 760, tamTiroX,tamTiroY);
+        this.lTiro.setBounds(1300, 1000, tamTiroX,tamTiroY);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Tiro extends Heroi implements Runnable{
         while (true){
             try {sleep(4);} catch (Exception erro) {}
             if(lTiro.getX() > 1300){
-                lTiro.setLocation(1300,760);
+                lTiro.setLocation(1300, 1000);
             }
             atirar();
 

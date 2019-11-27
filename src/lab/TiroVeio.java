@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import static java.lang.Thread.sleep;
 
-public class Tiro extends Heroi implements Runnable{
+public class TiroVeio extends Heroi implements Runnable{
     private int tamTiroX;
     private int tamTiroY;
     private int posTiroX;
@@ -15,7 +15,7 @@ public class Tiro extends Heroi implements Runnable{
     private Boolean tiroDado;
     private Boolean tiroDadoP1;
 
-    public Tiro() {
+    public TiroVeio() {
         this.tamTiroX = 10;
         this.tamTiroY = 15;
         this.iTiro = new ImageIcon(getClass().getResource("res\\tiro.png"));

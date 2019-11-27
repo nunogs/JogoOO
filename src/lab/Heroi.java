@@ -56,6 +56,12 @@ public class Heroi implements Runnable{
             andarDireita();
         }
     }
+    public int atualizarPosX(){
+        return this.posHeroiX;
+    }
+    public int atualizarPosY(){
+        return this.posHeroiY;
+    }
 
     public void iniciarPulo(){
         if (!(getPuloDinoS() ||
@@ -103,6 +109,7 @@ public class Heroi implements Runnable{
             }
         }
     }
+
     public void andarEsquerda(){
         if(getMovEsqDinoS()){
             this.lDino.setIcon(iDinoAnimadoEsquerda);
@@ -118,8 +125,11 @@ public class Heroi implements Runnable{
     @Override
     public void run() {
         while (true) {
+
             try {sleep(1);} catch (Exception erro) {}
             atualizarMovimentosDino();
+
+
         }
     }
 

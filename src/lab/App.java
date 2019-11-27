@@ -25,6 +25,8 @@ public class App extends JFrame implements Runnable{
     protected Nuvens nuvens2 = new Nuvens();
     protected Nuvens nuvens3 = new Nuvens();
     protected Heroi heroi= new Heroi();
+    protected int posHeroiX;
+    protected int posHeroiY;
     protected Tiro tiro = new Tiro();
     protected Tiro tiro1 = new Tiro();
 
@@ -125,8 +127,6 @@ public class App extends JFrame implements Runnable{
 
                 if (tecla.getKeyCode() == 68/* D */) {
                      tiro1.setIniciarMovimentoDoTiro(true);
-                     posX = heroi.getlDino().getX() + 30;
-                     posY = heroi.getlDino().getY() + 30;
                      tiro1.atualizarPosHeroi(posX, posY);
                 }
             }
@@ -159,8 +159,17 @@ public class App extends JFrame implements Runnable{
             movimentosNuvens();
 //            tiro.atirar();
 //            heroi.atualizarMovimentosDino();
+            receberPosicaoDoHeroi();
 
         }
+    }
+    public void receberPosicaoDoHeroi(){
+        posX = heroi.atualizarPosX();
+        posY = heroi.atualizarPosY();
+
+//        System.out.println( " X=" +posX);
+//        System.out.println(" Y=" +posY);
+
     }
 
     public void movimentosNuvens(){
@@ -229,14 +238,13 @@ public class App extends JFrame implements Runnable{
             tiro1.tiroAcertou();
             mortesCactos ++;
         }
-        
+
     }
 
     public void atualizaPlacar() {
         txtPlacar.setText(String.valueOf(mortesCactos));
     }
-
-
+    
     public boolean verificaColisao(Component a, Component b) {
         int aX = a.getX();
         int aY = a.getY();

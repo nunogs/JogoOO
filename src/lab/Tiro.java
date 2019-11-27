@@ -18,6 +18,7 @@ public class Tiro extends Heroi implements Runnable{
     private Boolean tiroDadoP1;
 
     public Tiro() {
+        System.out.println("tiro foi iniciado");
         this.tamTiroX = 10;
         this.tamTiroY = 15;
 
@@ -28,15 +29,22 @@ public class Tiro extends Heroi implements Runnable{
         this.tiroDadoP1 = false;
         this.lTiro.setVisible(true);
         this.lTiro.setBounds(1300, 1000, tamTiroX,tamTiroY);
+
+        // ------------------------
+
+
+
+
     }
 
     @Override
     public void run() {
         while (true){
             try {sleep(4);} catch (Exception erro) {}
-            if(lTiro.getX() > 1300){
-                lTiro.setLocation(1300, 1000);
+            if(this.lTiro.getX() > 1300){
+                this.lTiro.setLocation(1300, 1000);
             }
+
             atirar();
 
         }
@@ -48,6 +56,7 @@ public class Tiro extends Heroi implements Runnable{
 
     public void atirar(){
         if(this.tiroDado) {
+            this.iniciouOMovimento = true;
             this.lTiro.setLocation(posTiroX,posTiroY);
             this.tiroDado =false;
             this.tiroDadoP1 = true;
@@ -55,6 +64,7 @@ public class Tiro extends Heroi implements Runnable{
         if (this.tiroDadoP1) {
             this.lTiro.setVisible(true);
             this.lTiro.setLocation(lTiro.getX() + 10, lTiro.getY());
+            this.iniciouOMovimento = false;
         }
     }
     public void tiroAcertou(){
@@ -99,7 +109,7 @@ public class Tiro extends Heroi implements Runnable{
         return tiroDadoP1;
     }
 
-    public void setTiroDado(Boolean tiroDado) {
+    public void setIniciarMovimentoDoTiro(Boolean tiroDado) {
         this.tiroDado = tiroDado;
     }
 }

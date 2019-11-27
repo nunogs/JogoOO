@@ -28,6 +28,7 @@ public class App extends JFrame implements Runnable{
     protected Nuvens nuvens3 = new Nuvens();
     protected Heroi heroi= new Heroi();
     protected Tiro tiro = new Tiro();
+    protected Tiro tiro1 = new Tiro();
     protected JLabel lblFundo;
     protected JLabel lblCacto;
     protected JLabel lblCacto1;
@@ -37,6 +38,7 @@ public class App extends JFrame implements Runnable{
     protected JLabel lblNuvens2;
     protected JLabel lblNuvens3;
     protected JLabel lblTiro;
+    protected JLabel lblTiro1;
     protected JLabel lblChao;
     protected JLabel lblHeroi;
     protected JLabel placar = new JLabel(iPlacar);
@@ -74,6 +76,7 @@ public class App extends JFrame implements Runnable{
         loadPlacar();
         loadHeroi();
         loadTiro();
+        loadTiro1();
         loadCacto();
         loadCacto1();
         loadCacto2();
@@ -143,6 +146,10 @@ public class App extends JFrame implements Runnable{
         lblTiro = tiro.getlTiro();
         add(lblTiro);
     }
+    public void loadTiro1(){
+        lblTiro1 = tiro1.getlTiro();
+        add(lblTiro1);
+    }
 
 
 
@@ -189,10 +196,12 @@ public class App extends JFrame implements Runnable{
                 }
 
                 if (tecla.getKeyCode() == 68/* D */) {
-                    tiro.setTiroDado(true);
-                    posX = lblHeroi.getX()+30;
-                    posY = lblHeroi.getY()+30;
-                    tiro.atualizarPosHeroi(posX, posY);
+                     tiro1.setIniciarMovimentoDoTiro(true);
+                     posX = lblHeroi.getX() + 30;
+                     posY = lblHeroi.getY() + 30;
+                     tiro1.atualizarPosHeroi(posX, posY);
+
+
                 }
             }
 
@@ -264,6 +273,7 @@ public class App extends JFrame implements Runnable{
         if(heroi.dinoVivo) {
             new Thread(heroi).start();
             new Thread(tiro).start();
+            new Thread(tiro1).start();
         }
     }
 
@@ -278,6 +288,7 @@ public class App extends JFrame implements Runnable{
     }
 
     public void colisaoCactoTiro(){
+        // tiro 0
         if (verificaColisao(tiro.getlTiro(), cacto.getlCacto())) {
             cacto.matarCactoPorTiro();
             tiro.tiroAcertou();
@@ -296,11 +307,37 @@ public class App extends JFrame implements Runnable{
             mortesCactos ++;
             System.out.println(mortesCactos);
         }
+        // Tiro 1
+        if (verificaColisao(tiro1.getlTiro(), cacto.getlCacto())) {
+            cacto.matarCactoPorTiro();
+            tiro1.tiroAcertou();
+            mortesCactos ++;
+            System.out.println(mortesCactos);
+        }
+        if (verificaColisao(tiro1.getlTiro(), cacto1.getlCacto())) {
+            cacto1.matarCactoPorTiro();
+            tiro1.tiroAcertou();
+            mortesCactos ++;
+            System.out.println(mortesCactos);
+        }
+        if (verificaColisao(tiro1.getlTiro(), cacto2.getlCacto())) {
+            cacto2.matarCactoPorTiro();
+            tiro1.tiroAcertou();
+            mortesCactos ++;
+            System.out.println(mortesCactos);
+        }
+
+
 
     }
 
     public void atualizaPlacar() {
         txtPlacar.setText(String.valueOf(mortesCactos));
+    }
+
+    public void atirar(){
+        int tiro = 0;
+
     }
 
     public boolean verificaColisao(Component a, Component b) {

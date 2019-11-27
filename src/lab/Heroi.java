@@ -106,10 +106,10 @@ public class Heroi implements Runnable{
             try {sleep(1);} catch (Exception erro) {}
 
 //            atualizarMovimentosDino();
-            posHeroiX = lDino.getX();
-            posHeroiY = lDino.getY();
+//            posHeroiX = lDino.getX();
+//            posHeroiY = lDino.getY();
 
-
+            atualizarMovimentosDino();
         }
     }
 

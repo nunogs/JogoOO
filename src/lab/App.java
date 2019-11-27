@@ -9,8 +9,8 @@ import static java.lang.Thread.sleep;
 
 
 public class App extends JFrame implements Runnable{
-    //---MUDA A VELOCIDADE DO JOGO ---
-    public Integer velJogo = 2;
+    //---MUDA A VELOCIDADE DO JOGO --- onde 1 é o mais rapido
+    public Integer velJogo = 1;
     //---MUDA A VELOCIDADE DO JOGO ---
 
 
@@ -51,7 +51,7 @@ public class App extends JFrame implements Runnable{
         iniciarObjetos();
         capturaTeclado();
         run();
-//        new Thread(heroi).start();
+        new Thread(heroi).run();
 //        new Thread(tiro).start();
     }
 //    public void iniciarNuvens(){
@@ -170,7 +170,11 @@ public class App extends JFrame implements Runnable{
             public void keyPressed(KeyEvent tecla) {
                 if (tecla.getKeyCode() == 32/*ESPAÇO*/) {
                     if (tecla.getKeyCode() == 32/*ESPAÇO*/) {
-                        if (!(heroi.getPuloDinoS() || heroi.getPuloDinoS2() || heroi.getPuloDinoB() || heroi.getPuloDinoB2())) {
+                        if (!(heroi.getPuloDinoS() ||
+                                heroi.getPuloDinoS2() ||
+                                heroi.getPuloDinoB() ||
+                                heroi.getPuloDinoB2())) {
+
                             heroi.setPuloDinoS(true);
                             heroi.setPosAtualDinoY(heroi.lDino.getY());
                         }
@@ -222,10 +226,9 @@ public class App extends JFrame implements Runnable{
             movimentosCactos();
             colisaoCactoTiro();
             colisaoDinoCacto();
-            colisaoCactoCacto();
             movimentosNuvens();
 
-            heroi.atualizarMovimentosDino();
+//            heroi.atualizarMovimentosDino();
 
         }
     }
@@ -250,6 +253,7 @@ public class App extends JFrame implements Runnable{
         cacto1.movimentoDoCacto();
         cacto2.movimentoDoCacto();
     }
+
     public void matarCactos(){
         cacto.matarCactoPorSair();
         cacto1.matarCactoPorSair();
@@ -272,6 +276,7 @@ public class App extends JFrame implements Runnable{
             System.exit(0);
         }
     }
+
     public void colisaoCactoTiro(){
         if (verificaColisao(tiro.getlTiro(), cacto.getlCacto())) {
             cacto.matarCactoPorTiro();
@@ -291,21 +296,6 @@ public class App extends JFrame implements Runnable{
             mortesCactos ++;
             System.out.println(mortesCactos);
         }
-
-    }
-    public void colisaoCactoCacto(){
-
-//        if ((verificaColisao(cacto.getlCacto(), cacto1.getlCacto())) && cacto.getPosCactoX() < 1300
-//        ||cacto1.getPosCactoX() < 1300 ){
-//            cacto.mateOCacto();
-//        }
-//        if ((verificaColisao(cacto.getlCacto(), cacto2.getlCacto())) && cacto1.getPosCactoX() < 1300
-//        || cacto.getPosCactoX() < 1300 ) {
-//            cacto.mateOCacto();
-//        }
-//        if ((verificaColisao(cacto1.getlCacto(), cacto2.getlCacto()))&& cacto1.getPosCactoX() < 1300) {
-//            cacto1.mateOCacto();
-//        }
 
     }
 

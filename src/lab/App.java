@@ -157,7 +157,7 @@ public class App extends JFrame implements Runnable{
             colisaoCactoTiro();
             colisaoDinoCacto();
             movimentosNuvens();
-
+//            tiro.atirar();
 //            heroi.atualizarMovimentosDino();
 
         }
@@ -202,42 +202,34 @@ public class App extends JFrame implements Runnable{
             cacto.matarCactoPorTiro();
             tiro.tiroAcertou();
             mortesCactos ++;
-            System.out.println(mortesCactos);
         }
         if (verificaColisao(tiro.getlTiro(), cacto1.getlCacto())) {
             cacto1.matarCactoPorTiro();
             tiro.tiroAcertou();
             mortesCactos ++;
-            System.out.println(mortesCactos);
         }
         if (verificaColisao(tiro.getlTiro(), cacto2.getlCacto())) {
             cacto2.matarCactoPorTiro();
             tiro.tiroAcertou();
             mortesCactos ++;
-            System.out.println(mortesCactos);
         }
         // Tiro 1
         if (verificaColisao(tiro1.getlTiro(), cacto.getlCacto())) {
             cacto.matarCactoPorTiro();
             tiro1.tiroAcertou();
             mortesCactos ++;
-            System.out.println(mortesCactos);
         }
         if (verificaColisao(tiro1.getlTiro(), cacto1.getlCacto())) {
             cacto1.matarCactoPorTiro();
             tiro1.tiroAcertou();
             mortesCactos ++;
-            System.out.println(mortesCactos);
         }
         if (verificaColisao(tiro1.getlTiro(), cacto2.getlCacto())) {
             cacto2.matarCactoPorTiro();
             tiro1.tiroAcertou();
             mortesCactos ++;
-            System.out.println(mortesCactos);
         }
-
-
-
+        
     }
 
     public void atualizaPlacar() {

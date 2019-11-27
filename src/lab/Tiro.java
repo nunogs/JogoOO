@@ -18,10 +18,8 @@ public class Tiro extends Heroi implements Runnable{
     private Boolean tiroDadoP1;
 
     public Tiro() {
-        System.out.println("tiro foi iniciado");
         this.tamTiroX = 10;
         this.tamTiroY = 15;
-
         this.iTiro = new ImageIcon(getClass().getResource("res\\tiro.png"));
         this.lTiro = new JLabel(iTiro);
         this.iniciouOMovimento = false;

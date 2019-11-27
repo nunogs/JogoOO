@@ -16,6 +16,7 @@ public class App extends JFrame implements Runnable{
     protected ImageIcon iPlacar = new ImageIcon(getClass().getResource("res\\placar.png"));
     protected Fundo fundo = new Fundo();
     protected Chao chao = new Chao();
+    protected DetalhesChao detalhesChao = new DetalhesChao();
     protected Cacto cacto = new Cacto();
     protected Cacto cacto1 = new Cacto();
     protected Cacto cacto2 = new Cacto();
@@ -42,6 +43,13 @@ public class App extends JFrame implements Runnable{
         new Thread(heroi).run();
     }
 
+
+    public static void main(String[] args) {
+        new App();
+
+
+    }
+
     public void carregarJanela(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1280,720);
@@ -63,6 +71,7 @@ public class App extends JFrame implements Runnable{
         add(nuvens1.getlNuvens());
         add(nuvens.getlNuvens());
         add(nuvens2.getlNuvens());
+        add(detalhesChao.getlDetalhes());
         add(chao.getlChao());
         add(fundo.getLfundo());
     }
@@ -138,11 +147,6 @@ public class App extends JFrame implements Runnable{
 
 
 
-    public static void main(String[] args) {
-        new App();
-
-
-    }
 
     @Override
     public void run() {
@@ -175,17 +179,16 @@ public class App extends JFrame implements Runnable{
     }
 
     public void movimentosCactos(){
-        matarCactos();
         cacto.movimentoDoCacto();
-        cacto1.movimentoDoCacto();
-        cacto2.movimentoDoCacto();
-    }
-
-    public void matarCactos(){
         cacto.matarCactoPorSair();
+
+        cacto1.movimentoDoCacto();
         cacto1.matarCactoPorSair();
+
+        cacto2.movimentoDoCacto();
         cacto2.matarCactoPorSair();
     }
+
 
     public void iniciarMovimentos(){
         if(heroi.dinoVivo) {
@@ -253,10 +256,6 @@ public class App extends JFrame implements Runnable{
         txtPlacar.setText(String.valueOf(mortesCactos));
     }
 
-    public void atirar(){
-        int tiro = 0;
-
-    }
 
     public boolean verificaColisao(Component a, Component b) {
         int aX = a.getX();

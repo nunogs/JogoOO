@@ -39,7 +39,6 @@ public class Chao {
         this.posChaoY = posChaoY;
     }
 
-
     public JLabel getlChao() {
         return lChao;
     }

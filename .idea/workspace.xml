@@ -5,9 +5,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/App$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Chao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Chao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/DetalhesChao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/DetalhesChao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Heroi.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Heroi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/res/detalhechao.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/res/detalhechao.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/res/detalhechao.psd" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/res/detalhechao.psd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab/Heroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Heroi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/Chao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Chao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/DetalhesChao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/DetalhesChao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/res/detalhechao.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/res/detalhechao.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/res/detalhechao.psd" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/res/detalhechao.psd" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

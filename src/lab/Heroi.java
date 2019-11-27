@@ -1,6 +1,10 @@
 package lab;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 import static java.lang.Thread.sleep;
 
 public class Heroi implements Runnable{
@@ -50,6 +54,17 @@ public class Heroi implements Runnable{
             pular();
             andarEsquerda();
             andarDireita();
+        }
+    }
+
+    public void iniciarPulo(){
+        if (!(getPuloDinoS() ||
+                getPuloDinoS2() ||
+                getPuloDinoB() ||
+                getPuloDinoB2())) {
+
+            setPuloDinoS(true);
+            setPosAtualDinoY(lDino.getY());
         }
     }
     public void pular(){
@@ -104,16 +119,9 @@ public class Heroi implements Runnable{
     public void run() {
         while (true) {
             try {sleep(1);} catch (Exception erro) {}
-
-//            atualizarMovimentosDino();
-//            posHeroiX = lDino.getX();
-//            posHeroiY = lDino.getY();
-
             atualizarMovimentosDino();
         }
     }
-
-
 
 
     //Metodos getters e setters
@@ -181,16 +189,20 @@ public class Heroi implements Runnable{
         return movEsqDinoS;
     }
 
-    public void setMovEsqDinoS(Boolean movEsqDinoS) {
-        this.movEsqDinoS = movEsqDinoS;
+    public void movimentoParaEsquerda(Boolean movEsqDinoS) {
+        if(dinoVivo) {
+            this.movEsqDinoS = movEsqDinoS;
+        }
     }
 
     public Boolean getMovDirDinoS() {
         return movDirDinoS;
     }
 
-    public void setMovDirDinoS(Boolean movDirDinoS) {
-        this.movDirDinoS = movDirDinoS;
+    public void movimentoParaDireita(Boolean movDirDinoS) {
+        if (dinoVivo) {
+            this.movDirDinoS = movDirDinoS;
+        }
     }
 
     public int getPosAtualDinoY() {
@@ -212,6 +224,7 @@ public class Heroi implements Runnable{
     public void matarDino() {
         dinoVivo = false;
         lDino.setIcon(iDinoMorto);
+
     }
 }
 

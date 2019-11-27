@@ -13,10 +13,7 @@ public class App extends JFrame implements Runnable{
     public Integer velJogo = 1;
     //---MUDA A VELOCIDADE DO JOGO ---
 
-
-    ImageIcon iPlacar = new ImageIcon(getClass().getResource("res\\placar.png"));
-
-
+    protected ImageIcon iPlacar = new ImageIcon(getClass().getResource("res\\placar.png"));
     protected Fundo fundo = new Fundo();
     protected Chao chao = new Chao();
     protected Cacto cacto = new Cacto();
@@ -29,18 +26,7 @@ public class App extends JFrame implements Runnable{
     protected Heroi heroi= new Heroi();
     protected Tiro tiro = new Tiro();
     protected Tiro tiro1 = new Tiro();
-    protected JLabel lblFundo;
-    protected JLabel lblCacto;
-    protected JLabel lblCacto1;
-    protected JLabel lblCacto2;
-    protected JLabel lblNuvens;
-    protected JLabel lblNuvens1;
-    protected JLabel lblNuvens2;
-    protected JLabel lblNuvens3;
-    protected JLabel lblTiro;
-    protected JLabel lblTiro1;
-    protected JLabel lblChao;
-    protected JLabel lblHeroi;
+
     protected JLabel placar = new JLabel(iPlacar);
     protected int posX;
     protected int posY;
@@ -54,15 +40,8 @@ public class App extends JFrame implements Runnable{
         capturaTeclado();
         run();
         new Thread(heroi).run();
-//        new Thread(tiro).start();
     }
-//    public void iniciarNuvens(){
-//        new Thread(cacto).start();
-//        try {sleep(20);} catch (Exception erro) {}
-//        new Thread(cacto1).start();
-//        try {sleep(20);} catch (Exception erro) {}
-//        new Thread(cacto2).start();
-//    }
+
     public void carregarJanela(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1280,720);
@@ -74,81 +53,30 @@ public class App extends JFrame implements Runnable{
 
     public void iniciarObjetos(){
         loadPlacar();
-        loadHeroi();
-        loadTiro();
-        loadTiro1();
-        loadCacto();
-        loadCacto1();
-        loadCacto2();
-        loadNuvens3();
-        loadNuvens1();
-        loadNuvens();
-        loadNuvens2();
-        loadChao();
-        loadFundo();
+        add(heroi.getlDino());
+        add(tiro.getlTiro());
+        add(tiro1.getlTiro());
+        add(cacto.getlCacto());
+        add(cacto1.getlCacto());
+        add(cacto2.getlCacto());
+        add(nuvens3.getlNuvens());
+        add(nuvens1.getlNuvens());
+        add(nuvens.getlNuvens());
+        add(nuvens2.getlNuvens());
+        add(chao.getlChao());
+        add(fundo.getLfundo());
     }
 
     private void loadPlacar() {
         placar.setVisible(true);
         placar.setBounds(100,20,150,120);
         txtPlacar.setVisible(true);
-//        txtPlacar.setBorder(10,10);
         txtPlacar.setBounds(60,25,90,50);
         Font fonteGeral = new Font("Arial", Font.BOLD, 50);
         txtPlacar.setFont(fonteGeral);
         placar.add(txtPlacar);
         add(placar);
 
-    }
-
-    private void loadHeroi() {
-        lblHeroi = heroi.getlDino();
-        add(lblHeroi);
-    }
-
-    public void loadFundo(){
-        lblFundo = fundo.getLfundo();
-        add(lblFundo);
-    }
-    public void loadChao(){
-        lblChao = chao.getlChao();
-        add(lblChao);
-    }
-    public void loadCacto(){
-        lblCacto = cacto.getlCacto();
-        add(lblCacto);
-    }
-    public void loadCacto1(){
-        lblCacto1 = cacto1.getlCacto();
-        add(lblCacto1);
-    }
-    public void loadCacto2(){
-        lblCacto2 = cacto2.getlCacto();
-        add(lblCacto2);
-    }
-    public void loadNuvens(){
-        lblNuvens = nuvens.getlNuvens();
-        add(lblNuvens);
-    }
-    public void loadNuvens1(){
-        lblNuvens1 = nuvens1.getlNuvens();
-        add(lblNuvens1);
-    }
-    public void loadNuvens2(){
-        lblNuvens2 = nuvens2.getlNuvens();
-        add(lblNuvens2);
-    }
-    public void loadNuvens3(){
-        lblNuvens3 = nuvens3.getlNuvens();
-        add(lblNuvens3);
-    }
-    public void loadTiro(){
-        lblTiro = tiro.getlTiro();
-        add(lblTiro);
-    }
-    public void loadTiro1(){
-        lblTiro1 = tiro1.getlTiro();
-        add(lblTiro1);
     }
 
 
@@ -172,47 +100,37 @@ public class App extends JFrame implements Runnable{
             public void keyTyped(KeyEvent e) {
 
             }
-
             @Override
             public void keyPressed(KeyEvent tecla) {
                 if (tecla.getKeyCode() == 32/*ESPAÇO*/) {
                     if (tecla.getKeyCode() == 32/*ESPAÇO*/) {
-                        if (!(heroi.getPuloDinoS() ||
-                                heroi.getPuloDinoS2() ||
-                                heroi.getPuloDinoB() ||
-                                heroi.getPuloDinoB2())) {
-
-                            heroi.setPuloDinoS(true);
-                            heroi.setPosAtualDinoY(heroi.lDino.getY());
-                        }
+                        heroi.iniciarPulo();
                     }
                 }
                 if (tecla.getKeyCode() == 37 /*SETA ESQUERDA*/) {
-                    heroi.setMovEsqDinoS(true);
+                    heroi.movimentoParaEsquerda(true);
                 }
 
                 if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
-                    heroi.setMovDirDinoS(true);
+                    heroi.movimentoParaDireita(true);
                 }
 
                 if (tecla.getKeyCode() == 68/* D */) {
                      tiro1.setIniciarMovimentoDoTiro(true);
-                     posX = lblHeroi.getX() + 30;
-                     posY = lblHeroi.getY() + 30;
+                     posX = heroi.getlDino().getX() + 30;
+                     posY = heroi.getlDino().getY() + 30;
                      tiro1.atualizarPosHeroi(posX, posY);
-
-
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent tecla) {
                 if (tecla.getKeyCode() == 37 /*SETA ESQUERDA*/) {
-                    heroi.setMovEsqDinoS(false);
+                    heroi.movimentoParaEsquerda(false);
                 }
 
                 if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
-                    heroi.setMovDirDinoS(false);
+                    heroi.movimentoParaDireita(false);
                 }
             }
         });

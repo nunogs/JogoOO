@@ -9,11 +9,14 @@ public class DetalhesChao{
     private int posDetalhesY;
     private ImageIcon iDetalhes;
     private JLabel lDetalhes;
+    private Boolean iniciouOMovimento;
+    private int cont;
+    private int velDetalhes;
 
 
     public DetalhesChao() {
-        this.tamDetalhesX = 300;
-        this.tamDetalhesY = 80;
+        this.tamDetalhesX = 189;
+        this.tamDetalhesY = 50;
         this.posDetalhesX = 0;
         this.posDetalhesY = 370;
         this.iDetalhes = new ImageIcon(getClass().getResource("res\\detalhechao.png"));
@@ -23,6 +26,19 @@ public class DetalhesChao{
 
     }
 
+    public void matarDetalhePorSair(){
+        if (this.lDetalhes.getX() < -50){
+            this.mateOsDetalhes();
+        }
+    }
+
+    public void mateOsDetalhes() {
+        this.lDetalhes.setLocation(this.posDetalhesX, this.posDetalhesY);
+        this.iniciouOMovimento = false;
+    }
+    public void movimentoDetalhes(){
+        this.lDetalhes.setLocation((this.lDetalhes.getX() - velDetalhes), this.lDetalhes.getY());
+    }
 
 
     public int getTamDetalhesX() {

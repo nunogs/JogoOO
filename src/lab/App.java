@@ -20,7 +20,7 @@ public class App extends JFrame implements Runnable{
     protected Cacto cacto = new Cacto();
     protected Cacto cacto1 = new Cacto();
     protected Cacto cacto2 = new Cacto();
-    protected Nuvens nuvens = new Nuvens();
+    protected Nuvens nuvens0 = new Nuvens();
     protected Nuvens nuvens1 = new Nuvens();
     protected Nuvens nuvens2 = new Nuvens();
     protected Nuvens nuvens3 = new Nuvens();
@@ -40,7 +40,6 @@ public class App extends JFrame implements Runnable{
         iniciarObjetos();
         capturaTeclado();
         run();
-        new Thread(heroi).run();
     }
 
 
@@ -69,7 +68,7 @@ public class App extends JFrame implements Runnable{
         add(cacto2.getlCacto());
         add(nuvens3.getlNuvens());
         add(nuvens1.getlNuvens());
-        add(nuvens.getlNuvens());
+        add(nuvens0.getlNuvens());
         add(nuvens2.getlNuvens());
         add(detalhesChao.getlDetalhes());
         add(chao.getlChao());
@@ -165,28 +164,17 @@ public class App extends JFrame implements Runnable{
     }
 
     public void movimentosNuvens(){
-        nuvens.matarNuvemPorSair();
-        nuvens.movimentoDasNuvens();
-
-        nuvens1.matarNuvemPorSair();
-        nuvens1.movimentoDasNuvens();
-
-        nuvens2.matarNuvemPorSair();
-        nuvens2.movimentoDasNuvens();
-
-        nuvens3.matarNuvemPorSair();
-        nuvens3.movimentoDasNuvens();
+        nuvens0.comportamentoDasNuvens();
+        nuvens1.comportamentoDasNuvens();
+        nuvens2.comportamentoDasNuvens();
+        nuvens3.comportamentoDasNuvens();
     }
 
     public void movimentosCactos(){
-        cacto.movimentoDoCacto();
-        cacto.matarCactoPorSair();
+        cacto.comportamentoDosCactos();
+        cacto1.comportamentoDosCactos();
+        cacto2.comportamentoDosCactos();
 
-        cacto1.movimentoDoCacto();
-        cacto1.matarCactoPorSair();
-
-        cacto2.movimentoDoCacto();
-        cacto2.matarCactoPorSair();
     }
 
 

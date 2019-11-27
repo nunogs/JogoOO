@@ -30,19 +30,13 @@ public class Nuvens{
 
     }
 
-    public void matarNuvemPorSair(){
+    public void comportamentoDasNuvens(){
+        //matar nuvem por sair
         if (this.lNuvens.getX() < -50){
             mateAsNuvens();
         }
-    }
 
-    public void mateAsNuvens() {
-        this.lNuvens.setLocation(posNuvensX, posNuvensY);
-        this.iniciouOMovimento = false;
-    }
-
-    public void movimentoDasNuvens(){
-
+        // movimento das nuvens
         if (cont == 0 || cont == velNuvens) {
             int velocidadeDasNuvens = 1;
             this.lNuvens.setLocation((this.lNuvens.getX() - velocidadeDasNuvens), this.lNuvens.getY());
@@ -50,6 +44,14 @@ public class Nuvens{
         }else{
             cont = 0;
         }
+
+
+
+    }
+
+    public void mateAsNuvens() {
+        this.lNuvens.setLocation(posNuvensX, posNuvensY);
+        this.iniciouOMovimento = false;
     }
 
     public int getTamNuvensX() {

@@ -14,6 +14,10 @@ public class App extends JFrame implements Runnable{
     //---MUDA A VELOCIDADE DO JOGO ---
 
     protected ImageIcon iPlacar = new ImageIcon(getClass().getResource("res\\placar.png"));
+    protected int mortesCactos;
+    JLabel txtPlacar = new JLabel(String.valueOf(mortesCactos));
+
+    protected JLabel placar = new JLabel(iPlacar);
     protected Fundo fundo = new Fundo();
     protected Chao chao = new Chao();
     protected DetalhesChao detalhesChao = new DetalhesChao();
@@ -25,16 +29,9 @@ public class App extends JFrame implements Runnable{
     protected Nuvens nuvens2 = new Nuvens();
     protected Nuvens nuvens3 = new Nuvens();
     protected Heroi heroi= new Heroi();
+    protected Tiro tiro = new Tiro();
     protected int posHeroiX;
     protected int posHeroiY;
-    protected Tiro tiro = new Tiro();
-    protected Tiro tiro1 = new Tiro();
-
-    protected JLabel placar = new JLabel(iPlacar);
-    protected int posX;
-    protected int posY;
-    protected int mortesCactos;
-    JLabel txtPlacar = new JLabel(String.valueOf(mortesCactos));
 
     public App(){
         setFocusable(true);
@@ -64,7 +61,7 @@ public class App extends JFrame implements Runnable{
         loadPlacar();
         add(heroi.getlDino());
         add(tiro.getlTiro());
-        add(tiro1.getlTiro());
+//        add(tiro1.getlTiro());
         add(cacto.getlCacto());
         add(cacto1.getlCacto());
         add(cacto2.getlCacto());
@@ -126,8 +123,7 @@ public class App extends JFrame implements Runnable{
                 }
 
                 if (tecla.getKeyCode() == 68/* D */) {
-                     tiro1.setIniciarMovimentoDoTiro(true);
-                     tiro1.atualizarPosHeroi(posX, posY);
+                     tiro.setIniciarMovimentoDoTiro(true);
                 }
             }
 
@@ -157,19 +153,14 @@ public class App extends JFrame implements Runnable{
             colisaoCactoTiro();
             colisaoDinoCacto();
             movimentosNuvens();
-//            tiro.atirar();
-//            heroi.atualizarMovimentosDino();
-            receberPosicaoDoHeroi();
+            receberPosicaoDoHeroiParaMapearOTiro();
 
         }
     }
-    public void receberPosicaoDoHeroi(){
-        posX = heroi.atualizarPosX();
-        posY = heroi.atualizarPosY();
-
-//        System.out.println( " X=" +posX);
-//        System.out.println(" Y=" +posY);
-
+    public void receberPosicaoDoHeroiParaMapearOTiro(){
+        posHeroiX = heroi.atualizarPosX();
+        posHeroiY = heroi.atualizarPosY();
+        tiro.atualizarPosHeroi(posHeroiX, posHeroiY);
     }
 
     public void movimentosNuvens(){
@@ -191,7 +182,7 @@ public class App extends JFrame implements Runnable{
         if(heroi.dinoVivo) {
             new Thread(heroi).start();
             new Thread(tiro).start();
-            new Thread(tiro1).start();
+//            new Thread(tiro1).start();
         }
     }
 
@@ -222,29 +213,29 @@ public class App extends JFrame implements Runnable{
             tiro.tiroAcertou();
             mortesCactos ++;
         }
-        // Tiro 1
-        if (verificaColisao(tiro1.getlTiro(), cacto.getlCacto())) {
-            cacto.matarCactoPorTiro();
-            tiro1.tiroAcertou();
-            mortesCactos ++;
-        }
-        if (verificaColisao(tiro1.getlTiro(), cacto1.getlCacto())) {
-            cacto1.matarCactoPorTiro();
-            tiro1.tiroAcertou();
-            mortesCactos ++;
-        }
-        if (verificaColisao(tiro1.getlTiro(), cacto2.getlCacto())) {
-            cacto2.matarCactoPorTiro();
-            tiro1.tiroAcertou();
-            mortesCactos ++;
-        }
+//        // Tiro 1
+//        if (verificaColisao(tiro1.getlTiro(), cacto.getlCacto())) {
+//            cacto.matarCactoPorTiro();
+//            tiro1.tiroAcertou();
+//            mortesCactos ++;
+//        }
+//        if (verificaColisao(tiro1.getlTiro(), cacto1.getlCacto())) {
+//            cacto1.matarCactoPorTiro();
+//            tiro1.tiroAcertou();
+//            mortesCactos ++;
+//        }
+//        if (verificaColisao(tiro1.getlTiro(), cacto2.getlCacto())) {
+//            cacto2.matarCactoPorTiro();
+//            tiro1.tiroAcertou();
+//            mortesCactos ++;
+//        }
 
     }
 
     public void atualizaPlacar() {
         txtPlacar.setText(String.valueOf(mortesCactos));
     }
-    
+
     public boolean verificaColisao(Component a, Component b) {
         int aX = a.getX();
         int aY = a.getY();

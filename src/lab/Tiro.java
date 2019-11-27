@@ -41,8 +41,8 @@ public class Tiro extends Heroi implements Runnable{
         }
     }
     public void atualizarPosHeroi(int posHeroiX, int posHeroiY) {
-        this.posTiroX = posHeroiX;
-        this.posTiroY = posHeroiY;
+        this.posTiroX = posHeroiX+30;
+        this.posTiroY = posHeroiY+30;
     }
 
     public void atirar(){

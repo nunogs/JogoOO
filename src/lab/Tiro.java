@@ -11,20 +11,16 @@ public class Tiro extends Heroi implements Runnable{
     private int posTiroY;
     private ImageIcon iTiro;
     private JLabel lTiro;
-    private Boolean iniciouOMovimento;
-    private Boolean tiroDado;
-    private Boolean tiroDadoP1;
+    private Boolean dispararPedra;
 
     public Tiro() {
         this.tamTiroX = 10;
         this.tamTiroY = 15;
         this.iTiro = new ImageIcon(getClass().getResource("res\\tiro.png"));
         this.lTiro = new JLabel(iTiro);
-        this.iniciouOMovimento = false;
-        this.tiroDado = false;
-        this.tiroDadoP1 = false;
+        this.dispararPedra = false;
         this.lTiro.setVisible(true);
-        this.lTiro.setBounds(1300, 1000, tamTiroX,tamTiroY);
+        this.lTiro.setBounds(posTiroX, posTiroY, tamTiroX,tamTiroY);
 
     }
 
@@ -32,73 +28,42 @@ public class Tiro extends Heroi implements Runnable{
     public void run() {
         while (true){
             try {sleep(4);} catch (Exception erro) {}
-            if(this.lTiro.getX() > 1300){
-                this.lTiro.setLocation(1300, 1000);
-            }
-
-            atirar();
-
+            pedraSaiu();
+            movimentoTiro();
         }
     }
-    public void atualizarPosHeroi(int posHeroiX, int posHeroiY) {
-        this.posTiroX = posHeroiX+30;
-        this.posTiroY = posHeroiY+30;
+    public void atirou() {
+        this.dispararPedra = true;
     }
 
-    public void atirar(){
-        if(this.tiroDado) {
-            this.lTiro.setLocation(posTiroX,posTiroY);
-            this.tiroDado =false;
-            this.tiroDadoP1 = true;
-        }
-        if (this.tiroDadoP1) {
-            this.lTiro.setVisible(true);
+    public void movimentoTiro(){
+        if(dispararPedra) {
             this.lTiro.setLocation(lTiro.getX() + 10, lTiro.getY());
+        }else{ //atualiza a pos do tiro apenas enquanto ele nao está em movimento
+            this.lTiro.setLocation(posTiroX, posTiroY);
         }
     }
-    public void tiroAcertou(){
-        this.lTiro.setLocation(1300,760);
+
+    public void pararPedra(){
+        this.dispararPedra = false;
+        this.lTiro.setLocation(posTiroX,posTiroY);
 
     }
 
-
-    public int getTamTiroX() {
-        return tamTiroX;
+    public void pedraSaiu(){
+        if(this.lTiro.getX() > 1285 || this.lTiro.getX() < 1 ){
+            pararPedra();
+        }
     }
 
-    public int getTamTiroY() {
-        return tamTiroY;
-    }
-
-    public int getPosTiroX() {
-        return posTiroX;
-    }
-
-    public int getPosTiroY() {
-        return posTiroY;
-    }
-
-    public ImageIcon getiTiro() {
-        return iTiro;
-    }
 
     public JLabel getlTiro() {
         return lTiro;
     }
 
-    public Boolean getIniciouOMovimento() {
-        return iniciouOMovimento;
+    public void atualizarPosHeroi(int posHeroiX, int posHeroiY) {
+        this.posTiroX = posHeroiX+45;
+        this.posTiroY = posHeroiY+30;
     }
 
-    public Boolean getTiroDado() {
-        return tiroDado;
-    }
-
-    public Boolean getTiroDadoP1() {
-        return tiroDadoP1;
-    }
-
-    public void setIniciarMovimentoDoTiro(Boolean tiroDado) {
-        this.tiroDado = tiroDado;
-    }
 }

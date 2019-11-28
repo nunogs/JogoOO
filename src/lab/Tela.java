@@ -8,7 +8,7 @@ import java.util.Scanner;
 import static java.lang.Thread.sleep;
 
 
-public class App extends JFrame implements Runnable{
+public class Tela extends JFrame implements Runnable{
     //---MUDA A VELOCIDADE DO JOGO --- onde 1 é o mais rapido
     public Integer velJogo = 1;
     //---MUDA A VELOCIDADE DO JOGO ---
@@ -33,7 +33,7 @@ public class App extends JFrame implements Runnable{
     protected int posHeroiX;
     protected int posHeroiY;
 
-    public App(){
+    public Tela(){
         setFocusable(true);
         carregarJanela();
         iniciarObjetos();
@@ -43,7 +43,7 @@ public class App extends JFrame implements Runnable{
 
 
     public static void main(String[] args) {
-        new App();
+        new Tela();
 
 
     }
@@ -93,7 +93,7 @@ public class App extends JFrame implements Runnable{
         System.out.println("Deseja começar o jogo? [ s / n] ");
         String resp = tc.next().toUpperCase();
         if ("S".equals(resp)) {
-            new App();
+            new Tela();
         }else{
             System.out.println("Ok, entao tchau. ");
         }
@@ -123,7 +123,8 @@ public class App extends JFrame implements Runnable{
                 }
 
                 if (tecla.getKeyCode() == 68/* D */) {
-                     tiro.setIniciarMovimentoDoTiro(true);
+//                     tiro.setIniciarMovimentoDoTiro(true);
+                    tiro.atirou();
                 }
             }
 
@@ -182,7 +183,6 @@ public class App extends JFrame implements Runnable{
         if(heroi.dinoVivo) {
             new Thread(heroi).start();
             new Thread(tiro).start();
-//            new Thread(tiro1).start();
         }
     }
 
@@ -200,17 +200,17 @@ public class App extends JFrame implements Runnable{
         // tiro 0
         if (verificaColisao(tiro.getlTiro(), cacto.getlCacto())) {
             cacto.matarCactoPorTiro();
-            tiro.tiroAcertou();
+            tiro.pararPedra();
             mortesCactos ++;
         }
         if (verificaColisao(tiro.getlTiro(), cacto1.getlCacto())) {
             cacto1.matarCactoPorTiro();
-            tiro.tiroAcertou();
+            tiro.pararPedra();
             mortesCactos ++;
         }
         if (verificaColisao(tiro.getlTiro(), cacto2.getlCacto())) {
             cacto2.matarCactoPorTiro();
-            tiro.tiroAcertou();
+            tiro.pararPedra();
             mortesCactos ++;
         }
 //        // Tiro 1

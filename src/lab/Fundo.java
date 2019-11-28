@@ -11,49 +11,22 @@ public class Fundo {
     private JLabel lfundo;
 
 
-    public Fundo() {
-        tamFundoX = 1280;
-        tamFundoY = 720;
-        posFundoX = 0;
-        posFundoY = 0;
-        iFundo = new ImageIcon(getClass().getResource("res\\fundo.png"));
-        lfundo = new JLabel(iFundo);
-        this.lfundo.setBounds(getPosFundoX(), getPosFundoY(), getTamFundoX(),getTamFundoY());
-        lfundo.setVisible(true);
-    }
-
-
-    public void setTamFundoX(int tamFundoX) {
-        this.tamFundoX = tamFundoX;
-    }
-
-    public void setTamFundoY(int tamFundoY) {
-        this.tamFundoY = tamFundoY;
-    }
-
-    public void setPosFundoX(int posFundoX) {
+    public Fundo(int posFundoX, int posFundoY) {
+        this.tamFundoX = 1280;
+        this.tamFundoY = 720;
         this.posFundoX = posFundoX;
-    }
-
-    public void setPosFundoY(int posFundoY) {
         this.posFundoY = posFundoY;
+        this.iFundo = new ImageIcon(getClass().getResource("res\\fundo.png"));
+        this.lfundo = new JLabel(iFundo);
+        this.lfundo.setBounds( this.posFundoX, this.posFundoY, this.tamFundoX, this.tamFundoY);
+        this.lfundo.setVisible(true);
     }
 
+
+    // METODOS ACESSORES
 
     public JLabel getLfundo() {
         return lfundo;
-    }
-
-    public void setLfundo(JLabel lfundo) {
-        this.lfundo = lfundo;
-    }
-
-    public ImageIcon getiFundo() {
-        return iFundo;
-    }
-
-    public void setiFundo(ImageIcon iFundo) {
-        this.iFundo = iFundo;
     }
 
     public int getTamFundoX() {

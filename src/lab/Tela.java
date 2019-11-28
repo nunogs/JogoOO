@@ -18,7 +18,9 @@ public class Tela extends JFrame implements Runnable{
     JLabel txtPlacar = new JLabel(String.valueOf(mortesCactos));
 
     protected JLabel placar = new JLabel(iPlacar);
-    protected Fundo fundo = new Fundo();
+    protected Fundo fundo = new Fundo(0,0);
+    protected Fundo fundoForaDireita = new Fundo(1280,0);
+    protected Fundo fundoForaEsquerda = new Fundo(-1280,0);
     protected Chao chao = new Chao();
     protected DetalhesChao detalhesChao = new DetalhesChao();
     protected Cacto cacto = new Cacto();
@@ -29,7 +31,10 @@ public class Tela extends JFrame implements Runnable{
     protected Nuvens nuvens2 = new Nuvens();
     protected Nuvens nuvens3 = new Nuvens();
     protected Heroi heroi= new Heroi();
-    protected Tiro tiro = new Tiro();
+    protected Armas armas0 = new Armas();
+    protected Armas armas1 = new Armas();
+    protected Boolean pedraNaMao0= true;;
+    protected Boolean pedraNaMao1= true;;
     protected int posHeroiX;
     protected int posHeroiY;
 
@@ -39,6 +44,8 @@ public class Tela extends JFrame implements Runnable{
         iniciarObjetos();
         capturaTeclado();
         run();
+
+
     }
 
 
@@ -59,9 +66,11 @@ public class Tela extends JFrame implements Runnable{
 
     public void iniciarObjetos(){
         loadPlacar();
+        add(fundoForaDireita.getLfundo());
+        add(fundoForaEsquerda.getLfundo());
         add(heroi.getlDino());
-        add(tiro.getlTiro());
-//        add(tiro1.getlTiro());
+        add(armas0.getlPedra());
+        add(armas1.getlPedra());
         add(cacto.getlCacto());
         add(cacto1.getlCacto());
         add(cacto2.getlCacto());
@@ -85,7 +94,6 @@ public class Tela extends JFrame implements Runnable{
         add(placar);
 
     }
-
 
 
     public void iniciarComPergunta(){
@@ -123,8 +131,7 @@ public class Tela extends JFrame implements Runnable{
                 }
 
                 if (tecla.getKeyCode() == 68/* D */) {
-//                     tiro.setIniciarMovimentoDoTiro(true);
-                    tiro.atirou();
+                    tacarPedra();
                 }
             }
 
@@ -148,20 +155,37 @@ public class Tela extends JFrame implements Runnable{
     public void run() {
         iniciarMovimentos();
         while (true){
-            try {sleep(velJogo);} catch (Exception erro) {}
+            try {sleep(velJogo/*NAO MECHE NESSA POHA*/);} catch (Exception erro) {}
+
             atualizaPlacar();
             movimentosCactos();
             colisaoCactoTiro();
             colisaoDinoCacto();
             movimentosNuvens();
             receberPosicaoDoHeroiParaMapearOTiro();
-
+            colisaoTiroFora();
         }
     }
+
+    private void tacarPedra() {
+        if (pedraNaMao0 && pedraNaMao1) {
+            pedraNaMao0 = false;
+            armas0.tacaPedra();
+
+        }else if(pedraNaMao1 && !pedraNaMao0){
+            pedraNaMao1 = false;
+            armas1.tacaPedra();
+        }
+    }
+
     public void receberPosicaoDoHeroiParaMapearOTiro(){
         posHeroiX = heroi.atualizarPosX();
         posHeroiY = heroi.atualizarPosY();
-        tiro.atualizarPosHeroi(posHeroiX, posHeroiY);
+        armas0.atualizarPosHeroi(posHeroiX, posHeroiY);
+
+        posHeroiX = heroi.atualizarPosX();
+        posHeroiY = heroi.atualizarPosY();
+        armas1.atualizarPosHeroi(posHeroiX, posHeroiY);
     }
 
     public void movimentosNuvens(){
@@ -178,11 +202,11 @@ public class Tela extends JFrame implements Runnable{
 
     }
 
-
     public void iniciarMovimentos(){
         if(heroi.dinoVivo) {
             new Thread(heroi).start();
-            new Thread(tiro).start();
+            new Thread(armas0).start();
+            new Thread(armas1).start();
         }
     }
 
@@ -197,38 +221,71 @@ public class Tela extends JFrame implements Runnable{
     }
 
     public void colisaoCactoTiro(){
+
+
+
         // tiro 0
-        if (verificaColisao(tiro.getlTiro(), cacto.getlCacto())) {
+        if (verificaColisao(armas0.getlPedra(), cacto.getlCacto())) {
             cacto.matarCactoPorTiro();
-            tiro.pararPedra();
+            armas0.pararPedra();
+            pedraNaMao0 = true;
             mortesCactos ++;
         }
-        if (verificaColisao(tiro.getlTiro(), cacto1.getlCacto())) {
+        if (verificaColisao(armas0.getlPedra(), cacto1.getlCacto())) {
             cacto1.matarCactoPorTiro();
-            tiro.pararPedra();
+            armas0.pararPedra();
+            pedraNaMao0 = true;
             mortesCactos ++;
         }
-        if (verificaColisao(tiro.getlTiro(), cacto2.getlCacto())) {
+        if (verificaColisao(armas0.getlPedra(), cacto2.getlCacto())) {
             cacto2.matarCactoPorTiro();
-            tiro.pararPedra();
+            armas0.pararPedra();
+            pedraNaMao0 = true;
             mortesCactos ++;
         }
-//        // Tiro 1
-//        if (verificaColisao(tiro1.getlTiro(), cacto.getlCacto())) {
-//            cacto.matarCactoPorTiro();
-//            tiro1.tiroAcertou();
-//            mortesCactos ++;
-//        }
-//        if (verificaColisao(tiro1.getlTiro(), cacto1.getlCacto())) {
-//            cacto1.matarCactoPorTiro();
-//            tiro1.tiroAcertou();
-//            mortesCactos ++;
-//        }
-//        if (verificaColisao(tiro1.getlTiro(), cacto2.getlCacto())) {
-//            cacto2.matarCactoPorTiro();
-//            tiro1.tiroAcertou();
-//            mortesCactos ++;
-//        }
+
+        // Tiro 2
+        if (verificaColisao(armas1.getlPedra(), cacto.getlCacto())) {
+            cacto.matarCactoPorTiro();
+            armas1.pararPedra();
+            pedraNaMao1 = true;
+            mortesCactos ++;
+        }
+        if (verificaColisao(armas1.getlPedra(), cacto1.getlCacto())) {
+            cacto1.matarCactoPorTiro();
+            armas1.pararPedra();
+            pedraNaMao1 = true;
+            mortesCactos ++;
+        }
+        if (verificaColisao(armas1.getlPedra(), cacto2.getlCacto())) {
+            cacto2.matarCactoPorTiro();
+            armas1.pararPedra();
+            pedraNaMao1 = true;
+            mortesCactos ++;
+        }
+
+
+
+    }
+
+    public void colisaoTiroFora(){
+        // Tiro sair para direita
+
+        if (verificaColisao(fundoForaDireita.getLfundo(), armas0.getlPedra())){
+            pedraNaMao0 = true;
+        }
+        if (verificaColisao(fundoForaDireita.getLfundo(), armas1.getlPedra())){
+            pedraNaMao1 = true;
+        }
+        // Tiro sair para esquerda
+
+        if (verificaColisao(fundoForaEsquerda.getLfundo(), armas0.getlPedra())){
+            pedraNaMao0 = true;
+        }
+        if (verificaColisao(fundoForaEsquerda.getLfundo(), armas1.getlPedra())){
+            pedraNaMao1 = true;
+        }
+
 
     }
 

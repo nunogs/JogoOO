@@ -20,7 +20,7 @@ public class Cacto{
     public Cacto() {
         this.tamCactoX = 88;
         this.tamCactoY = 90;
-        this.posCactoX = (int)( 1300 + (Math.random() * 2500));
+        this.posCactoX = (int)( 1300 + (Math.random() * 1400));
         this.posCactoY = 295;
         this.iCacto = new ImageIcon(getClass().getResource("res\\cacto.png"));
         this.lCacto = new JLabel(this.iCacto);
@@ -34,7 +34,7 @@ public class Cacto{
 
     public void comportamentoDosCactos(){
         //Matar o cacto por sair
-        if (this.lCacto.getX() < 500){
+        if (this.lCacto.getX() < -lCacto.getHeight()){
             mateOCacto();
         }
 

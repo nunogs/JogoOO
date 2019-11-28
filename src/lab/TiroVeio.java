@@ -18,7 +18,7 @@ public class TiroVeio extends Heroi implements Runnable{
     public TiroVeio() {
         this.tamTiroX = 10;
         this.tamTiroY = 15;
-        this.iTiro = new ImageIcon(getClass().getResource("res\\tiro.png"));
+        this.iTiro = new ImageIcon(getClass().getResource("res\\pedra.png"));
         this.lTiro = new JLabel(iTiro);
         this.iniciouOMovimento = false;
         this.tiroDado = false;

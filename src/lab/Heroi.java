@@ -1,10 +1,7 @@
 package lab;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 import static java.lang.Thread.sleep;
 
 public class Heroi implements Runnable{
@@ -16,14 +13,13 @@ public class Heroi implements Runnable{
     public JLabel lDino;
     //------------------------------
    protected int posAtualDinoY;
-   protected int posAtualDinoX;
    protected Boolean dinoVivo;
    protected Boolean puloDinoS;
    protected Boolean puloDinoS2;
    protected Boolean puloDinoB;
    protected Boolean puloDinoB2;
-   protected Boolean movEsqDinoS;
-   protected Boolean movDirDinoS;
+   protected Boolean movEsqDino;
+   protected Boolean movDirDino;
     //------------------------------
     ImageIcon iDinoAnimadoDireita = new ImageIcon(getClass().getResource("res\\dinoAnimadoDireita.gif"));
     ImageIcon iDinoAnimadoEsquerda = new ImageIcon(getClass().getResource("res\\dinoAnimadoEsquerda.gif"));
@@ -38,8 +34,8 @@ public class Heroi implements Runnable{
         puloDinoS2 = false;
         puloDinoB = false;
         puloDinoB2= false;
-        movEsqDinoS = false;
-        movDirDinoS = false;
+        movEsqDino = false;
+        movDirDino = false;
         dinoVivo = true;
         iDino = new ImageIcon(getClass().getResource("res\\dinoAnimadoDireita.gif"));
         lDino = new JLabel(iDino);
@@ -68,8 +64,7 @@ public class Heroi implements Runnable{
                 getPuloDinoS2() ||
                 getPuloDinoB() ||
                 getPuloDinoB2())) {
-
-            setPuloDinoS(true);
+            puloDinoS = true;
             setPosAtualDinoY(lDino.getY());
         }
     }
@@ -80,14 +75,14 @@ public class Heroi implements Runnable{
             Integer estagioLento = (velPulo / 2);
             Integer estagioRapido = velPulo;
             if (this.puloDinoS) {
-                this.lDino.setLocation(this.lDino.getX(), this.lDino.getY() - estagioRapido);
+                this.lDino.setLocation(this.posHeroiX, this.posHeroiY - estagioRapido);
                 if (this.lDino.getY() == this.posAtualDinoY - 112) {
                     this.puloDinoS = false;
                     this.puloDinoS2 = true;
                 }
             }
             if (puloDinoS2) {
-                lDino.setLocation(lDino.getX(), lDino.getY() - estagioLento);
+                lDino.setLocation(posHeroiX, this.posHeroiY - estagioLento);
                 if (lDino.getY() == posAtualDinoY - 192) {
                     puloDinoS2 = false;
                     puloDinoB = true;
@@ -111,13 +106,13 @@ public class Heroi implements Runnable{
     }
 
     public void andarEsquerda(){
-        if(getMovEsqDinoS()){
+        if(getMovEsqDino()){
             this.lDino.setIcon(iDinoAnimadoEsquerda);
             this.lDino.setLocation(lDino.getX()-1, lDino.getY());
         }
     }
     public void andarDireita(){
-        if(getMovDirDinoS()){
+        if(getMovDirDino()){
             this.lDino.setIcon(iDinoAnimadoDireita);
             this.lDino.setLocation(lDino.getX()+1, lDino.getY());
         }
@@ -161,10 +156,6 @@ public class Heroi implements Runnable{
         return puloDinoS;
     }
 
-    public void setPuloDinoS(Boolean puloDinoS) {
-        this.puloDinoS = puloDinoS;
-    }
-
     public Boolean getPuloDinoS2() {
         return puloDinoS2;
     }
@@ -177,23 +168,23 @@ public class Heroi implements Runnable{
         return puloDinoB2;
     }
 
-    public Boolean getMovEsqDinoS() {
-        return movEsqDinoS;
+    public Boolean getMovEsqDino() {
+        return movEsqDino;
     }
 
     public void movimentoParaEsquerda(Boolean movEsqDinoS) {
         if(dinoVivo) {
-            this.movEsqDinoS = movEsqDinoS;
+            this.movEsqDino = movEsqDinoS;
         }
     }
 
-    public Boolean getMovDirDinoS() {
-        return movDirDinoS;
+    public Boolean getMovDirDino() {
+        return movDirDino;
     }
 
     public void movimentoParaDireita(Boolean movDirDinoS) {
         if (dinoVivo) {
-            this.movDirDinoS = movDirDinoS;
+            this.movDirDino = movDirDinoS;
         }
     }
 
@@ -204,6 +195,10 @@ public class Heroi implements Runnable{
     public void matarDino() {
         dinoVivo = false;
         lDino.setIcon(iDinoMorto);
+
+    }
+
+    public void movimentoParaCima(boolean b) {
 
     }
 }

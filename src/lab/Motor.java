@@ -3,12 +3,11 @@ package lab;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
 
 
-public class Tela extends JFrame implements Runnable{
+public class Motor extends JFrame implements Runnable{
     //---MUDA A VELOCIDADE DO JOGO --- onde 1 é o mais rapido
     public Integer velJogo = 1;
     //---MUDA A VELOCIDADE DO JOGO ---
@@ -39,20 +38,12 @@ public class Tela extends JFrame implements Runnable{
     protected int posHeroiX;
     protected int posHeroiY;
 
-    public Tela(){
+    public Motor(){
         setFocusable(true);
         carregarJanela();
         iniciarObjetos();
         capturaTeclado();
         run();
-
-
-    }
-
-
-    public static void main(String[] args) {
-        new Tela();
-
 
     }
 
@@ -119,6 +110,7 @@ public class Tela extends JFrame implements Runnable{
             }
             @Override
             public void keyPressed(KeyEvent tecla) {
+                System.out.println(tecla.getKeyCode());
                 if (tecla.getKeyCode() == 32/*ESPAÇO*/) {
                     if (tecla.getKeyCode() == 32/*ESPAÇO*/) {
                         heroi.iniciarPulo();
@@ -130,6 +122,13 @@ public class Tela extends JFrame implements Runnable{
 
                 if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
                     heroi.movimentoParaDireita(true);
+                }
+                if (tecla.getKeyCode() == 38 /*SETA CIMA*/) {
+//                    heroi.movimentoParaCima(true);
+                }
+
+                if (tecla.getKeyCode() == 40 /*SETA BAIXO*/) {
+//                    heroi.movimentoParaBaixo(true);
                 }
 
                 if (tecla.getKeyCode() == 68/* D */) {
@@ -146,6 +145,7 @@ public class Tela extends JFrame implements Runnable{
                 if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
                     heroi.movimentoParaDireita(false);
                 }
+
             }
         });
     }

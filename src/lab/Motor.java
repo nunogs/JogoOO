@@ -22,9 +22,14 @@ public class Motor extends JFrame implements Runnable{
     protected Fundo fundoForaEsquerda = new Fundo(-1280,0);
     protected Chao chao = new Chao();
     protected DetalhesChao detalhesChao = new DetalhesChao();
-    protected Cacto cacto = new Cacto();
+    protected Cacto cacto0 = new Cacto();
     protected Cacto cacto1 = new Cacto();
     protected Cacto cacto2 = new Cacto();
+    protected Cacto cacto3 = new Cacto();
+    protected Cacto cacto4 = new Cacto();
+    protected Cacto cacto5 = new Cacto();
+    protected Cacto cacto6 = new Cacto();
+    protected Cacto cacto7 = new Cacto();
     protected Nuvens nuvens0 = new Nuvens();
     protected Nuvens nuvens1 = new Nuvens();
     protected Nuvens nuvens2 = new Nuvens();
@@ -37,6 +42,7 @@ public class Motor extends JFrame implements Runnable{
     protected Boolean pedraNaMao1= true;;
     protected int posHeroiX;
     protected int posHeroiY;
+    protected int nivel;
 
     public Motor(){
         setFocusable(true);
@@ -44,6 +50,7 @@ public class Motor extends JFrame implements Runnable{
         iniciarObjetos();
         capturaTeclado();
         run();
+        nivel = 1;
 
     }
 
@@ -60,12 +67,17 @@ public class Motor extends JFrame implements Runnable{
         loadPlacar();
         add(fundoForaDireita.getLfundo());
         add(fundoForaEsquerda.getLfundo());
-        add(heroi.getlDino());
         add(armas0.getlPedra());
         add(armas1.getlPedra());
-        add(cacto.getlCacto());
+        add(heroi.getlDino());
+        add(cacto0.getlCacto());
         add(cacto1.getlCacto());
         add(cacto2.getlCacto());
+        add(cacto3.getlCacto());
+        add(cacto4.getlCacto());
+        add(cacto5.getlCacto());
+        add(cacto6.getlCacto());
+        add(cacto7.getlCacto());
         add(nuvens3.getlNuvens());
         add(nuvens4.getlNuvens());
         add(nuvens1.getlNuvens());
@@ -101,7 +113,7 @@ public class Motor extends JFrame implements Runnable{
 //        System.out.println("fui");
 //    }
 
-
+    //---------------------------------CAPTURA DE TECLADO----------------------------------------CAPTURA DE TECLADO--------------
     public void capturaTeclado(){
         addKeyListener(new KeyListener() {
             @Override
@@ -141,7 +153,6 @@ public class Motor extends JFrame implements Runnable{
                 if (tecla.getKeyCode() == 37 /*SETA ESQUERDA*/) {
                     heroi.apertouTeclaParaEsquerda(false);
                 }
-
                 if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
                     heroi.apertouTeclaParaDireita(false);
                 }
@@ -151,14 +162,11 @@ public class Motor extends JFrame implements Runnable{
                 if (tecla.getKeyCode() == 40 /*SETA BAIXO*/) {
                     heroi.apertouTeclaParaBaixo(false);
                 }
-
             }
         });
     }
 
-
-
-
+    //--------------------------------------------RUN--------------------------------------------------RUN--------------
     @Override
     public void run() {
         iniciarMovimentos();
@@ -175,7 +183,7 @@ public class Motor extends JFrame implements Runnable{
             detalhesChao.comportamento();
         }
     }
-
+    //--------------------------------------------REAÇÕES-------------------------------------REAÇÕES--------------
     private void tacarPedra() {
         if (pedraNaMao0 && pedraNaMao1) {
             pedraNaMao0 = false;
@@ -187,16 +195,6 @@ public class Motor extends JFrame implements Runnable{
         }
     }
 
-    public void receberPosicaoDoHeroiParaMapearOTiro(){
-        posHeroiX = heroi.atualizarPosX();
-        posHeroiY = heroi.atualizarPosY();
-        armas0.atualizarPosHeroi(posHeroiX, posHeroiY);
-
-        posHeroiX = heroi.atualizarPosX();
-        posHeroiY = heroi.atualizarPosY();
-        armas1.atualizarPosHeroi(posHeroiX, posHeroiY);
-    }
-
     public void movimentosNuvens(){
         nuvens0.comportamentoDasNuvens();
         nuvens1.comportamentoDasNuvens();
@@ -205,10 +203,28 @@ public class Motor extends JFrame implements Runnable{
     }
 
     public void movimentosCactos(){
-        cacto.comportamentoDosCactos();
-        cacto1.comportamentoDosCactos();
-        cacto2.comportamentoDosCactos();
-
+        if(nivel <= 1 ) {
+            cacto0.comportamentoDosCactos();
+            cacto1.comportamentoDosCactos();
+            cacto2.comportamentoDosCactos();
+        }
+        if (nivel == 2) {
+            cacto0.comportamentoDosCactos();
+            cacto1.comportamentoDosCactos();
+            cacto2.comportamentoDosCactos();
+            cacto3.comportamentoDosCactos();
+            cacto4.comportamentoDosCactos();
+        }
+        if (nivel == 3) {
+            cacto0.comportamentoDosCactos();
+            cacto1.comportamentoDosCactos();
+            cacto2.comportamentoDosCactos();
+            cacto3.comportamentoDosCactos();
+            cacto4.comportamentoDosCactos();
+            cacto5.comportamentoDosCactos();
+            cacto6.comportamentoDosCactos();
+            cacto7.comportamentoDosCactos();
+        }
     }
 
     public void iniciarMovimentos(){
@@ -220,7 +236,7 @@ public class Motor extends JFrame implements Runnable{
     }
 
     public void colisaoDinoCacto(){
-        if (verificaColisao(heroi.getlDino(), cacto.getlCacto()) ||
+        if (verificaColisao(heroi.getlDino(), cacto0.getlCacto()) ||
                 verificaColisao(heroi.getlDino(), cacto1.getlCacto()) ||
                 verificaColisao(heroi.getlDino(), cacto2.getlCacto())){
             heroi.matarDino();
@@ -231,11 +247,9 @@ public class Motor extends JFrame implements Runnable{
 
     public void colisaoCactoTiro(){
 
-
-
         // tiro 0
-        if (verificaColisao(armas0.getlPedra(), cacto.getlCacto())) {
-            cacto.matarCactoPorTiro();
+        if (verificaColisao(armas0.getlPedra(), cacto0.getlCacto())) {
+            cacto0.matarCactoPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
             mortesCactos ++;
@@ -252,10 +266,46 @@ public class Motor extends JFrame implements Runnable{
             pedraNaMao0 = true;
             mortesCactos ++;
         }
+        if (verificaColisao(armas0.getlPedra(), cacto3.getlCacto())) {
+            cacto3.matarCactoPorTiro();
+            armas0.pararPedra();
+            pedraNaMao0 = true;
+            mortesCactos ++;
+        }
+        if (verificaColisao(armas0.getlPedra(), cacto4.getlCacto())) {
+            cacto4.matarCactoPorTiro();
+            armas0.pararPedra();
+            pedraNaMao0 = true;
+            mortesCactos ++;
+        }
+        if (verificaColisao(armas0.getlPedra(), cacto5.getlCacto())) {
+            cacto5.matarCactoPorTiro();
+            armas0.pararPedra();
+            pedraNaMao0 = true;
+            mortesCactos ++;
+        }
+        if (verificaColisao(armas0.getlPedra(), cacto6.getlCacto())) {
+            cacto6.matarCactoPorTiro();
+            armas0.pararPedra();
+            pedraNaMao0 = true;
+            mortesCactos ++;
+        }
+        if (verificaColisao(armas0.getlPedra(), cacto7.getlCacto())) {
+            cacto7.matarCactoPorTiro();
+            armas0.pararPedra();
+            pedraNaMao0 = true;
+            mortesCactos ++;
+        }
+//        if (verificaColisao(armas0.getlPedra(), cacto8.getlCacto())) {
+//            cacto8.matarCactoPorTiro();
+//            armas0.pararPedra();
+//            pedraNaMao0 = true;
+//            mortesCactos ++;
+//        }
 
         // Tiro 2
-        if (verificaColisao(armas1.getlPedra(), cacto.getlCacto())) {
-            cacto.matarCactoPorTiro();
+        if (verificaColisao(armas1.getlPedra(), cacto0.getlCacto())) {
+            cacto0.matarCactoPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
             mortesCactos ++;
@@ -272,13 +322,41 @@ public class Motor extends JFrame implements Runnable{
             pedraNaMao1 = true;
             mortesCactos ++;
         }
-
-
+        if (verificaColisao(armas1.getlPedra(), cacto3.getlCacto())) {
+            cacto3.matarCactoPorTiro();
+            armas1.pararPedra();
+            pedraNaMao1 = true;
+            mortesCactos ++;
+        }
+        if (verificaColisao(armas1.getlPedra(), cacto4.getlCacto())) {
+            cacto4.matarCactoPorTiro();
+            armas1.pararPedra();
+            pedraNaMao1 = true;
+            mortesCactos ++;
+        }
+        if (verificaColisao(armas1.getlPedra(), cacto5.getlCacto())) {
+            cacto5.matarCactoPorTiro();
+            armas1.pararPedra();
+            pedraNaMao0 = true;
+            mortesCactos ++;
+        }
+        if (verificaColisao(armas1.getlPedra(), cacto6.getlCacto())) {
+            cacto6.matarCactoPorTiro();
+            armas1.pararPedra();
+            pedraNaMao0 = true;
+            mortesCactos ++;
+        }
+        if (verificaColisao(armas1.getlPedra(), cacto7.getlCacto())) {
+            cacto7.matarCactoPorTiro();
+            armas1.pararPedra();
+            pedraNaMao0 = true;
+            mortesCactos ++;
+        }
 
     }
 
     public void colisaoTiroFora(){
-        // Tiro sair para direita
+        // Tiro sair pela direita
 
         if (verificaColisao(fundoForaDireita.getLfundo(), armas0.getlPedra())){
             pedraNaMao0 = true;
@@ -286,7 +364,7 @@ public class Motor extends JFrame implements Runnable{
         if (verificaColisao(fundoForaDireita.getLfundo(), armas1.getlPedra())){
             pedraNaMao1 = true;
         }
-        // Tiro sair para esquerda
+        // Tiro sair pela esquerda
 
         if (verificaColisao(fundoForaEsquerda.getLfundo(), armas0.getlPedra())){
             pedraNaMao0 = true;
@@ -297,9 +375,26 @@ public class Motor extends JFrame implements Runnable{
 
 
     }
-
+//-----------------------------------------------------ATUALIZAR PLACAR-------------------------------ATUALIZAR PLACAR
     public void atualizaPlacar() {
         txtPlacar.setText(String.valueOf(mortesCactos));
+        if(mortesCactos >= 10){
+            nivel = 2;
+        }
+        if(mortesCactos >= 20){
+            nivel = 3;
+        }
+    }
+
+
+    public void receberPosicaoDoHeroiParaMapearOTiro(){
+        posHeroiX = heroi.atualizarPosX();
+        posHeroiY = heroi.atualizarPosY();
+        armas0.atualizarPosHeroi(posHeroiX, posHeroiY);
+
+        posHeroiX = heroi.atualizarPosX();
+        posHeroiY = heroi.atualizarPosY();
+        armas1.atualizarPosHeroi(posHeroiX, posHeroiY);
     }
 
     public boolean verificaColisao(Component a, Component b) {

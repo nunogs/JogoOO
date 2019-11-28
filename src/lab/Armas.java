@@ -19,7 +19,7 @@ public class Armas extends Heroi implements Runnable{
         this.iPedra = new ImageIcon(getClass().getResource("res\\pedra.png"));
         this.lPedra = new JLabel(iPedra);
         this.dispararPedra = false;
-        this.lPedra.setVisible(false);
+        this.lPedra.setVisible(true);
         this.lPedra.setBounds(posPedraX, posPedraY, tamPedraX, tamPedraY);
 
     }
@@ -33,7 +33,6 @@ public class Armas extends Heroi implements Runnable{
         }
     }
     public void tacaPedra() {
-        this.lPedra.setVisible(true);
         this.dispararPedra = true;
     }
 
@@ -41,7 +40,6 @@ public class Armas extends Heroi implements Runnable{
         if(dispararPedra) {
             this.lPedra.setLocation(lPedra.getX() + 10, lPedra.getY());
         }else{ //atualiza a pos do tiro apenas enquanto ele nao está em movimento
-            this.lPedra.setVisible(false);
             this.lPedra.setLocation(posPedraX, posPedraY);
         }
     }
@@ -63,8 +61,8 @@ public class Armas extends Heroi implements Runnable{
     }
 
     public void atualizarPosHeroi(int posHeroiX, int posHeroiY) {
-        this.posPedraX = posHeroiX+45;
-        this.posPedraY = posHeroiY+30;
+        this.posPedraX = posHeroiX+70;
+        this.posPedraY = posHeroiY+50;
     }
 
 }

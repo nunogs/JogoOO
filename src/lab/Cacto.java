@@ -19,7 +19,7 @@ public class Cacto{
         this.tamCactoX = 88;
         this.tamCactoY = 90;
         this.posCactoX = (int)( 1300 + (Math.random() * 1400));
-        this.posCactoY = (int)(( 295 + (Math.random() * 300)) + ( 1 + (Math.random() * 100))) ;
+        this.posCactoY = (int)( 280 + (Math.random() * 300));
         this.iCacto = new ImageIcon(getClass().getResource("res\\cacto.png"));
         this.lCacto = new JLabel(this.iCacto);
         this.lCacto.setBounds(this.posCactoX, this.posCactoY, this.tamCactoX, this.tamCactoY);

@@ -22,37 +22,8 @@ public class Chao {
         lChao.setVisible(true);
     }
 
-
-    public void setTamChaoX(int tamChaoX) {
-        this.tamChaoX = tamChaoX;
-    }
-
-    public void setTamChaoY(int tamChaoY) {
-        this.tamChaoY = tamChaoY;
-    }
-
-    public void setPosChaoX(int posChaoX) {
-        this.posChaoX = posChaoX;
-    }
-
-    public void setPosChaoY(int posChaoY) {
-        this.posChaoY = posChaoY;
-    }
-
     public JLabel getlChao() {
         return lChao;
-    }
-
-    public void setlChao(JLabel lChao) {
-        this.lChao = lChao;
-    }
-
-    public ImageIcon getiChao() {
-        return iChao;
-    }
-
-    public void setiChao(ImageIcon iChao) {
-        this.iChao = iChao;
     }
 
     public int getTamChaoX() {

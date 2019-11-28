@@ -12,8 +12,7 @@ public class Cacto{
     private int posCactoY;
     private ImageIcon iCacto;
     private JLabel lCacto;
-    private Boolean iniciouOMovimento;
-    private int randCacto;
+//    private Boolean iniciouOMovimento;
     private int cont;
     private int velCactos;
 
@@ -26,7 +25,7 @@ public class Cacto{
         this.lCacto = new JLabel(this.iCacto);
         this.lCacto.setBounds(this.posCactoX, this.posCactoY, this.tamCactoX, this.tamCactoY);
         this.lCacto.setVisible(true);
-        this.iniciouOMovimento = false;
+//        this.iniciouOMovimento = false;
         cont = 0;
         velCactos = (int)(1 + (Math.random() * 2));
 
@@ -51,31 +50,11 @@ public class Cacto{
 
     public void mateOCacto() {
         this.lCacto.setLocation(this.posCactoX, this.posCactoY);
-        this.iniciouOMovimento = false;
+//        this.iniciouOMovimento = false;
     }
 
 
     // METODOS ACESSORES
-
-    public int getTamCactoX() {
-        return tamCactoX;
-    }
-
-    public int getTamCactoY() {
-        return tamCactoY;
-    }
-
-    public int getPosCactoX() {
-        return posCactoX;
-    }
-
-    public int getPosCactoY() {
-        return posCactoY;
-    }
-
-    public ImageIcon getiCacto() {
-        return iCacto;
-    }
 
     public JLabel getlCacto() {
         return lCacto;

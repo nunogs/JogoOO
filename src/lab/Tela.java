@@ -30,6 +30,7 @@ public class Tela extends JFrame implements Runnable{
     protected Nuvens nuvens1 = new Nuvens();
     protected Nuvens nuvens2 = new Nuvens();
     protected Nuvens nuvens3 = new Nuvens();
+    protected Nuvens nuvens4 = new Nuvens();
     protected Heroi heroi= new Heroi();
     protected Armas armas0 = new Armas();
     protected Armas armas1 = new Armas();
@@ -75,6 +76,7 @@ public class Tela extends JFrame implements Runnable{
         add(cacto1.getlCacto());
         add(cacto2.getlCacto());
         add(nuvens3.getlNuvens());
+        add(nuvens4.getlNuvens());
         add(nuvens1.getlNuvens());
         add(nuvens0.getlNuvens());
         add(nuvens2.getlNuvens());
@@ -96,17 +98,17 @@ public class Tela extends JFrame implements Runnable{
     }
 
 
-    public void iniciarComPergunta(){
-        Scanner tc = new Scanner(System.in);
-        System.out.println("Deseja começar o jogo? [ s / n] ");
-        String resp = tc.next().toUpperCase();
-        if ("S".equals(resp)) {
-            new Tela();
-        }else{
-            System.out.println("Ok, entao tchau. ");
-        }
-        System.out.println("fui");
-    }
+//    public void iniciarComPergunta(){
+//        Scanner tc = new Scanner(System.in);
+//        System.out.println("Deseja começar o jogo? [ s / n] ");
+//        String resp = tc.next().toUpperCase();
+//        if ("S".equals(resp)) {
+//            new Tela();
+//        }else{
+//            System.out.println("Ok, entao tchau. ");
+//        }
+//        System.out.println("fui");
+//    }
 
 
     public void capturaTeclado(){
@@ -164,6 +166,7 @@ public class Tela extends JFrame implements Runnable{
             movimentosNuvens();
             receberPosicaoDoHeroiParaMapearOTiro();
             colisaoTiroFora();
+            detalhesChao.comportamento();
         }
     }
 

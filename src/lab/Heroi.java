@@ -137,7 +137,6 @@ public class Heroi implements Runnable{
     //Metodos getters e setters
 
 
-
     public int getTamHeroiX() {
         return tamHeroiX;
     }
@@ -154,14 +153,9 @@ public class Heroi implements Runnable{
         return posHeroiY;
     }
 
-    public ImageIcon getiDino() {
-        return iDino;
-    }
-
     public JLabel getlDino() {
         return lDino;
     }
-
 
     public Boolean getPuloDinoS() {
         return puloDinoS;
@@ -175,24 +169,12 @@ public class Heroi implements Runnable{
         return puloDinoS2;
     }
 
-    public void setPuloDinoS2(Boolean puloDinoS2) {
-        this.puloDinoS2 = puloDinoS2;
-    }
-
     public Boolean getPuloDinoB() {
         return puloDinoB;
     }
 
-    public void setPuloDinoB(Boolean puloDinoB) {
-        this.puloDinoB = puloDinoB;
-    }
-
     public Boolean getPuloDinoB2() {
         return puloDinoB2;
-    }
-
-    public void setPuloDinoB2(Boolean puloDinoB2) {
-        this.puloDinoB2 = puloDinoB2;
     }
 
     public Boolean getMovEsqDinoS() {
@@ -215,20 +197,8 @@ public class Heroi implements Runnable{
         }
     }
 
-    public int getPosAtualDinoY() {
-        return posAtualDinoY;
-    }
-
     public void setPosAtualDinoY(int posAtualDinoY) {
         this.posAtualDinoY = posAtualDinoY;
-    }
-
-    public int getPosAtualDinoX() {
-        return posAtualDinoX;
-    }
-
-    public void setPosAtualDinoX(int posAtualDinoX) {
-        this.posAtualDinoX = posAtualDinoX;
     }
 
     public void matarDino() {

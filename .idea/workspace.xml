@@ -4,18 +4,24 @@
     <list default="true" id="4f92d822-3bf8-4f4e-ab44-b271f2b11580" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Cacto.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Cacto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Fundo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Fundo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Chao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Chao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/DetalhesChao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/DetalhesChao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/DetalhesChaoVEIO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/DetalhesChaoVEIO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Heroi.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Heroi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Nuvens.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Nuvens.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Tela$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Tela$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Tela.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Tela.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Tiro.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/TiroVeio.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/TiroVeio.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/res/tiro.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/res/detalhechao.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/res/detalhechao.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/res/detalhechao.psd" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/res/detalhechao.psd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab/Cacto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Cacto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab/Fundo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Fundo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/Chao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Chao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/DetalhesChao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/DetalhesChao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/DetalhesChaoVEIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/DetalhesChaoVEIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/Heroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Heroi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/Nuvens.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Nuvens.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab/Tela.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Tela.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab/Tiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Armas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab/TiroVeio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/TiroVeio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab/res/tiro.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/res/pedra.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/res/detalhechao.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/res/detalhechao.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/res/detalhechao.psd" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/res/detalhechao.psd" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

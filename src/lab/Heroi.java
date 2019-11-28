@@ -22,7 +22,6 @@ public class Heroi implements Runnable{
    protected Boolean teclaParaDireitaApertada;
    protected Boolean teclaParaCimaApertada;
    protected Boolean teclaParaBaixoApertada;
-
     //------------------------------
     ImageIcon iDinoAnimadoDireita = new ImageIcon(getClass().getResource("res\\dinoAnimadoDireita.gif"));
     ImageIcon iDinoAnimadoEsquerda = new ImageIcon(getClass().getResource("res\\dinoAnimadoEsquerda.gif"));
@@ -41,7 +40,6 @@ public class Heroi implements Runnable{
         teclaParaDireitaApertada = false;
         teclaParaCimaApertada = false;
         teclaParaBaixoApertada = false;
-
         dinoVivo = true;
         iDino = new ImageIcon(getClass().getResource("res\\dinoAnimadoDireita.gif"));
         lDino = new JLabel(iDino);
@@ -59,7 +57,9 @@ public class Heroi implements Runnable{
         if (!(puloDinoCimaInicial ||
                 puloDinoCimaFinal ||
                 puloDinoBaixoInicial ||
-                puloDinoBaixoFinal)) {
+                puloDinoBaixoFinal ||
+                teclaParaCimaApertada ||
+                teclaParaBaixoApertada)) {
             puloDinoCimaInicial = true;
             posAtualDinoY = lDino.getY();
         }
@@ -68,18 +68,20 @@ public class Heroi implements Runnable{
         if(dinoVivo) {
             // PULO DINO - MOVIMENTO PARA CIMA
             int velPulo = 2;// Apenas numeros pares
-            Integer estagioLento = (velPulo / 2);
-            Integer estagioRapido = velPulo;
+            int estagioLento = (velPulo / 2);
+            int estagioRapido = velPulo;
+            int alturaDeDesaceleracaoDoPulo = 130;
+            int alturaMaximaDoPulo = 200;
             if (this.puloDinoCimaInicial) {
-                this.lDino.setLocation(this.posHeroiX, this.posHeroiY - estagioRapido);
-                if (this.lDino.getY() == this.posAtualDinoY - 112) {
+                this.lDino.setLocation(lDino.getX(), lDino.getY() - estagioRapido);
+                if (this.lDino.getY() == this.posAtualDinoY - alturaDeDesaceleracaoDoPulo) {
                     this.puloDinoCimaInicial = false;
                     this.puloDinoCimaFinal = true;
                 }
             }
             if (puloDinoCimaFinal) {
-                lDino.setLocation(posHeroiX, this.posHeroiY - estagioLento);
-                if (lDino.getY() == posAtualDinoY - 192) {
+                lDino.setLocation(lDino.getX(), lDino.getY() - estagioLento);
+                if (lDino.getY() == posAtualDinoY - alturaMaximaDoPulo) {
                     puloDinoCimaFinal = false;
                     puloDinoBaixoInicial = true;
                 }
@@ -87,7 +89,7 @@ public class Heroi implements Runnable{
             //PULO DINO - MOVIMENTO PARA BAIXO
             if (puloDinoBaixoInicial) {
                 lDino.setLocation(lDino.getX(), lDino.getY() + estagioLento);
-                if (lDino.getY() == posAtualDinoY - 112) {
+                if (lDino.getY() == posAtualDinoY - alturaDeDesaceleracaoDoPulo) {
                     puloDinoBaixoInicial = false;
                     puloDinoBaixoFinal = true;
                 }
@@ -132,7 +134,10 @@ public class Heroi implements Runnable{
         }
     }
     public void apertouTeclaParaCima(boolean teclaParaCimaApertada) {
-        if (dinoVivo && posHeroiY > 270) {
+        if ((dinoVivo && posHeroiY > 270 && !puloDinoCimaInicial) && !(puloDinoCimaInicial ||
+                puloDinoCimaFinal ||
+                puloDinoBaixoInicial ||
+                puloDinoBaixoFinal)){
             this.teclaParaCimaApertada = teclaParaCimaApertada;
         }
     }
@@ -145,7 +150,10 @@ public class Heroi implements Runnable{
         }
     }
     public void apertouTeclaParaBaixo(boolean teclaParaBaixoApertada) {
-        if (dinoVivo && posHeroiY < 550) {
+        if ((dinoVivo && posHeroiY < 550 ) && !(puloDinoCimaInicial ||
+                puloDinoCimaFinal ||
+                puloDinoBaixoInicial ||
+                puloDinoBaixoFinal)){
             this.teclaParaBaixoApertada = teclaParaBaixoApertada;
         }
     }
@@ -165,8 +173,8 @@ public class Heroi implements Runnable{
     @Override
     public void run() {
         while (true) {
-
             try {sleep(1);} catch (Exception erro) {}
+
             atualizarMovimentosDino();
 
 
@@ -201,5 +209,5 @@ public class Heroi implements Runnable{
     public JLabel getlDino() {
         return lDino;
     }
-    
+
 }

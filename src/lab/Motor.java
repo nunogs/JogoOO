@@ -110,25 +110,25 @@ public class Motor extends JFrame implements Runnable{
             }
             @Override
             public void keyPressed(KeyEvent tecla) {
-                System.out.println(tecla.getKeyCode());
+//                System.out.println(tecla.getKeyCode());
                 if (tecla.getKeyCode() == 32/*ESPAÇO*/) {
                     if (tecla.getKeyCode() == 32/*ESPAÇO*/) {
                         heroi.iniciarPulo();
                     }
                 }
                 if (tecla.getKeyCode() == 37 /*SETA ESQUERDA*/) {
-                    heroi.movimentoParaEsquerda(true);
+                    heroi.apertouTeclaParaEsquerda(true);
                 }
 
                 if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
-                    heroi.movimentoParaDireita(true);
+                    heroi.apertouTeclaParaDireita(true);
                 }
                 if (tecla.getKeyCode() == 38 /*SETA CIMA*/) {
-//                    heroi.movimentoParaCima(true);
+                    heroi.apertouTeclaParaCima(true);
                 }
 
                 if (tecla.getKeyCode() == 40 /*SETA BAIXO*/) {
-//                    heroi.movimentoParaBaixo(true);
+                    heroi.apertouTeclaParaBaixo(true);
                 }
 
                 if (tecla.getKeyCode() == 68/* D */) {
@@ -139,11 +139,17 @@ public class Motor extends JFrame implements Runnable{
             @Override
             public void keyReleased(KeyEvent tecla) {
                 if (tecla.getKeyCode() == 37 /*SETA ESQUERDA*/) {
-                    heroi.movimentoParaEsquerda(false);
+                    heroi.apertouTeclaParaEsquerda(false);
                 }
 
                 if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
-                    heroi.movimentoParaDireita(false);
+                    heroi.apertouTeclaParaDireita(false);
+                }
+                if (tecla.getKeyCode() == 38 /*SETA CIMA*/) {
+                    heroi.apertouTeclaParaCima(false);
+                }
+                if (tecla.getKeyCode() == 40 /*SETA BAIXO*/) {
+                    heroi.apertouTeclaParaBaixo(false);
                 }
 
             }

@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4f92d822-3bf8-4f4e-ab44-b271f2b11580" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab/Armas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Armas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab/Cacto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Cacto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Cacto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Heroi.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Heroi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab/lab/Motor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab/lab/Motor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/Cacto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Inimigo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab/Heroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Heroi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab/Motor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab/Motor.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,6 +15,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Lab" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -36,6 +42,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574794928587" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RecentsManager">
     <key name="MoveInnerDialog.RECENTS_KEY">

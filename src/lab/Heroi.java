@@ -104,25 +104,31 @@ public class Heroi implements Runnable{
     }
 
     public void apertouTeclaParaEsquerda(Boolean teclaParaEsquerdaApertada) {
-        if(dinoVivo) {
+        if(dinoVivo && lDino.getX() > 5) {
             this.teclaParaEsquerdaApertada = teclaParaEsquerdaApertada;
         }
     }
     public void andarEsquerda(){
-        if(teclaParaEsquerdaApertada){
+        if(teclaParaEsquerdaApertada && lDino.getX() > 5){
             this.lDino.setIcon(iDinoAnimadoEsquerda);
             this.lDino.setLocation(lDino.getX()-1, lDino.getY());
         }
+        if(lDino.getX() <= 5){
+            this.teclaParaEsquerdaApertada = false;
+        }
     }
     public void apertouTeclaParaDireita(Boolean teclaParaDireitaApertada) {
-        if (dinoVivo) {
+        if (dinoVivo && lDino.getX() < 1150) {
             this.teclaParaDireitaApertada = teclaParaDireitaApertada;
         }
     }
     public void andarDireita(){
-        if(teclaParaDireitaApertada){
+        if(teclaParaDireitaApertada && lDino.getX() < 1150 ){
             this.lDino.setIcon(iDinoAnimadoDireita);
             this.lDino.setLocation(lDino.getX()+1, lDino.getY());
+        }
+        if(lDino.getX() >= 1150){
+            this.teclaParaDireitaApertada = false;
         }
     }
     public void andarParaCima(){

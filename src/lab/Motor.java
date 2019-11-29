@@ -13,8 +13,8 @@ public class Motor extends JFrame implements Runnable{
     //---MUDA A VELOCIDADE DO JOGO ---
 
     protected ImageIcon iPlacar = new ImageIcon(getClass().getResource("res\\placar.png"));
-    protected int mortesCactos;
-    JLabel txtPlacar = new JLabel(String.valueOf(mortesCactos));
+    protected int mortesInimigos;
+    JLabel txtPlacar = new JLabel(String.valueOf(mortesInimigos));
 
     protected JLabel placar = new JLabel(iPlacar);
     protected Fundo fundo = new Fundo(0,0);
@@ -22,14 +22,14 @@ public class Motor extends JFrame implements Runnable{
     protected Fundo fundoForaEsquerda = new Fundo(-1280,0);
     protected Chao chao = new Chao();
     protected DetalhesChao detalhesChao = new DetalhesChao();
-    protected Cacto cacto0 = new Cacto();
-    protected Cacto cacto1 = new Cacto();
-    protected Cacto cacto2 = new Cacto();
-    protected Cacto cacto3 = new Cacto();
-    protected Cacto cacto4 = new Cacto();
-    protected Cacto cacto5 = new Cacto();
-    protected Cacto cacto6 = new Cacto();
-    protected Cacto cacto7 = new Cacto();
+    protected Inimigo inimigo0 = new Inimigo();
+    protected Inimigo inimigo1 = new Inimigo();
+    protected Inimigo inimigo2 = new Inimigo();
+    protected Inimigo inimigo3 = new Inimigo();
+    protected Inimigo inimigo4 = new Inimigo();
+    protected Inimigo inimigo5 = new Inimigo();
+    protected Inimigo inimigo6 = new Inimigo();
+    protected Inimigo inimigo7 = new Inimigo();
     protected Nuvens nuvens0 = new Nuvens();
     protected Nuvens nuvens1 = new Nuvens();
     protected Nuvens nuvens2 = new Nuvens();
@@ -70,14 +70,14 @@ public class Motor extends JFrame implements Runnable{
         add(armas0.getlPedra());
         add(armas1.getlPedra());
         add(heroi.getlDino());
-        add(cacto0.getlCacto());
-        add(cacto1.getlCacto());
-        add(cacto2.getlCacto());
-        add(cacto3.getlCacto());
-        add(cacto4.getlCacto());
-        add(cacto5.getlCacto());
-        add(cacto6.getlCacto());
-        add(cacto7.getlCacto());
+        add(inimigo0.getlCacto());
+        add(inimigo1.getlCacto());
+        add(inimigo2.getlCacto());
+        add(inimigo3.getlCacto());
+        add(inimigo4.getlCacto());
+        add(inimigo5.getlCacto());
+        add(inimigo6.getlCacto());
+        add(inimigo7.getlCacto());
         add(nuvens3.getlNuvens());
         add(nuvens4.getlNuvens());
         add(nuvens1.getlNuvens());
@@ -175,8 +175,8 @@ public class Motor extends JFrame implements Runnable{
 
             atualizaPlacar();
             movimentosCactos();
-            colisaoCactoTiro();
-            colisaoDinoCacto();
+//            colisaoCactoTiro();
+//            colisaoDinoCacto();
             movimentosNuvens();
             receberPosicaoDoHeroiParaMapearOTiro();
             colisaoTiroFora();
@@ -204,26 +204,26 @@ public class Motor extends JFrame implements Runnable{
 
     public void movimentosCactos(){
         if(nivel <= 1 ) {
-            cacto0.comportamentoDosCactos();
-            cacto1.comportamentoDosCactos();
-            cacto2.comportamentoDosCactos();
+            inimigo0.comportamentoDosCactos();
+            inimigo1.comportamentoDosCactos();
+            inimigo2.comportamentoDosCactos();
         }
         if (nivel == 2) {
-            cacto0.comportamentoDosCactos();
-            cacto1.comportamentoDosCactos();
-            cacto2.comportamentoDosCactos();
-            cacto3.comportamentoDosCactos();
-            cacto4.comportamentoDosCactos();
+            inimigo0.comportamentoDosCactos();
+            inimigo1.comportamentoDosCactos();
+            inimigo2.comportamentoDosCactos();
+            inimigo3.comportamentoDosCactos();
+            inimigo4.comportamentoDosCactos();
         }
         if (nivel == 3) {
-            cacto0.comportamentoDosCactos();
-            cacto1.comportamentoDosCactos();
-            cacto2.comportamentoDosCactos();
-            cacto3.comportamentoDosCactos();
-            cacto4.comportamentoDosCactos();
-            cacto5.comportamentoDosCactos();
-            cacto6.comportamentoDosCactos();
-            cacto7.comportamentoDosCactos();
+            inimigo0.comportamentoDosCactos();
+            inimigo1.comportamentoDosCactos();
+            inimigo2.comportamentoDosCactos();
+            inimigo3.comportamentoDosCactos();
+            inimigo4.comportamentoDosCactos();
+            inimigo5.comportamentoDosCactos();
+            inimigo6.comportamentoDosCactos();
+            inimigo7.comportamentoDosCactos();
         }
     }
 
@@ -236,11 +236,11 @@ public class Motor extends JFrame implements Runnable{
     }
 
     public void colisaoDinoCacto(){
-        if (verificaColisao(heroi.getlDino(), cacto0.getlCacto()) ||
-                verificaColisao(heroi.getlDino(), cacto1.getlCacto()) ||
-                verificaColisao(heroi.getlDino(), cacto2.getlCacto())){
+        if (verificaColisao(heroi.getlDino(), inimigo0.getlCacto()) ||
+                verificaColisao(heroi.getlDino(), inimigo1.getlCacto()) ||
+                verificaColisao(heroi.getlDino(), inimigo2.getlCacto())){
             heroi.matarDino();
-            JOptionPane.showMessageDialog(null, "  Matou " + mortesCactos + " cactos.");
+            JOptionPane.showMessageDialog(null, "  Matou " + mortesInimigos + " cactos.");
             System.exit(0);
         }
     }
@@ -248,53 +248,53 @@ public class Motor extends JFrame implements Runnable{
     public void colisaoCactoTiro(){
 
         // tiro 0
-        if (verificaColisao(armas0.getlPedra(), cacto0.getlCacto())) {
-            cacto0.matarCactoPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo0.getlCacto())) {
+            inimigo0.matarCactoPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas0.getlPedra(), cacto1.getlCacto())) {
-            cacto1.matarCactoPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo1.getlCacto())) {
+            inimigo1.matarCactoPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas0.getlPedra(), cacto2.getlCacto())) {
-            cacto2.matarCactoPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo2.getlCacto())) {
+            inimigo2.matarCactoPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas0.getlPedra(), cacto3.getlCacto())) {
-            cacto3.matarCactoPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo3.getlCacto())) {
+            inimigo3.matarCactoPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas0.getlPedra(), cacto4.getlCacto())) {
-            cacto4.matarCactoPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo4.getlCacto())) {
+            inimigo4.matarCactoPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas0.getlPedra(), cacto5.getlCacto())) {
-            cacto5.matarCactoPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo5.getlCacto())) {
+            inimigo5.matarCactoPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas0.getlPedra(), cacto6.getlCacto())) {
-            cacto6.matarCactoPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo6.getlCacto())) {
+            inimigo6.matarCactoPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas0.getlPedra(), cacto7.getlCacto())) {
-            cacto7.matarCactoPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo7.getlCacto())) {
+            inimigo7.matarCactoPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
 //        if (verificaColisao(armas0.getlPedra(), cacto8.getlCacto())) {
 //            cacto8.matarCactoPorTiro();
@@ -304,53 +304,53 @@ public class Motor extends JFrame implements Runnable{
 //        }
 
         // Tiro 2
-        if (verificaColisao(armas1.getlPedra(), cacto0.getlCacto())) {
-            cacto0.matarCactoPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo0.getlCacto())) {
+            inimigo0.matarCactoPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas1.getlPedra(), cacto1.getlCacto())) {
-            cacto1.matarCactoPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo1.getlCacto())) {
+            inimigo1.matarCactoPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas1.getlPedra(), cacto2.getlCacto())) {
-            cacto2.matarCactoPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo2.getlCacto())) {
+            inimigo2.matarCactoPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas1.getlPedra(), cacto3.getlCacto())) {
-            cacto3.matarCactoPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo3.getlCacto())) {
+            inimigo3.matarCactoPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas1.getlPedra(), cacto4.getlCacto())) {
-            cacto4.matarCactoPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo4.getlCacto())) {
+            inimigo4.matarCactoPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
-            mortesCactos ++;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas1.getlPedra(), cacto5.getlCacto())) {
-            cacto5.matarCactoPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo5.getlCacto())) {
+            inimigo5.matarCactoPorTiro();
             armas1.pararPedra();
-            pedraNaMao0 = true;
-            mortesCactos ++;
+            pedraNaMao1 = true;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas1.getlPedra(), cacto6.getlCacto())) {
-            cacto6.matarCactoPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo6.getlCacto())) {
+            inimigo6.matarCactoPorTiro();
             armas1.pararPedra();
-            pedraNaMao0 = true;
-            mortesCactos ++;
+            pedraNaMao1 = true;
+            mortesInimigos++;
         }
-        if (verificaColisao(armas1.getlPedra(), cacto7.getlCacto())) {
-            cacto7.matarCactoPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo7.getlCacto())) {
+            inimigo7.matarCactoPorTiro();
             armas1.pararPedra();
-            pedraNaMao0 = true;
-            mortesCactos ++;
+            pedraNaMao1 = true;
+            mortesInimigos++;
         }
 
     }
@@ -377,11 +377,11 @@ public class Motor extends JFrame implements Runnable{
     }
 //-----------------------------------------------------ATUALIZAR PLACAR-------------------------------ATUALIZAR PLACAR
     public void atualizaPlacar() {
-        txtPlacar.setText(String.valueOf(mortesCactos));
-        if(mortesCactos >= 10){
+        txtPlacar.setText(String.valueOf(mortesInimigos));
+        if(mortesInimigos >= 10){
             nivel = 2;
         }
-        if(mortesCactos >= 20){
+        if(mortesInimigos >= 20){
             nivel = 3;
         }
     }
@@ -397,41 +397,41 @@ public class Motor extends JFrame implements Runnable{
         armas1.atualizarPosHeroi(posHeroiX, posHeroiY);
     }
 
-    public boolean verificaColisao(Component a, Component b) {
-        int aX = a.getX();
-        int aY = a.getY();
-        int ladoDireitoA = aX+a.getWidth();
+    public boolean verificaColisao(Component objetoA, Component objetoB) {
+        int aX = objetoA.getX();
+        int aY = objetoA.getY();
+        int ladoDireitoA = aX+objetoA.getWidth();
         int ladoEsquerdoA= aX;
-        int ladoBaixoA= aY+a.getHeight();
+        int ladoBaixoA= aY+objetoA.getHeight();
         int ladoCimaA= aY;
 
-        int bX = b.getX();
-        int bY = b.getY();
-        int ladoDireitoB = bX+b.getWidth();
+        int bX = objetoB.getX();
+        int bY = objetoB.getY();
+        int ladoDireitoB = bX+objetoB.getWidth();
         int ladoEsquerdoB= bX;
-        int ladoBaixoB= bY+b.getHeight();
+        int ladoBaixoB= bY+objetoB.getHeight();
         int ladoCimaB= bY;
 
         boolean colidiu = false;
-        boolean cDireita=false;
-        boolean cCima=false;
-        boolean cBaixo=false;
-        boolean cEsquerda=false;
+        boolean colidiuDireita=false;
+        boolean colidiuCima=false;
+        boolean colidiuBaixo=false;
+        boolean colidiuEsquerda=false;
 
         if(ladoDireitoA>=ladoEsquerdoB) {
-            cDireita=true;
+            colidiuDireita=true;
         }
         if(ladoCimaA<=ladoBaixoB) {
-            cCima=true;
+            colidiuCima=true;
         }
         if(ladoBaixoA>=ladoCimaB) {
-            cBaixo=true;
+            colidiuBaixo=true;
         }
         if(ladoEsquerdoA<=ladoDireitoB) {
-            cEsquerda=true;
+            colidiuEsquerda=true;
         }
 
-        if(cDireita && cEsquerda && cBaixo && cCima) {
+        if(colidiuDireita && colidiuEsquerda && colidiuBaixo && colidiuCima) {
             colidiu = true;
         }
         return colidiu;

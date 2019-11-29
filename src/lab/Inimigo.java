@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import static java.lang.Thread.sleep;
 
-public class Cacto{
+public class Inimigo {
 //public class Cacto implements Runnable{
     private int tamCactoX;
     private int tamCactoY;
@@ -15,7 +15,7 @@ public class Cacto{
     private int cont;
     private int velCactos;
 
-    public Cacto() {
+    public Inimigo() {
         this.tamCactoX = 88;
         this.tamCactoY = 90;
         this.posCactoX = (int)( 1300 + (Math.random() * 1400));

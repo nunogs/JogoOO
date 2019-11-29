@@ -30,6 +30,7 @@ public class Motor extends JFrame implements Runnable{
     protected Inimigo inimigo5 = new Inimigo();
     protected Inimigo inimigo6 = new Inimigo();
     protected Inimigo inimigo7 = new Inimigo();
+    protected Inimigo inimigo8 = new Inimigo();
     protected Nuvens nuvens0 = new Nuvens();
     protected Nuvens nuvens1 = new Nuvens();
     protected Nuvens nuvens2 = new Nuvens();
@@ -38,8 +39,10 @@ public class Motor extends JFrame implements Runnable{
     protected Heroi heroi= new Heroi();
     protected Armas armas0 = new Armas();
     protected Armas armas1 = new Armas();
-    protected Boolean pedraNaMao0= true;;
-    protected Boolean pedraNaMao1= true;;
+    protected Armas armas2 = new Armas();
+    protected Boolean pedraNaMao0= true;
+    protected Boolean pedraNaMao1= true;
+    protected Boolean pedraNaMao2= true;
     protected int posHeroiX;
     protected int posHeroiY;
     protected int nivel;
@@ -69,6 +72,7 @@ public class Motor extends JFrame implements Runnable{
         add(fundoForaEsquerda.getLfundo());
         add(armas0.getlPedra());
         add(armas1.getlPedra());
+        add(armas2.getlPedra());
         add(heroi.getlDino());
         add(inimigo0.getlCacto());
         add(inimigo1.getlCacto());
@@ -78,6 +82,7 @@ public class Motor extends JFrame implements Runnable{
         add(inimigo5.getlCacto());
         add(inimigo6.getlCacto());
         add(inimigo7.getlCacto());
+        add(inimigo8.getlCacto());
         add(nuvens3.getlNuvens());
         add(nuvens4.getlNuvens());
         add(nuvens1.getlNuvens());
@@ -185,13 +190,30 @@ public class Motor extends JFrame implements Runnable{
     }
     //--------------------------------------------REAÇÕES-------------------------------------REAÇÕES--------------
     private void tacarPedra() {
-        if (pedraNaMao0 && pedraNaMao1) {
-            pedraNaMao0 = false;
-            armas0.tacaPedra();
+        if(nivel <= 1) {
+            if (pedraNaMao0 && pedraNaMao1) {
+                pedraNaMao0 = false;
+                armas0.tacaPedra();
 
-        }else if(pedraNaMao1 && !pedraNaMao0){
-            pedraNaMao1 = false;
-            armas1.tacaPedra();
+            } else if (pedraNaMao1 && !pedraNaMao0) {
+                pedraNaMao1 = false;
+                armas1.tacaPedra();
+            }
+        }else if(nivel >= 3){
+            if ((pedraNaMao0 && pedraNaMao1 && pedraNaMao2) &&
+                    (pedraNaMao0 && pedraNaMao1 && !pedraNaMao2) &&
+                    (pedraNaMao0 && !pedraNaMao1 && pedraNaMao2) ) {
+                pedraNaMao0 = false;
+                armas0.tacaPedra();
+
+            } else if ((!pedraNaMao0 && pedraNaMao1 && pedraNaMao2) &&
+                    (!pedraNaMao0 && pedraNaMao1 && !pedraNaMao2)) {
+                pedraNaMao1 = false;
+                armas1.tacaPedra();
+            }else if((!pedraNaMao0 && !pedraNaMao1 && pedraNaMao2)){
+                pedraNaMao2 = false;
+                armas2.tacaPedra();
+            }
         }
     }
 
@@ -207,6 +229,7 @@ public class Motor extends JFrame implements Runnable{
             inimigo0.comportamentoDosCactos();
             inimigo1.comportamentoDosCactos();
             inimigo2.comportamentoDosCactos();
+            inimigo3.comportamentoDosCactos();
         }
         if (nivel == 2) {
             inimigo0.comportamentoDosCactos();
@@ -214,6 +237,7 @@ public class Motor extends JFrame implements Runnable{
             inimigo2.comportamentoDosCactos();
             inimigo3.comportamentoDosCactos();
             inimigo4.comportamentoDosCactos();
+            inimigo5.comportamentoDosCactos();
         }
         if (nivel == 3) {
             inimigo0.comportamentoDosCactos();
@@ -225,6 +249,17 @@ public class Motor extends JFrame implements Runnable{
             inimigo6.comportamentoDosCactos();
             inimigo7.comportamentoDosCactos();
         }
+        if (nivel == 3) {
+            inimigo0.comportamentoDosCactos();
+            inimigo1.comportamentoDosCactos();
+            inimigo2.comportamentoDosCactos();
+            inimigo3.comportamentoDosCactos();
+            inimigo4.comportamentoDosCactos();
+            inimigo5.comportamentoDosCactos();
+            inimigo6.comportamentoDosCactos();
+            inimigo7.comportamentoDosCactos();
+            inimigo8.comportamentoDosCactos();
+        }
     }
 
     public void iniciarMovimentos(){
@@ -232,6 +267,7 @@ public class Motor extends JFrame implements Runnable{
             new Thread(heroi).start();
             new Thread(armas0).start();
             new Thread(armas1).start();
+            new Thread(armas2).start();
         }
     }
 
@@ -296,12 +332,12 @@ public class Motor extends JFrame implements Runnable{
             pedraNaMao0 = true;
             mortesInimigos++;
         }
-//        if (verificaColisao(armas0.getlPedra(), cacto8.getlCacto())) {
-//            cacto8.matarCactoPorTiro();
-//            armas0.pararPedra();
-//            pedraNaMao0 = true;
-//            mortesCactos ++;
-//        }
+        if (verificaColisao(armas0.getlPedra(), inimigo8.getlCacto())) {
+            inimigo8.matarCactoPorTiro();
+            armas0.pararPedra();
+            pedraNaMao0 = true;
+            mortesInimigos ++;
+        }
 
         // Tiro 2
         if (verificaColisao(armas1.getlPedra(), inimigo0.getlCacto())) {
@@ -352,6 +388,12 @@ public class Motor extends JFrame implements Runnable{
             pedraNaMao1 = true;
             mortesInimigos++;
         }
+        if (verificaColisao(armas1.getlPedra(), inimigo8.getlCacto())) {
+            inimigo8.matarCactoPorTiro();
+            armas1.pararPedra();
+            pedraNaMao1 = true;
+            mortesInimigos ++;
+        }
 
     }
 
@@ -364,6 +406,9 @@ public class Motor extends JFrame implements Runnable{
         if (verificaColisao(fundoForaDireita.getLfundo(), armas1.getlPedra())){
             pedraNaMao1 = true;
         }
+        if (verificaColisao(fundoForaDireita.getLfundo(), armas2.getlPedra())){
+            pedraNaMao2 = true;
+        }
         // Tiro sair pela esquerda
 
         if (verificaColisao(fundoForaEsquerda.getLfundo(), armas0.getlPedra())){
@@ -371,6 +416,9 @@ public class Motor extends JFrame implements Runnable{
         }
         if (verificaColisao(fundoForaEsquerda.getLfundo(), armas1.getlPedra())){
             pedraNaMao1 = true;
+        }
+        if (verificaColisao(fundoForaEsquerda.getLfundo(), armas2.getlPedra())){
+            pedraNaMao2 = true;
         }
 
 
@@ -384,8 +432,10 @@ public class Motor extends JFrame implements Runnable{
         if(mortesInimigos >= 20){
             nivel = 3;
         }
+        if(mortesInimigos >= 40){
+            nivel = 4;
+        }
     }
-
 
     public void receberPosicaoDoHeroiParaMapearOTiro(){
         posHeroiX = heroi.atualizarPosX();

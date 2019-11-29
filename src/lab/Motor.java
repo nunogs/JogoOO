@@ -175,8 +175,8 @@ public class Motor extends JFrame implements Runnable{
 
             atualizaPlacar();
             movimentosCactos();
-//            colisaoCactoTiro();
-//            colisaoDinoCacto();
+            colisaoCactoTiro();
+            colisaoDinoCacto();
             movimentosNuvens();
             receberPosicaoDoHeroiParaMapearOTiro();
             colisaoTiroFora();

@@ -183,9 +183,9 @@ public class Motor extends JFrame implements Runnable{
         iniciarThreads();
         while (true){
             try {sleep(velJogo/*NAO MECHE NESSA POHA*/);} catch (Exception erro) {}
-//            enviarNivel();
+            enviarNivel();
             atualizaPlacar();
-            movimentosCactos();
+//            movimentosCactos();
             colisaoCactoTiro();
             colisaoDinoCacto();
             movimentosNuvens();
@@ -230,43 +230,50 @@ public class Motor extends JFrame implements Runnable{
         nuvens3.comportamentoDasNuvens();
     }
     //----------------------------------------INICIALIZAR MOVIMENTOS DOS CACTOS ---------------------INICIALIZAR MOVIMENTOS DOS CACTOS
-    public void movimentosCactos(){
-        if(nivel <= 1 ) {
-            inimigo0.atualizarMovimentosDosCactos();
-            inimigo1.atualizarMovimentosDosCactos();
-            inimigo2.atualizarMovimentosDosCactos();
-            inimigo3.atualizarMovimentosDosCactos();
-        }
-        if (nivel == 2) {
-            inimigo0.atualizarMovimentosDosCactos();
-            inimigo1.atualizarMovimentosDosCactos();
-            inimigo2.atualizarMovimentosDosCactos();
-            inimigo3.atualizarMovimentosDosCactos();
-            inimigo4.atualizarMovimentosDosCactos();
-            inimigo5.atualizarMovimentosDosCactos();
-        }
-        if (nivel == 3) {
-            inimigo0.atualizarMovimentosDosCactos();
-            inimigo1.atualizarMovimentosDosCactos();
-            inimigo2.atualizarMovimentosDosCactos();
-            inimigo3.atualizarMovimentosDosCactos();
-            inimigo4.atualizarMovimentosDosCactos();
-            inimigo5.atualizarMovimentosDosCactos();
-            inimigo6.atualizarMovimentosDosCactos();
-            inimigo7.atualizarMovimentosDosCactos();
-        }
-        if (nivel == 4) {
-            inimigo0.atualizarMovimentosDosCactos();
-            inimigo1.atualizarMovimentosDosCactos();
-            inimigo2.atualizarMovimentosDosCactos();
-            inimigo3.atualizarMovimentosDosCactos();
-            inimigo4.atualizarMovimentosDosCactos();
-            inimigo5.atualizarMovimentosDosCactos();
-            inimigo6.atualizarMovimentosDosCactos();
-            inimigo7.atualizarMovimentosDosCactos();
-            inimigo8.atualizarMovimentosDosCactos();
-        }
-    }
+//    public void movimentosCactos(){
+//        if(nivel <= 1 ) {
+//            inimigo0.atualizarMovimentosDosCactos();
+//            inimigo0.atualizarMovimentosDosCactos();
+//            inimigo1.atualizarMovimentosDosCactos();
+//            inimigo2.atualizarMovimentosDosCactos();
+//            inimigo3.atualizarMovimentosDosCactos();
+//            inimigo3.atualizarMovimentosDosCactos();
+//        }
+//        if (nivel == 2) {
+//            inimigo0.atualizarMovimentosDosCactos();
+//            inimigo0.atualizarMovimentosDosCactos();
+//            inimigo1.atualizarMovimentosDosCactos();
+//            inimigo2.atualizarMovimentosDosCactos();
+//            inimigo3.atualizarMovimentosDosCactos();
+//            inimigo3.atualizarMovimentosDosCactos();
+//            inimigo4.atualizarMovimentosDosCactos();
+//            inimigo5.atualizarMovimentosDosCactos();
+//        }
+//        if (nivel == 3) {
+//            inimigo0.atualizarMovimentosDosCactos();
+//            inimigo0.atualizarMovimentosDosCactos();
+//            inimigo1.atualizarMovimentosDosCactos();
+//            inimigo2.atualizarMovimentosDosCactos();
+//            inimigo3.atualizarMovimentosDosCactos();
+//            inimigo4.atualizarMovimentosDosCactos();
+//            inimigo5.atualizarMovimentosDosCactos();
+//            inimigo6.atualizarMovimentosDosCactos();
+//            inimigo7.atualizarMovimentosDosCactos();
+//        }
+//        if (nivel == 4) {
+//            inimigo0.atualizarMovimentosDosCactos();
+//            inimigo0.atualizarMovimentosDosCactos();
+//            inimigo1.atualizarMovimentosDosCactos();
+//            inimigo2.atualizarMovimentosDosCactos();
+//            inimigo3.atualizarMovimentosDosCactos();
+//            inimigo3.atualizarMovimentosDosCactos();
+//            inimigo4.atualizarMovimentosDosCactos();
+//            inimigo5.atualizarMovimentosDosCactos();
+//            inimigo6.atualizarMovimentosDosCactos();
+//            inimigo7.atualizarMovimentosDosCactos();
+//            inimigo8.atualizarMovimentosDosCactos();
+//        }
+//    }
     //-----------------------------------------------------INICIALIZAR AS THREADS -------------------------INICIALIZAR AS THREADS
     public void iniciarThreads(){
         if(heroi.dinoVivo) {
@@ -274,6 +281,15 @@ public class Motor extends JFrame implements Runnable{
             new Thread(armas0).start();
             new Thread(armas1).start();
             new Thread(armas2).start();
+            new Thread(inimigo0).start();
+            new Thread(inimigo1).start();
+            new Thread(inimigo2).start();
+            new Thread(inimigo3).start();
+            new Thread(inimigo4).start();
+            new Thread(inimigo5).start();
+            new Thread(inimigo6).start();
+            new Thread(inimigo7).start();
+            new Thread(inimigo8).start();
         }
     }
   //-----------------------------------------------------SE HEROI TROMBAR NO CACTO -------------------------SE HEROI TROMBAR NO CACTO
@@ -465,7 +481,7 @@ public class Motor extends JFrame implements Runnable{
         }
     }
 
-    //-----------------------------------------------------SE TIRO SAIR  -------------------------------SE TIRO SAIR    
+    //-----------------------------------------------------SE TIRO SAIR DA TELA  -------------------------------SE TIRO SAIR  DA TELA  
     public void colisaoTiroFora(){
         // Tiro sair pela direita
 
@@ -557,17 +573,17 @@ public class Motor extends JFrame implements Runnable{
         return colidiu;
     }
     
-//    public void enviarNivel() {
-//    	inimigo0.nivelDoJogo(nivel);
-//    	inimigo1.nivelDoJogo(nivel);
-//    	inimigo2.nivelDoJogo(nivel);
-//    	inimigo3.nivelDoJogo(nivel);
-//    	inimigo4.nivelDoJogo(nivel);
-//    	inimigo5.nivelDoJogo(nivel);
-//    	inimigo6.nivelDoJogo(nivel);
-//    	inimigo7.nivelDoJogo(nivel);
-//    	inimigo8.nivelDoJogo(nivel);
-//	}
+    public void enviarNivel() {
+    	inimigo0.nivelDoJogo(nivel);
+    	inimigo1.nivelDoJogo(nivel);
+    	inimigo2.nivelDoJogo(nivel);
+    	inimigo3.nivelDoJogo(nivel);
+    	inimigo4.nivelDoJogo(nivel);
+    	inimigo5.nivelDoJogo(nivel);
+    	inimigo6.nivelDoJogo(nivel);
+    	inimigo7.nivelDoJogo(nivel);
+    	inimigo8.nivelDoJogo(nivel);
+	}
 }
 
 

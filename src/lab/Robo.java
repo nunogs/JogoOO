@@ -17,9 +17,8 @@ public class Robo implements Runnable{
     private int velocidadeDoCacto;
 
     public Robo() {
-    	this.tamCactoY = 94;
+    	this.tamCactoY = 100;
     	this.tamCactoX = 61;
-        
         this.posCactoX = (int)( 1300 + (Math.random() * 1400));
         this.posCactoY = (int)( 280 + (Math.random() * 300));
         this.iCacto = new ImageIcon(getClass().getResource("res\\robo.png"));
@@ -44,11 +43,11 @@ public class Robo implements Runnable{
     }
     public void ajusteDeNivel() {
     	if (nivel <= 1) {
-    		this.velocidadeDoCacto = 0;
+    		this.velocidadeDoCacto = 1;
     	}else if (nivel == 2) {
-    		this.velocidadeDoCacto = 0;
+    		this.velocidadeDoCacto = 2;
     	}else if (nivel == 3) {
-    		this.velocidadeDoCacto = 3;
+    		this.velocidadeDoCacto = 2;
     	}else if (nivel == 4) {
     		this.velocidadeDoCacto = 3;
     	}

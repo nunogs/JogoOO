@@ -27,11 +27,12 @@ public class Motor extends JFrame implements Runnable{
     protected Fundo fundoForaEsquerda = new Fundo(-1280,0);
     protected Chao chao = new Chao();
     protected DetalhesChao detalhesChao = new DetalhesChao();
-    protected Cacto inimigo0 = new Cacto();
-    protected Cacto inimigo1 = new Cacto();
-    protected Cacto inimigo2 = new Cacto();
-    protected Cacto inimigo3 = new Cacto();
-    protected Cacto inimigo4 = new Cacto();
+    protected Robo inimigo0 = new Robo();
+    protected Caixa caixa = new Caixa();
+    protected Robo inimigo1 = new Robo();
+    protected Robo inimigo2 = new Robo();
+    protected Robo inimigo3 = new Robo();
+    protected Robo inimigo4 = new Robo();
     protected Robo inimigo5 = new Robo();
     protected Robo inimigo6 = new Robo();
     protected Robo inimigo7 = new Robo();
@@ -90,6 +91,7 @@ public class Motor extends JFrame implements Runnable{
         add(inimigo6.getlCacto());
         add(inimigo7.getlCacto());
         add(inimigo8.getlCacto());
+        add(caixa.getlCaixa());
         add(nuvens3.getlNuvens());
         add(nuvens4.getlNuvens());
         add(nuvens1.getlNuvens());
@@ -125,58 +127,7 @@ public class Motor extends JFrame implements Runnable{
 //        System.out.println("fui");
 //    }
 
-    //---------------------------------CAPTURA DE TECLADO----------------------------------------CAPTURA DE TECLADO--------------
-    public void capturaTeclado(){
-        addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
 
-            }
-            @Override
-            public void keyPressed(KeyEvent tecla) {
-//                System.out.println(tecla.getKeyCode());
-                if (tecla.getKeyCode() == 32/*ESPAÃ‡O*/) {
-                    if (tecla.getKeyCode() == 32/*ESPAÃ‡O*/) {
-                        heroi.iniciarPulo();
-                    }
-                }
-                if (tecla.getKeyCode() == 37 /*SETA ESQUERDA*/) {
-                    heroi.apertouTeclaParaEsquerda(true);
-                }
-
-                if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
-                    heroi.apertouTeclaParaDireita(true);
-                }
-                if (tecla.getKeyCode() == 38 /*SETA CIMA*/) {
-                    heroi.apertouTeclaParaCima(true);
-                }
-
-                if (tecla.getKeyCode() == 40 /*SETA BAIXO*/) {
-                    heroi.apertouTeclaParaBaixo(true);
-                }
-
-                if (tecla.getKeyCode() == 68/* D */) {
-                    tacarPedra();
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent tecla) {
-                if (tecla.getKeyCode() == 37 /*SETA ESQUERDA*/) {
-                    heroi.apertouTeclaParaEsquerda(false);
-                }
-                if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
-                    heroi.apertouTeclaParaDireita(false);
-                }
-                if (tecla.getKeyCode() == 38 /*SETA CIMA*/) {
-                    heroi.apertouTeclaParaCima(false);
-                }
-                if (tecla.getKeyCode() == 40 /*SETA BAIXO*/) {
-                    heroi.apertouTeclaParaBaixo(false);
-                }
-            }
-        });
-    }
     //--------------------------------------------RUN--------------------------------------------------RUN--------------
     @Override
     public void run() {
@@ -278,6 +229,7 @@ public class Motor extends JFrame implements Runnable{
     public void iniciarThreads(){
         if(heroi.dinoVivo) {
             new Thread(heroi).start();
+            new Thread(caixa).start();
             new Thread(armas0).start();
             new Thread(armas1).start();
             new Thread(armas2).start();
@@ -304,7 +256,7 @@ public class Motor extends JFrame implements Runnable{
                 verificaColisao(heroi.getlDino(), inimigo7.getlCacto()) ||
                 verificaColisao(heroi.getlDino(), inimigo8.getlCacto())){
             heroi.matarDino();
-            JOptionPane.showMessageDialog(null, "  Matou " + mortesInimigos + " cactos.");
+            JOptionPane.showMessageDialog(null, "  Matou " + mortesInimigos + " inimigos.");
             System.exit(0);
         }
     }
@@ -515,14 +467,14 @@ public class Motor extends JFrame implements Runnable{
         if(mortesInimigos >= 3){
             nivel = 2;
         }
-        if(mortesInimigos >= 5){
+        if(mortesInimigos >= 10){
             nivel = 3;
         }
-        if(mortesInimigos >= 6){
+        if(mortesInimigos >= 20){
             nivel = 4;
         }
     }
-
+    //---------------------------------VERIFICADOR DE COLISÃO----------------------------------------VERIFICADOR DE COLISÃO-------------
     public void receberPosicaoDoHeroiParaMapearOTiro(){
         posHeroiX = heroi.atualizarPosX();
         posHeroiY = heroi.atualizarPosY();
@@ -532,7 +484,7 @@ public class Motor extends JFrame implements Runnable{
         posHeroiY = heroi.atualizarPosY();
         armas1.atualizarPosHeroi(posHeroiX, posHeroiY);
     }
-
+    //---------------------------------VERIFICADOR DE COLISÃO----------------------------------------VERIFICADOR DE COLISÃO-------------
     public boolean verificaColisao(Component objetoA, Component objetoB) {
         int aX = objetoA.getX();
         int aY = objetoA.getY();
@@ -571,6 +523,59 @@ public class Motor extends JFrame implements Runnable{
             colidiu = true;
         }
         return colidiu;
+    }
+    
+    //---------------------------------CAPTURA DE TECLADO----------------------------------------CAPTURA DE TECLADO--------------
+    public void capturaTeclado(){
+        addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+            @Override
+            public void keyPressed(KeyEvent tecla) {
+//                System.out.println(tecla.getKeyCode());
+                if (tecla.getKeyCode() == 32/*ESPAÃ‡O*/) {
+                    if (tecla.getKeyCode() == 32/*ESPAÃ‡O*/) {
+                        heroi.iniciarPulo();
+                    }
+                }
+                if (tecla.getKeyCode() == 37 /*SETA ESQUERDA*/) {
+                    heroi.apertouTeclaParaEsquerda(true);
+                }
+
+                if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
+                    heroi.apertouTeclaParaDireita(true);
+                }
+                if (tecla.getKeyCode() == 38 /*SETA CIMA*/) {
+                    heroi.apertouTeclaParaCima(true);
+                }
+
+                if (tecla.getKeyCode() == 40 /*SETA BAIXO*/) {
+                    heroi.apertouTeclaParaBaixo(true);
+                }
+
+                if (tecla.getKeyCode() == 68/* D */) {
+                    tacarPedra();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent tecla) {
+                if (tecla.getKeyCode() == 37 /*SETA ESQUERDA*/) {
+                    heroi.apertouTeclaParaEsquerda(false);
+                }
+                if (tecla.getKeyCode() == 39 /*SETA DIREITA*/) {
+                    heroi.apertouTeclaParaDireita(false);
+                }
+                if (tecla.getKeyCode() == 38 /*SETA CIMA*/) {
+                    heroi.apertouTeclaParaCima(false);
+                }
+                if (tecla.getKeyCode() == 40 /*SETA BAIXO*/) {
+                    heroi.apertouTeclaParaBaixo(false);
+                }
+            }
+        });
     }
     
     public void enviarNivel() {

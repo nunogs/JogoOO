@@ -177,7 +177,6 @@ public class Motor extends JFrame implements Runnable{
             }
         });
     }
-
     //--------------------------------------------RUN--------------------------------------------------RUN--------------
     @Override
     public void run() {
@@ -188,7 +187,7 @@ public class Motor extends JFrame implements Runnable{
             atualizaPlacar();
             movimentosCactos();
             colisaoCactoTiro();
-//            colisaoDinoCacto();
+            colisaoDinoCacto();
             movimentosNuvens();
             receberPosicaoDoHeroiParaMapearOTiro();
             colisaoTiroFora();

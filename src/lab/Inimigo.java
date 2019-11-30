@@ -25,17 +25,16 @@ public class Inimigo {
         this.lCacto.setBounds(this.posCactoX, this.posCactoY, this.tamCactoX, this.tamCactoY);
         this.lCacto.setVisible(true);
         cont = 0;
-        velCactos = 500;
-        velCactos = (int)(1 + (Math.random() * 2));
+        
+        this.velCactos = (int)(1 + (Math.random() * 2));
 
     }
 
-    public void atualizarMovimentosDosCactos(){
-    	
+    public void atualizarMovimentosDosCactos() {
     	matarCactoPorSair();
     	movimentoDoCacto();
-
     }
+    
     
     public void movimentoDoCacto() {
         if (cont == 0 || cont == velCactos) {

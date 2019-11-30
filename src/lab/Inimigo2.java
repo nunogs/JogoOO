@@ -4,8 +4,7 @@ import javax.swing.*;
 
 import static java.lang.Thread.sleep;
 
-//public class Inimigo {
-public class Inimigo implements Runnable{
+public class Inimigo2 implements Runnable{
     private int tamCactoX;
     private int tamCactoY;
     private int posCactoX;
@@ -17,12 +16,12 @@ public class Inimigo implements Runnable{
     private int nivel;
     private int velocidadeDoCacto;
 
-    public Inimigo() {
-        this.tamCactoX = 88;
-        this.tamCactoY = 90;
+    public Inimigo2() {
+        this.tamCactoX = 21;
+        this.tamCactoY = 88;
         this.posCactoX = (int)( 1300 + (Math.random() * 1400));
         this.posCactoY = (int)( 280 + (Math.random() * 300));
-        this.iCacto = new ImageIcon(getClass().getResource("res\\cacto.png"));
+        this.iCacto = new ImageIcon(getClass().getResource("res\\inimigo.png"));
         this.lCacto = new JLabel(this.iCacto);
         this.lCacto.setBounds(this.posCactoX, this.posCactoY, this.tamCactoX, this.tamCactoY);
         this.lCacto.setVisible(true);
@@ -44,11 +43,11 @@ public class Inimigo implements Runnable{
     }
     public void ajusteDeNivel() {
     	if (nivel <= 1) {
-    		this.velocidadeDoCacto = 1;
+    		this.velocidadeDoCacto = 0;
     	}else if (nivel == 2) {
-    		this.velocidadeDoCacto = 1;
+    		this.velocidadeDoCacto = 0;
     	}else if (nivel == 3) {
-    		this.velocidadeDoCacto = 2;
+    		this.velocidadeDoCacto = 3;
     	}else if (nivel == 4) {
     		this.velocidadeDoCacto = 3;
     	}

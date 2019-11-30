@@ -215,5 +215,10 @@ public class Heroi implements Runnable{
     public JLabel getlDino() {
         return lDino;
     }
+	public Boolean getDinoVivo() {
+		return dinoVivo;
+	}
+    
+    
 
 }

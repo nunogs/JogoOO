@@ -32,10 +32,10 @@ public class Motor extends JFrame implements Runnable{
     protected Cacto inimigo2 = new Cacto();
     protected Cacto inimigo3 = new Cacto();
     protected Cacto inimigo4 = new Cacto();
-    protected Inimigo2 inimigo5 = new Inimigo2();
-    protected Inimigo2 inimigo6 = new Inimigo2();
-    protected Inimigo2 inimigo7 = new Inimigo2();
-    protected Inimigo2 inimigo8 = new Inimigo2();
+    protected Robo inimigo5 = new Robo();
+    protected Robo inimigo6 = new Robo();
+    protected Robo inimigo7 = new Robo();
+    protected Robo inimigo8 = new Robo();
     protected Nuvens nuvens0 = new Nuvens();
     protected Nuvens nuvens1 = new Nuvens();
     protected Nuvens nuvens2 = new Nuvens();
@@ -512,13 +512,13 @@ public class Motor extends JFrame implements Runnable{
     //-----------------------------------------------------DIFICULDADE PLACAR-------------------------------DIFICULDADE PLACAR
     public void atualizaPlacar() {
         txtPlacar.setText(String.valueOf(mortesInimigos));
-        if(mortesInimigos >= 5){
+        if(mortesInimigos >= 3){
             nivel = 2;
         }
-        if(mortesInimigos >= 10){
+        if(mortesInimigos >= 5){
             nivel = 3;
         }
-        if(mortesInimigos >= 40){
+        if(mortesInimigos >= 6){
             nivel = 4;
         }
     }

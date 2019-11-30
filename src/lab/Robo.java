@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import static java.lang.Thread.sleep;
 
-public class Inimigo2 implements Runnable{
+public class Robo implements Runnable{
     private int tamCactoX;
     private int tamCactoY;
     private int posCactoX;
@@ -16,12 +16,13 @@ public class Inimigo2 implements Runnable{
     private int nivel;
     private int velocidadeDoCacto;
 
-    public Inimigo2() {
-        this.tamCactoX = 21;
-        this.tamCactoY = 88;
+    public Robo() {
+    	this.tamCactoY = 94;
+    	this.tamCactoX = 61;
+        
         this.posCactoX = (int)( 1300 + (Math.random() * 1400));
         this.posCactoY = (int)( 280 + (Math.random() * 300));
-        this.iCacto = new ImageIcon(getClass().getResource("res\\inimigo.png"));
+        this.iCacto = new ImageIcon(getClass().getResource("res\\robo.png"));
         this.lCacto = new JLabel(this.iCacto);
         this.lCacto.setBounds(this.posCactoX, this.posCactoY, this.tamCactoX, this.tamCactoY);
         this.lCacto.setVisible(true);

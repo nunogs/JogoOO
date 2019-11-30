@@ -25,17 +25,19 @@ public class Inimigo {
         this.lCacto.setBounds(this.posCactoX, this.posCactoY, this.tamCactoX, this.tamCactoY);
         this.lCacto.setVisible(true);
         cont = 0;
+        velCactos = 500;
         velCactos = (int)(1 + (Math.random() * 2));
 
     }
 
-    public void comportamentoDosCactos(){
-        //Matar o cacto por sair
-        if (this.lCacto.getX() < -lCacto.getHeight()){
-            mateOCacto();
-        }
+    public void atualizarMovimentosDosCactos(){
+    	
+    	matarCactoPorSair();
+    	movimentoDoCacto();
 
-        //Movimento do cacto
+    }
+    
+    public void movimentoDoCacto() {
         if (cont == 0 || cont == velCactos) {
             int velocidadeDoCacto = 1;
             this.lCacto.setLocation((this.lCacto.getX() - velocidadeDoCacto), this.lCacto.getY());
@@ -43,7 +45,11 @@ public class Inimigo {
         }else{
             cont = 0;
         }
-
+    }
+    public void matarCactoPorSair() {
+        if (this.lCacto.getX() < -lCacto.getHeight()){
+            mateOCacto();
+        }
     }
 
     public void mateOCacto() {

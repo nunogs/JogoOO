@@ -8,14 +8,19 @@ import static java.lang.Thread.sleep;
 
 
 public class Motor extends JFrame implements Runnable{
-    //---MUDA A VELOCIDADE DO JOGO --- onde 1 é o mais rapido
+    /**
+	 * 
+	 */
+	
+	private static final long serialVersionUID = 1L;
+
+	//---MUDA A VELOCIDADE DO JOGO --- onde 1 Eh o mais rapido
     public Integer velJogo = 1;
     //---MUDA A VELOCIDADE DO JOGO ---
 
     protected ImageIcon iPlacar = new ImageIcon(getClass().getResource("res\\placar.png"));
     protected int mortesInimigos;
     JLabel txtPlacar = new JLabel(String.valueOf(mortesInimigos));
-
     protected JLabel placar = new JLabel(iPlacar);
     protected Fundo fundo = new Fundo(0,0);
     protected Fundo fundoForaDireita = new Fundo(1280,0);
@@ -47,7 +52,9 @@ public class Motor extends JFrame implements Runnable{
     protected int posHeroiY;
     protected int nivel;
 
-    public Motor(){
+
+    //---------------------------------COSNTRUTOR--------------------------------------- CONSTRUTOR----------
+	public Motor(){
         setFocusable(true);
         carregarJanela();
         iniciarObjetos();
@@ -56,7 +63,7 @@ public class Motor extends JFrame implements Runnable{
         nivel = 1;
 
     }
-
+	 //---------------------------------MONTAR A JANELA--------------------------------------- MONTAR A JANELA ----------
     public void carregarJanela(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1280,720);
@@ -65,7 +72,7 @@ public class Motor extends JFrame implements Runnable{
         setLayout(null);
 
     }
-
+    //---------------------------------ADICIONAR jLABELS NA JANELA---------------------------------------- ADICIONAR jLABELS NA JANELA----------
     public void iniciarObjetos(){
         loadPlacar();
         add(fundoForaDireita.getLfundo());
@@ -92,7 +99,7 @@ public class Motor extends JFrame implements Runnable{
         add(chao.getlChao());
         add(fundo.getLfundo());
     }
-
+  //---------------------------------CARREGAR PLACAR---------------------------------------- CARREGAR PLACAR--------------
     private void loadPlacar() {
         placar.setVisible(true);
         placar.setBounds(100,20,150,120);
@@ -174,23 +181,23 @@ public class Motor extends JFrame implements Runnable{
     //--------------------------------------------RUN--------------------------------------------------RUN--------------
     @Override
     public void run() {
-        iniciarMovimentos();
+        iniciarThreads();
         while (true){
             try {sleep(velJogo/*NAO MECHE NESSA POHA*/);} catch (Exception erro) {}
-
+//            enviarNivel();
             atualizaPlacar();
             movimentosCactos();
             colisaoCactoTiro();
-            colisaoDinoCacto();
+//            colisaoDinoCacto();
             movimentosNuvens();
             receberPosicaoDoHeroiParaMapearOTiro();
             colisaoTiroFora();
             detalhesChao.comportamento();
         }
     }
-    //--------------------------------------------REAÇÕES-------------------------------------REAÇÕES--------------
+    //--------------------------------------------CONTROLE DE MUNICOES-------------------------------------CONTROLE DE MUNICOES--------------
     private void tacarPedra() {
-        if(nivel <= 1) {
+        if(nivel <= 2) {
             if (pedraNaMao0 && pedraNaMao1) {
                 pedraNaMao0 = false;
                 armas0.tacaPedra();
@@ -200,13 +207,13 @@ public class Motor extends JFrame implements Runnable{
                 armas1.tacaPedra();
             }
         }else if(nivel >= 3){
-            if ((pedraNaMao0 && pedraNaMao1 && pedraNaMao2) &&
-                    (pedraNaMao0 && pedraNaMao1 && !pedraNaMao2) &&
+            if ((pedraNaMao0 && pedraNaMao1 && pedraNaMao2) ||
+                    (pedraNaMao0 && pedraNaMao1 && !pedraNaMao2) ||
                     (pedraNaMao0 && !pedraNaMao1 && pedraNaMao2) ) {
                 pedraNaMao0 = false;
                 armas0.tacaPedra();
 
-            } else if ((!pedraNaMao0 && pedraNaMao1 && pedraNaMao2) &&
+            } else if ((!pedraNaMao0 && pedraNaMao1 && pedraNaMao2) ||
                     (!pedraNaMao0 && pedraNaMao1 && !pedraNaMao2)) {
                 pedraNaMao1 = false;
                 armas1.tacaPedra();
@@ -216,53 +223,53 @@ public class Motor extends JFrame implements Runnable{
             }
         }
     }
-
+    //----------------------------------------INICIALIZAR MOVIMENTOS DAS NUVENS ---------------------INICIALIZAR MOVIMENTOS DAS NUVENS
     public void movimentosNuvens(){
         nuvens0.comportamentoDasNuvens();
         nuvens1.comportamentoDasNuvens();
         nuvens2.comportamentoDasNuvens();
         nuvens3.comportamentoDasNuvens();
     }
-
+    //----------------------------------------INICIALIZAR MOVIMENTOS DOS CACTOS ---------------------INICIALIZAR MOVIMENTOS DOS CACTOS
     public void movimentosCactos(){
         if(nivel <= 1 ) {
-            inimigo0.comportamentoDosCactos();
-            inimigo1.comportamentoDosCactos();
-            inimigo2.comportamentoDosCactos();
-            inimigo3.comportamentoDosCactos();
+            inimigo0.atualizarMovimentosDosCactos();
+            inimigo1.atualizarMovimentosDosCactos();
+            inimigo2.atualizarMovimentosDosCactos();
+            inimigo3.atualizarMovimentosDosCactos();
         }
         if (nivel == 2) {
-            inimigo0.comportamentoDosCactos();
-            inimigo1.comportamentoDosCactos();
-            inimigo2.comportamentoDosCactos();
-            inimigo3.comportamentoDosCactos();
-            inimigo4.comportamentoDosCactos();
-            inimigo5.comportamentoDosCactos();
+            inimigo0.atualizarMovimentosDosCactos();
+            inimigo1.atualizarMovimentosDosCactos();
+            inimigo2.atualizarMovimentosDosCactos();
+            inimigo3.atualizarMovimentosDosCactos();
+            inimigo4.atualizarMovimentosDosCactos();
+            inimigo5.atualizarMovimentosDosCactos();
         }
         if (nivel == 3) {
-            inimigo0.comportamentoDosCactos();
-            inimigo1.comportamentoDosCactos();
-            inimigo2.comportamentoDosCactos();
-            inimigo3.comportamentoDosCactos();
-            inimigo4.comportamentoDosCactos();
-            inimigo5.comportamentoDosCactos();
-            inimigo6.comportamentoDosCactos();
-            inimigo7.comportamentoDosCactos();
+            inimigo0.atualizarMovimentosDosCactos();
+            inimigo1.atualizarMovimentosDosCactos();
+            inimigo2.atualizarMovimentosDosCactos();
+            inimigo3.atualizarMovimentosDosCactos();
+            inimigo4.atualizarMovimentosDosCactos();
+            inimigo5.atualizarMovimentosDosCactos();
+            inimigo6.atualizarMovimentosDosCactos();
+            inimigo7.atualizarMovimentosDosCactos();
         }
-        if (nivel == 3) {
-            inimigo0.comportamentoDosCactos();
-            inimigo1.comportamentoDosCactos();
-            inimigo2.comportamentoDosCactos();
-            inimigo3.comportamentoDosCactos();
-            inimigo4.comportamentoDosCactos();
-            inimigo5.comportamentoDosCactos();
-            inimigo6.comportamentoDosCactos();
-            inimigo7.comportamentoDosCactos();
-            inimigo8.comportamentoDosCactos();
+        if (nivel == 4) {
+            inimigo0.atualizarMovimentosDosCactos();
+            inimigo1.atualizarMovimentosDosCactos();
+            inimigo2.atualizarMovimentosDosCactos();
+            inimigo3.atualizarMovimentosDosCactos();
+            inimigo4.atualizarMovimentosDosCactos();
+            inimigo5.atualizarMovimentosDosCactos();
+            inimigo6.atualizarMovimentosDosCactos();
+            inimigo7.atualizarMovimentosDosCactos();
+            inimigo8.atualizarMovimentosDosCactos();
         }
     }
-
-    public void iniciarMovimentos(){
+    //-----------------------------------------------------INICIALIZAR AS THREADS -------------------------INICIALIZAR AS THREADS
+    public void iniciarThreads(){
         if(heroi.dinoVivo) {
             new Thread(heroi).start();
             new Thread(armas0).start();
@@ -270,17 +277,24 @@ public class Motor extends JFrame implements Runnable{
             new Thread(armas2).start();
         }
     }
-
+  //-----------------------------------------------------SE HEROI TROMBAR NO CACTO -------------------------SE HEROI TROMBAR NO CACTO
     public void colisaoDinoCacto(){
         if (verificaColisao(heroi.getlDino(), inimigo0.getlCacto()) ||
                 verificaColisao(heroi.getlDino(), inimigo1.getlCacto()) ||
-                verificaColisao(heroi.getlDino(), inimigo2.getlCacto())){
+                verificaColisao(heroi.getlDino(), inimigo2.getlCacto()) ||
+                verificaColisao(heroi.getlDino(), inimigo3.getlCacto()) ||
+                verificaColisao(heroi.getlDino(), inimigo4.getlCacto()) ||
+                verificaColisao(heroi.getlDino(), inimigo5.getlCacto()) ||
+                verificaColisao(heroi.getlDino(), inimigo6.getlCacto()) ||
+                verificaColisao(heroi.getlDino(), inimigo7.getlCacto()) ||
+                verificaColisao(heroi.getlDino(), inimigo8.getlCacto())){
             heroi.matarDino();
             JOptionPane.showMessageDialog(null, "  Matou " + mortesInimigos + " cactos.");
             System.exit(0);
         }
     }
 
+  //-----------------------------------------------------SE CACTO LEVAR UM TIRO -------------------------------SE CACTO LEVAR UM TIRO
     public void colisaoCactoTiro(){
 
         // tiro 0
@@ -394,9 +408,65 @@ public class Motor extends JFrame implements Runnable{
             pedraNaMao1 = true;
             mortesInimigos ++;
         }
-
+        
+        // tiro 3
+        if (verificaColisao(armas2.getlPedra(), inimigo0.getlCacto())) {
+            inimigo0.matarCactoPorTiro();
+            armas2.pararPedra();
+            pedraNaMao2 = true;
+            mortesInimigos++;
+        }
+        if (verificaColisao(armas2.getlPedra(), inimigo1.getlCacto())) {
+            inimigo1.matarCactoPorTiro();
+            armas2.pararPedra();
+            pedraNaMao2 = true;
+            mortesInimigos++;
+        }
+        if (verificaColisao(armas2.getlPedra(), inimigo2.getlCacto())) {
+            inimigo2.matarCactoPorTiro();
+            armas2.pararPedra();
+            pedraNaMao2 = true;
+            mortesInimigos++;
+        }
+        if (verificaColisao(armas2.getlPedra(), inimigo3.getlCacto())) {
+            inimigo3.matarCactoPorTiro();
+            armas2.pararPedra();
+            pedraNaMao2 = true;
+            mortesInimigos++;
+        }
+        if (verificaColisao(armas2.getlPedra(), inimigo4.getlCacto())) {
+            inimigo4.matarCactoPorTiro();
+            armas2.pararPedra();
+            pedraNaMao2 = true;
+            mortesInimigos++;
+        }
+        if (verificaColisao(armas2.getlPedra(), inimigo5.getlCacto())) {
+            inimigo5.matarCactoPorTiro();
+            armas2.pararPedra();
+            pedraNaMao2 = true;
+            mortesInimigos++;
+        }
+        if (verificaColisao(armas2.getlPedra(), inimigo6.getlCacto())) {
+            inimigo6.matarCactoPorTiro();
+            armas2.pararPedra();
+            pedraNaMao2 = true;
+            mortesInimigos++;
+        }
+        if (verificaColisao(armas2.getlPedra(), inimigo7.getlCacto())) {
+            inimigo7.matarCactoPorTiro();
+            armas2.pararPedra();
+            pedraNaMao2 = true;
+            mortesInimigos++;
+        }
+        if (verificaColisao(armas2.getlPedra(), inimigo8.getlCacto())) {
+            inimigo8.matarCactoPorTiro();
+            armas2.pararPedra();
+            pedraNaMao2 = true;
+            mortesInimigos ++;
+        }
     }
 
+    //-----------------------------------------------------SE TIRO SAIR  -------------------------------SE TIRO SAIR    
     public void colisaoTiroFora(){
         // Tiro sair pela direita
 
@@ -423,13 +493,14 @@ public class Motor extends JFrame implements Runnable{
 
 
     }
-//-----------------------------------------------------ATUALIZAR PLACAR-------------------------------ATUALIZAR PLACAR
+
+    //-----------------------------------------------------DIFICULDADE PLACAR-------------------------------DIFICULDADE PLACAR
     public void atualizaPlacar() {
         txtPlacar.setText(String.valueOf(mortesInimigos));
-        if(mortesInimigos >= 10){
+        if(mortesInimigos >= 5){
             nivel = 2;
         }
-        if(mortesInimigos >= 20){
+        if(mortesInimigos >= 10){
             nivel = 3;
         }
         if(mortesInimigos >= 40){
@@ -486,4 +557,18 @@ public class Motor extends JFrame implements Runnable{
         }
         return colidiu;
     }
+    
+//    public void enviarNivel() {
+//    	inimigo0.nivelDoJogo(nivel);
+//    	inimigo1.nivelDoJogo(nivel);
+//    	inimigo2.nivelDoJogo(nivel);
+//    	inimigo3.nivelDoJogo(nivel);
+//    	inimigo4.nivelDoJogo(nivel);
+//    	inimigo5.nivelDoJogo(nivel);
+//    	inimigo6.nivelDoJogo(nivel);
+//    	inimigo7.nivelDoJogo(nivel);
+//    	inimigo8.nivelDoJogo(nivel);
+//	}
 }
+
+

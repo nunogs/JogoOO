@@ -25,7 +25,7 @@ public class Heroi implements Runnable{
     //------------------------------
     ImageIcon iRoboAnimadoDireita = new ImageIcon(getClass().getResource("res\\roboTDir.png"));
     ImageIcon iRoboAnimadoEsquerda = new ImageIcon(getClass().getResource("res\\roboTEsqr.png"));
-    ImageIcon iRoboMorto = new ImageIcon(getClass().getResource("res\\roboTDirMorto.png"));
+    ImageIcon iRoboMorto = new ImageIcon(getClass().getResource("res\\roboTMorto.gif"));
 
     
     public Heroi(){

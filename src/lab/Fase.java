@@ -81,7 +81,7 @@ public class Fase extends JFrame implements Runnable{
         add(armas0.getlPedra());
         add(armas1.getlPedra());
         add(armas2.getlPedra());
-        add(heroi.getlDino());
+        add(heroi.getlHeroi());
         add(inimigo0.getlCacto());
         add(inimigo1.getlCacto());
         add(inimigo2.getlCacto());
@@ -129,7 +129,7 @@ public class Fase extends JFrame implements Runnable{
 
     //-----------------------------------------------------INICIALIZAR AS THREADS -------------------------INICIALIZAR AS THREADS
     public void iniciarThreads(){
-        if(heroi.dinoVivo) {
+        if(heroi.heroiVivo) {
             new Thread(heroi).start();
             new Thread(caixa).start();
             new Thread(armas0).start();
@@ -195,15 +195,15 @@ public class Fase extends JFrame implements Runnable{
 
   //-----------------------------------------------------SE HEROI TROMBAR NO CACTO -------------------------SE HEROI TROMBAR NO CACTO
     public void colisaoHeroiCacto(){
-        if (verificaColisao(heroi.getlDino(), inimigo0.getlCacto()) ||
-                verificaColisao(heroi.getlDino(), inimigo1.getlCacto()) ||
-                verificaColisao(heroi.getlDino(), inimigo2.getlCacto()) ||
-                verificaColisao(heroi.getlDino(), inimigo3.getlCacto()) ||
-                verificaColisao(heroi.getlDino(), inimigo4.getlCacto()) ||
-                verificaColisao(heroi.getlDino(), inimigo5.getlCacto()) ||
-                verificaColisao(heroi.getlDino(), inimigo6.getlCacto()) ||
-                verificaColisao(heroi.getlDino(), inimigo7.getlCacto()) ||
-                verificaColisao(heroi.getlDino(), inimigo8.getlCacto())){
+        if (verificaColisao(heroi.getlHeroi(), inimigo0.getlCacto()) ||
+                verificaColisao(heroi.getlHeroi(), inimigo1.getlCacto()) ||
+                verificaColisao(heroi.getlHeroi(), inimigo2.getlCacto()) ||
+                verificaColisao(heroi.getlHeroi(), inimigo3.getlCacto()) ||
+                verificaColisao(heroi.getlHeroi(), inimigo4.getlCacto()) ||
+                verificaColisao(heroi.getlHeroi(), inimigo5.getlCacto()) ||
+                verificaColisao(heroi.getlHeroi(), inimigo6.getlCacto()) ||
+                verificaColisao(heroi.getlHeroi(), inimigo7.getlCacto()) ||
+                verificaColisao(heroi.getlHeroi(), inimigo8.getlCacto())){
             heroi.matarDino();
             JOptionPane.showMessageDialog(null, "  Matou " + mortesInimigos + " inimigos.");
             System.exit(0);
@@ -215,49 +215,49 @@ public class Fase extends JFrame implements Runnable{
 
         // tiro 0
         if (verificaColisao(armas0.getlPedra(), inimigo0.getlCacto())) {
-            inimigo0.matarCactoPorTiro();
+            inimigo0.matarRoboPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas0.getlPedra(), inimigo1.getlCacto())) {
-            inimigo1.matarCactoPorTiro();
+            inimigo1.matarRoboPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas0.getlPedra(), inimigo2.getlCacto())) {
-            inimigo2.matarCactoPorTiro();
+            inimigo2.matarRoboPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas0.getlPedra(), inimigo3.getlCacto())) {
-            inimigo3.matarCactoPorTiro();
+            inimigo3.matarRoboPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas0.getlPedra(), inimigo4.getlCacto())) {
-            inimigo4.matarCactoPorTiro();
+            inimigo4.matarRoboPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas0.getlPedra(), inimigo5.getlCacto())) {
-            inimigo5.matarCactoPorTiro();
+            inimigo5.matarRoboPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas0.getlPedra(), inimigo6.getlCacto())) {
-            inimigo6.matarCactoPorTiro();
+            inimigo6.matarRoboPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas0.getlPedra(), inimigo7.getlCacto())) {
-            inimigo7.matarCactoPorTiro();
+            inimigo7.matarRoboPorTiro();
             armas0.pararPedra();
             pedraNaMao0 = true;
             mortesInimigos++;
@@ -271,49 +271,49 @@ public class Fase extends JFrame implements Runnable{
 
         // Tiro 2
         if (verificaColisao(armas1.getlPedra(), inimigo0.getlCacto())) {
-            inimigo0.matarCactoPorTiro();
+            inimigo0.matarRoboPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas1.getlPedra(), inimigo1.getlCacto())) {
-            inimigo1.matarCactoPorTiro();
+            inimigo1.matarRoboPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas1.getlPedra(), inimigo2.getlCacto())) {
-            inimigo2.matarCactoPorTiro();
+            inimigo2.matarRoboPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas1.getlPedra(), inimigo3.getlCacto())) {
-            inimigo3.matarCactoPorTiro();
+            inimigo3.matarRoboPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas1.getlPedra(), inimigo4.getlCacto())) {
-            inimigo4.matarCactoPorTiro();
+            inimigo4.matarRoboPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas1.getlPedra(), inimigo5.getlCacto())) {
-            inimigo5.matarCactoPorTiro();
+            inimigo5.matarRoboPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas1.getlPedra(), inimigo6.getlCacto())) {
-            inimigo6.matarCactoPorTiro();
+            inimigo6.matarRoboPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas1.getlPedra(), inimigo7.getlCacto())) {
-            inimigo7.matarCactoPorTiro();
+            inimigo7.matarRoboPorTiro();
             armas1.pararPedra();
             pedraNaMao1 = true;
             mortesInimigos++;
@@ -327,49 +327,49 @@ public class Fase extends JFrame implements Runnable{
         
         // tiro 3
         if (verificaColisao(armas2.getlPedra(), inimigo0.getlCacto())) {
-            inimigo0.matarCactoPorTiro();
+            inimigo0.matarRoboPorTiro();
             armas2.pararPedra();
             pedraNaMao2 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas2.getlPedra(), inimigo1.getlCacto())) {
-            inimigo1.matarCactoPorTiro();
+            inimigo1.matarRoboPorTiro();
             armas2.pararPedra();
             pedraNaMao2 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas2.getlPedra(), inimigo2.getlCacto())) {
-            inimigo2.matarCactoPorTiro();
+            inimigo2.matarRoboPorTiro();
             armas2.pararPedra();
             pedraNaMao2 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas2.getlPedra(), inimigo3.getlCacto())) {
-            inimigo3.matarCactoPorTiro();
+            inimigo3.matarRoboPorTiro();
             armas2.pararPedra();
             pedraNaMao2 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas2.getlPedra(), inimigo4.getlCacto())) {
-            inimigo4.matarCactoPorTiro();
+            inimigo4.matarRoboPorTiro();
             armas2.pararPedra();
             pedraNaMao2 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas2.getlPedra(), inimigo5.getlCacto())) {
-            inimigo5.matarCactoPorTiro();
+            inimigo5.matarRoboPorTiro();
             armas2.pararPedra();
             pedraNaMao2 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas2.getlPedra(), inimigo6.getlCacto())) {
-            inimigo6.matarCactoPorTiro();
+            inimigo6.matarRoboPorTiro();
             armas2.pararPedra();
             pedraNaMao2 = true;
             mortesInimigos++;
         }
         if (verificaColisao(armas2.getlPedra(), inimigo7.getlCacto())) {
-            inimigo7.matarCactoPorTiro();
+            inimigo7.matarRoboPorTiro();
             armas2.pararPedra();
             pedraNaMao2 = true;
             mortesInimigos++;
@@ -424,10 +424,10 @@ public class Fase extends JFrame implements Runnable{
         if(mortesInimigos >= 3){
             nivel = 2;
         }
-        if(mortesInimigos >= 10){
+        if(mortesInimigos >= 20){
             nivel = 3;
         }
-        if(mortesInimigos >= 20){
+        if(mortesInimigos >= 40){
             nivel = 4;
         }
     }

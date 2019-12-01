@@ -92,7 +92,7 @@ public class Inimigo implements Runnable{
         return lRobo;
     }
 
-    public void matarCactoPorTiro() {
+    public void matarRoboPorTiro() {
         mateORobo();
     }
 }

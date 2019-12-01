@@ -9,15 +9,15 @@ public class Heroi implements Runnable{
     protected int tamHeroiY;
     protected int posHeroiX;
     protected int posHeroiY;
-    protected ImageIcon iDino;
-    public JLabel lDino;
+    protected ImageIcon iHeroi;
+    public JLabel lHeroi;
     //------------------------------
-   protected int posAtualDinoY;
-   protected Boolean dinoVivo;
-   protected Boolean puloDinoCimaInicial;
-   protected Boolean puloDinoCimaFinal;
-   protected Boolean puloDinoBaixoInicial;
-   protected Boolean puloDinoBaixoFinal;
+   protected int posAtualHeroiY;
+   protected Boolean heroiVivo;
+   protected Boolean puloHeroiCimaInicial;
+   protected Boolean puloHeroiCimaFinal;
+   protected Boolean puloHeroiBaixoInicial;
+   protected Boolean puloHeroiBaixoFinal;
    protected Boolean teclaParaEsquerdaApertada;
    protected Boolean teclaParaDireitaApertada;
    protected Boolean teclaParaCimaApertada;
@@ -33,141 +33,141 @@ public class Heroi implements Runnable{
         tamHeroiY = 130;
         posHeroiX = 200;
         posHeroiY = 300;
-        puloDinoCimaInicial = false;
-        puloDinoCimaFinal = false;
-        puloDinoBaixoInicial = false;
-        puloDinoBaixoFinal = false;
+        puloHeroiCimaInicial = false;
+        puloHeroiCimaFinal = false;
+        puloHeroiBaixoInicial = false;
+        puloHeroiBaixoFinal = false;
         teclaParaEsquerdaApertada = false;
         teclaParaDireitaApertada = false;
         teclaParaCimaApertada = false;
         teclaParaBaixoApertada = false;
-        dinoVivo = true;
-        lDino = new JLabel(iRoboAnimadoDireita);
-        lDino.setBounds(getPosHeroiX(), getPosHeroiY(), getTamHeroiX(),getTamHeroiY());
-        lDino.setVisible(true);
+        heroiVivo = true;
+        lHeroi = new JLabel(iRoboAnimadoDireita);
+        lHeroi.setBounds(getPosHeroiX(), getPosHeroiY(), getTamHeroiX(),getTamHeroiY());
+        lHeroi.setVisible(true);
     }
     public int atualizarPosX(){
-        return this.lDino.getX();
+        return this.lHeroi.getX();
     }
     public int atualizarPosY(){
-        return this.lDino.getY();
+        return this.lHeroi.getY();
     }
 
     public void iniciarPulo(){
-        if (!(puloDinoCimaInicial ||
-                puloDinoCimaFinal ||
-                puloDinoBaixoInicial ||
-                puloDinoBaixoFinal ||
+        if (!(puloHeroiCimaInicial ||
+                puloHeroiCimaFinal ||
+                puloHeroiBaixoInicial ||
+                puloHeroiBaixoFinal ||
                 teclaParaCimaApertada ||
                 teclaParaBaixoApertada)) {
-            puloDinoCimaInicial = true;
-            posAtualDinoY = lDino.getY();
+            puloHeroiCimaInicial = true;
+            posAtualHeroiY = lHeroi.getY();
         }
     }
     public void pular(){
-        if(dinoVivo) {
+        if(heroiVivo) {
             // PULO DINO - MOVIMENTO PARA CIMA
             int velPulo = 2;// Apenas numeros pares
             int estagioLento = (velPulo / 2);
             int estagioRapido = velPulo;
             int alturaDeDesaceleracaoDoPulo = 130;
             int alturaMaximaDoPulo = 200;
-            if (this.puloDinoCimaInicial) {
-                this.lDino.setLocation(lDino.getX(), lDino.getY() - estagioRapido);
-                if (this.lDino.getY() == this.posAtualDinoY - alturaDeDesaceleracaoDoPulo) {
-                    this.puloDinoCimaInicial = false;
-                    this.puloDinoCimaFinal = true;
+            if (this.puloHeroiCimaInicial) {
+                this.lHeroi.setLocation(lHeroi.getX(), lHeroi.getY() - estagioRapido);
+                if (this.lHeroi.getY() == this.posAtualHeroiY - alturaDeDesaceleracaoDoPulo) {
+                    this.puloHeroiCimaInicial = false;
+                    this.puloHeroiCimaFinal = true;
                 }
             }
-            if (puloDinoCimaFinal) {
-                lDino.setLocation(lDino.getX(), lDino.getY() - estagioLento);
-                if (lDino.getY() == posAtualDinoY - alturaMaximaDoPulo) {
-                    puloDinoCimaFinal = false;
-                    puloDinoBaixoInicial = true;
+            if (puloHeroiCimaFinal) {
+                lHeroi.setLocation(lHeroi.getX(), lHeroi.getY() - estagioLento);
+                if (lHeroi.getY() == posAtualHeroiY - alturaMaximaDoPulo) {
+                    puloHeroiCimaFinal = false;
+                    puloHeroiBaixoInicial = true;
                 }
             }
-            //PULO DINO - MOVIMENTO PARA BAIXO
-            if (puloDinoBaixoInicial) {
-                lDino.setLocation(lDino.getX(), lDino.getY() + estagioLento);
-                if (lDino.getY() == posAtualDinoY - alturaDeDesaceleracaoDoPulo) {
-                    puloDinoBaixoInicial = false;
-                    puloDinoBaixoFinal = true;
+            //PULO HEROI - MOVIMENTO PARA BAIXO
+            if (puloHeroiBaixoInicial) {
+                lHeroi.setLocation(lHeroi.getX(), lHeroi.getY() + estagioLento);
+                if (lHeroi.getY() == posAtualHeroiY - alturaDeDesaceleracaoDoPulo) {
+                    puloHeroiBaixoInicial = false;
+                    puloHeroiBaixoFinal = true;
                 }
             }
-            if (puloDinoBaixoFinal) {
-                lDino.setLocation(lDino.getX(), lDino.getY() + estagioRapido);
-                if (lDino.getY() == posAtualDinoY) {
-                    puloDinoBaixoFinal = false;
+            if (puloHeroiBaixoFinal) {
+                lHeroi.setLocation(lHeroi.getX(), lHeroi.getY() + estagioRapido);
+                if (lHeroi.getY() == posAtualHeroiY) {
+                    puloHeroiBaixoFinal = false;
                 }
             }
         }
     }
 
     public void apertouTeclaParaEsquerda(Boolean teclaParaEsquerdaApertada) {
-        if(dinoVivo && lDino.getX() > 5) {
+        if(heroiVivo && lHeroi.getX() > 5) {
             this.teclaParaEsquerdaApertada = teclaParaEsquerdaApertada;
         }
     }
     public void andarEsquerda(){
-        if(teclaParaEsquerdaApertada && lDino.getX() > 5){
-            this.lDino.setIcon(iRoboAnimadoEsquerda);
-            this.lDino.setLocation(lDino.getX()-1, lDino.getY());
+        if(teclaParaEsquerdaApertada && lHeroi.getX() > 5){
+            this.lHeroi.setIcon(iRoboAnimadoEsquerda);
+            this.lHeroi.setLocation(lHeroi.getX()-1, lHeroi.getY());
         }
-        if(lDino.getX() <= 5){
+        if(lHeroi.getX() <= 5){
             this.teclaParaEsquerdaApertada = false;
         }
     }
     public void apertouTeclaParaDireita(Boolean teclaParaDireitaApertada) {
-        if (dinoVivo && lDino.getX() < 1150) {
+        if (heroiVivo && lHeroi.getX() < 1150) {
             this.teclaParaDireitaApertada = teclaParaDireitaApertada;
         }
     }
     public void andarDireita(){
-        if(teclaParaDireitaApertada && lDino.getX() < 1150 ){
-            this.lDino.setIcon(iRoboAnimadoDireita);
-            this.lDino.setLocation(lDino.getX()+1, lDino.getY());
+        if(teclaParaDireitaApertada && lHeroi.getX() < 1150 ){
+            this.lHeroi.setIcon(iRoboAnimadoDireita);
+            this.lHeroi.setLocation(lHeroi.getX()+1, lHeroi.getY());
         }
-        if(lDino.getX() >= 1150){
+        if(lHeroi.getX() >= 1150){
             this.teclaParaDireitaApertada = false;
         }
     }
     public void andarParaCima(){
         if (teclaParaCimaApertada && posHeroiY > 270){
-            this.lDino.setLocation(lDino.getX(),lDino.getY()-1);
+            this.lHeroi.setLocation(lHeroi.getX(),lHeroi.getY()-1);
         }
         if(posHeroiY <=270){
             teclaParaCimaApertada = false;
         }
     }
     public void apertouTeclaParaCima(boolean teclaParaCimaApertada) {
-        if ((dinoVivo && posHeroiY > 270 && !puloDinoCimaInicial) && !(puloDinoCimaInicial ||
-                puloDinoCimaFinal ||
-                puloDinoBaixoInicial ||
-                puloDinoBaixoFinal)){
+        if ((heroiVivo && posHeroiY > 270 && !puloHeroiCimaInicial) && !(puloHeroiCimaInicial ||
+                puloHeroiCimaFinal ||
+                puloHeroiBaixoInicial ||
+                puloHeroiBaixoFinal)){
             this.teclaParaCimaApertada = teclaParaCimaApertada;
         }
     }
     public void andarParaBaixo(){
         if (teclaParaBaixoApertada && posHeroiY < 550){
-            this.lDino.setLocation(lDino.getX(),lDino.getY()+1);
+            this.lHeroi.setLocation(lHeroi.getX(),lHeroi.getY()+1);
         }
         if(posHeroiY >= 550){
             teclaParaBaixoApertada = false;
         }
     }
     public void apertouTeclaParaBaixo(boolean teclaParaBaixoApertada) {
-        if ((dinoVivo && posHeroiY < 550 ) && !(puloDinoCimaInicial ||
-                puloDinoCimaFinal ||
-                puloDinoBaixoInicial ||
-                puloDinoBaixoFinal)){
+        if ((heroiVivo && posHeroiY < 550 ) && !(puloHeroiCimaInicial ||
+                puloHeroiCimaFinal ||
+                puloHeroiBaixoInicial ||
+                puloHeroiBaixoFinal)){
             this.teclaParaBaixoApertada = teclaParaBaixoApertada;
         }
     }
 
     public void atualizarMovimentosDino(){
-        if(dinoVivo) {
-            posHeroiX = lDino.getX();
-            posHeroiY = lDino.getY();
+        if(heroiVivo) {
+            posHeroiX = lHeroi.getX();
+            posHeroiY = lHeroi.getY();
             pular();
             andarEsquerda();
             andarDireita();
@@ -188,8 +188,8 @@ public class Heroi implements Runnable{
     }
 
     public void matarDino() {
-        dinoVivo = false;
-        lDino.setIcon(iRoboMorto);
+        heroiVivo = false;
+        lHeroi.setIcon(iRoboMorto);
 
     }
 
@@ -212,11 +212,11 @@ public class Heroi implements Runnable{
         return posHeroiY;
     }
 
-    public JLabel getlDino() {
-        return lDino;
+    public JLabel getlHeroi() {
+        return lHeroi;
     }
 	public Boolean getDinoVivo() {
-		return dinoVivo;
+		return heroiVivo;
 	}
     
     

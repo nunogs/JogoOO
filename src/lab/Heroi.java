@@ -23,13 +23,14 @@ public class Heroi implements Runnable{
    protected Boolean teclaParaCimaApertada;
    protected Boolean teclaParaBaixoApertada;
     //------------------------------
-    ImageIcon iDinoAnimadoDireita = new ImageIcon(getClass().getResource("res\\dinoAnimadoDireita.gif"));
-    ImageIcon iDinoAnimadoEsquerda = new ImageIcon(getClass().getResource("res\\dinoAnimadoEsquerda.gif"));
-    ImageIcon iDinoMorto = new ImageIcon(getClass().getResource("res\\morto.png"));
+    ImageIcon iRoboAnimadoDireita = new ImageIcon(getClass().getResource("res\\roboTDir.png"));
+    ImageIcon iRoboAnimadoEsquerda = new ImageIcon(getClass().getResource("res\\roboTEsqr.png"));
+    ImageIcon iRoboMorto = new ImageIcon(getClass().getResource("res\\roboTDirMorto.png"));
 
+    
     public Heroi(){
-        tamHeroiX = 100;
-        tamHeroiY = 107;
+        tamHeroiX = 62;
+        tamHeroiY = 130;
         posHeroiX = 200;
         posHeroiY = 300;
         puloDinoCimaInicial = false;
@@ -41,16 +42,15 @@ public class Heroi implements Runnable{
         teclaParaCimaApertada = false;
         teclaParaBaixoApertada = false;
         dinoVivo = true;
-        iDino = new ImageIcon(getClass().getResource("res\\dinoAnimadoDireita.gif"));
-        lDino = new JLabel(iDino);
+        lDino = new JLabel(iRoboAnimadoDireita);
         lDino.setBounds(getPosHeroiX(), getPosHeroiY(), getTamHeroiX(),getTamHeroiY());
         lDino.setVisible(true);
     }
     public int atualizarPosX(){
-        return this.posHeroiX;
+        return this.lDino.getX();
     }
     public int atualizarPosY(){
-        return this.posHeroiY;
+        return this.lDino.getY();
     }
 
     public void iniciarPulo(){
@@ -110,7 +110,7 @@ public class Heroi implements Runnable{
     }
     public void andarEsquerda(){
         if(teclaParaEsquerdaApertada && lDino.getX() > 5){
-            this.lDino.setIcon(iDinoAnimadoEsquerda);
+            this.lDino.setIcon(iRoboAnimadoEsquerda);
             this.lDino.setLocation(lDino.getX()-1, lDino.getY());
         }
         if(lDino.getX() <= 5){
@@ -124,7 +124,7 @@ public class Heroi implements Runnable{
     }
     public void andarDireita(){
         if(teclaParaDireitaApertada && lDino.getX() < 1150 ){
-            this.lDino.setIcon(iDinoAnimadoDireita);
+            this.lDino.setIcon(iRoboAnimadoDireita);
             this.lDino.setLocation(lDino.getX()+1, lDino.getY());
         }
         if(lDino.getX() >= 1150){
@@ -189,7 +189,7 @@ public class Heroi implements Runnable{
 
     public void matarDino() {
         dinoVivo = false;
-        lDino.setIcon(iDinoMorto);
+        lDino.setIcon(iRoboMorto);
 
     }
 

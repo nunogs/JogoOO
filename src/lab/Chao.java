@@ -13,7 +13,7 @@ public class Chao {
 
     public Chao() {
         tamChaoX = 1280;
-        tamChaoY = 10;
+        tamChaoY = 3;
         posChaoX = 0;
         posChaoY = 360;
         iChao = new ImageIcon(getClass().getResource("res\\chao.png"));

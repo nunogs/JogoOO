@@ -61,8 +61,8 @@ public class Armas extends Heroi implements Runnable{
     }
 
     public void atualizarPosHeroi(int posHeroiX, int posHeroiY) {
-        this.posPedraX = posHeroiX+70;
-        this.posPedraY = posHeroiY+50;
+        this.posPedraX = posHeroiX+20;
+        this.posPedraY = posHeroiY+60;
     }
 
 }

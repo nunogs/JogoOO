@@ -7,7 +7,7 @@ import java.awt.event.*;
 import static java.lang.Thread.sleep;
 
 
-public class Motor extends JFrame implements Runnable{
+public class Fase extends JFrame implements Runnable{
     /**
 	 * 
 	 */
@@ -27,16 +27,16 @@ public class Motor extends JFrame implements Runnable{
     protected Fundo fundoForaEsquerda = new Fundo(-1280,0);
     protected Chao chao = new Chao();
     protected DetalhesChao detalhesChao = new DetalhesChao();
-    protected Robo inimigo0 = new Robo();
+    protected Inimigo inimigo0 = new Inimigo();
     protected Caixa caixa = new Caixa();
-    protected Robo inimigo1 = new Robo();
-    protected Robo inimigo2 = new Robo();
-    protected Robo inimigo3 = new Robo();
-    protected Robo inimigo4 = new Robo();
-    protected Robo inimigo5 = new Robo();
-    protected Robo inimigo6 = new Robo();
-    protected Robo inimigo7 = new Robo();
-    protected Robo inimigo8 = new Robo();
+    protected Inimigo inimigo1 = new Inimigo();
+    protected Inimigo inimigo2 = new Inimigo();
+    protected Inimigo inimigo3 = new Inimigo();
+    protected Inimigo inimigo4 = new Inimigo();
+    protected Inimigo inimigo5 = new Inimigo();
+    protected Inimigo inimigo6 = new Inimigo();
+    protected Inimigo inimigo7 = new Inimigo();
+    protected InimigoQueSegue inimigo8 = new InimigoQueSegue();
     protected Nuvens nuvens0 = new Nuvens();
     protected Nuvens nuvens1 = new Nuvens();
     protected Nuvens nuvens2 = new Nuvens();
@@ -55,7 +55,7 @@ public class Motor extends JFrame implements Runnable{
 
 
     //---------------------------------COSNTRUTOR--------------------------------------- CONSTRUTOR----------
-	public Motor(){
+	public Fase(){
         setFocusable(true);
         carregarJanela();
         iniciarObjetos();
@@ -127,7 +127,25 @@ public class Motor extends JFrame implements Runnable{
 //        System.out.println("fui");
 //    }
 
-
+    //-----------------------------------------------------INICIALIZAR AS THREADS -------------------------INICIALIZAR AS THREADS
+    public void iniciarThreads(){
+        if(heroi.dinoVivo) {
+            new Thread(heroi).start();
+            new Thread(caixa).start();
+            new Thread(armas0).start();
+            new Thread(armas1).start();
+            new Thread(armas2).start();
+            new Thread(inimigo0).start();
+            new Thread(inimigo1).start();
+            new Thread(inimigo2).start();
+            new Thread(inimigo3).start();
+            new Thread(inimigo4).start();
+            new Thread(inimigo5).start();
+            new Thread(inimigo6).start();
+            new Thread(inimigo7).start();
+            new Thread(inimigo8).start();
+        }
+    }
     //--------------------------------------------RUN--------------------------------------------------RUN--------------
     @Override
     public void run() {
@@ -137,8 +155,8 @@ public class Motor extends JFrame implements Runnable{
             enviarNivel();
             atualizaPlacar();
 //            movimentosCactos();
-            colisaoCactoTiro();
-            colisaoDinoCacto();
+            colisaoInimigoTiro();
+            colisaoHeroiCacto();
             movimentosNuvens();
             receberPosicaoDoHeroiParaMapearOTiro();
             colisaoTiroFora();
@@ -173,79 +191,10 @@ public class Motor extends JFrame implements Runnable{
             }
         }
     }
-    //----------------------------------------INICIALIZAR MOVIMENTOS DAS NUVENS ---------------------INICIALIZAR MOVIMENTOS DAS NUVENS
-    public void movimentosNuvens(){
-        nuvens0.comportamentoDasNuvens();
-        nuvens1.comportamentoDasNuvens();
-        nuvens2.comportamentoDasNuvens();
-        nuvens3.comportamentoDasNuvens();
-    }
-    //----------------------------------------INICIALIZAR MOVIMENTOS DOS CACTOS ---------------------INICIALIZAR MOVIMENTOS DOS CACTOS
-//    public void movimentosCactos(){
-//        if(nivel <= 1 ) {
-//            inimigo0.atualizarMovimentosDosCactos();
-//            inimigo0.atualizarMovimentosDosCactos();
-//            inimigo1.atualizarMovimentosDosCactos();
-//            inimigo2.atualizarMovimentosDosCactos();
-//            inimigo3.atualizarMovimentosDosCactos();
-//            inimigo3.atualizarMovimentosDosCactos();
-//        }
-//        if (nivel == 2) {
-//            inimigo0.atualizarMovimentosDosCactos();
-//            inimigo0.atualizarMovimentosDosCactos();
-//            inimigo1.atualizarMovimentosDosCactos();
-//            inimigo2.atualizarMovimentosDosCactos();
-//            inimigo3.atualizarMovimentosDosCactos();
-//            inimigo3.atualizarMovimentosDosCactos();
-//            inimigo4.atualizarMovimentosDosCactos();
-//            inimigo5.atualizarMovimentosDosCactos();
-//        }
-//        if (nivel == 3) {
-//            inimigo0.atualizarMovimentosDosCactos();
-//            inimigo0.atualizarMovimentosDosCactos();
-//            inimigo1.atualizarMovimentosDosCactos();
-//            inimigo2.atualizarMovimentosDosCactos();
-//            inimigo3.atualizarMovimentosDosCactos();
-//            inimigo4.atualizarMovimentosDosCactos();
-//            inimigo5.atualizarMovimentosDosCactos();
-//            inimigo6.atualizarMovimentosDosCactos();
-//            inimigo7.atualizarMovimentosDosCactos();
-//        }
-//        if (nivel == 4) {
-//            inimigo0.atualizarMovimentosDosCactos();
-//            inimigo0.atualizarMovimentosDosCactos();
-//            inimigo1.atualizarMovimentosDosCactos();
-//            inimigo2.atualizarMovimentosDosCactos();
-//            inimigo3.atualizarMovimentosDosCactos();
-//            inimigo3.atualizarMovimentosDosCactos();
-//            inimigo4.atualizarMovimentosDosCactos();
-//            inimigo5.atualizarMovimentosDosCactos();
-//            inimigo6.atualizarMovimentosDosCactos();
-//            inimigo7.atualizarMovimentosDosCactos();
-//            inimigo8.atualizarMovimentosDosCactos();
-//        }
-//    }
-    //-----------------------------------------------------INICIALIZAR AS THREADS -------------------------INICIALIZAR AS THREADS
-    public void iniciarThreads(){
-        if(heroi.dinoVivo) {
-            new Thread(heroi).start();
-            new Thread(caixa).start();
-            new Thread(armas0).start();
-            new Thread(armas1).start();
-            new Thread(armas2).start();
-            new Thread(inimigo0).start();
-            new Thread(inimigo1).start();
-            new Thread(inimigo2).start();
-            new Thread(inimigo3).start();
-            new Thread(inimigo4).start();
-            new Thread(inimigo5).start();
-            new Thread(inimigo6).start();
-            new Thread(inimigo7).start();
-            new Thread(inimigo8).start();
-        }
-    }
+
+
   //-----------------------------------------------------SE HEROI TROMBAR NO CACTO -------------------------SE HEROI TROMBAR NO CACTO
-    public void colisaoDinoCacto(){
+    public void colisaoHeroiCacto(){
         if (verificaColisao(heroi.getlDino(), inimigo0.getlCacto()) ||
                 verificaColisao(heroi.getlDino(), inimigo1.getlCacto()) ||
                 verificaColisao(heroi.getlDino(), inimigo2.getlCacto()) ||
@@ -262,7 +211,7 @@ public class Motor extends JFrame implements Runnable{
     }
 
   //-----------------------------------------------------SE CACTO LEVAR UM TIRO -------------------------------SE CACTO LEVAR UM TIRO
-    public void colisaoCactoTiro(){
+    public void colisaoInimigoTiro(){
 
         // tiro 0
         if (verificaColisao(armas0.getlPedra(), inimigo0.getlCacto())) {
@@ -433,6 +382,14 @@ public class Motor extends JFrame implements Runnable{
         }
     }
 
+    //----------------------------------------INICIALIZAR MOVIMENTOS DAS NUVENS ---------------------INICIALIZAR MOVIMENTOS DAS NUVENS
+    public void movimentosNuvens(){
+        nuvens0.comportamentoDasNuvens();
+        nuvens1.comportamentoDasNuvens();
+        nuvens2.comportamentoDasNuvens();
+        nuvens3.comportamentoDasNuvens();
+    }
+
     //-----------------------------------------------------SE TIRO SAIR DA TELA  -------------------------------SE TIRO SAIR  DA TELA  
     public void colisaoTiroFora(){
         // Tiro sair pela direita
@@ -474,15 +431,20 @@ public class Motor extends JFrame implements Runnable{
             nivel = 4;
         }
     }
-    //---------------------------------VERIFICADOR DE COLISÃO----------------------------------------VERIFICADOR DE COLISÃO-------------
+    //---------------------------------MAPEAR MOVIMENTOS DO HEROI----------------------------------------MAPEAR MOVIMENTOS DO HEROI-----------
     public void receberPosicaoDoHeroiParaMapearOTiro(){
         posHeroiX = heroi.atualizarPosX();
         posHeroiY = heroi.atualizarPosY();
+        
         armas0.atualizarPosHeroi(posHeroiX, posHeroiY);
 
-        posHeroiX = heroi.atualizarPosX();
-        posHeroiY = heroi.atualizarPosY();
         armas1.atualizarPosHeroi(posHeroiX, posHeroiY);
+
+        armas2.atualizarPosHeroi(posHeroiX, posHeroiY);
+        
+        inimigo8.atualizarPosHeroi(posHeroiX, posHeroiY);
+//        inimigo0.atualizarPosHeroi(posHeroiX, posHeroiY);
+        
     }
     //---------------------------------VERIFICADOR DE COLISÃO----------------------------------------VERIFICADOR DE COLISÃO-------------
     public boolean verificaColisao(Component objetoA, Component objetoB) {
@@ -578,6 +540,7 @@ public class Motor extends JFrame implements Runnable{
         });
     }
     
+    //---------------------------------ENVIAR O ATUAL NIVEL DE JOGO----------------------------------------ENVIAR O ATUAL NIVEL DE JOGO-------------
     public void enviarNivel() {
     	inimigo0.nivelDoJogo(nivel);
     	inimigo1.nivelDoJogo(nivel);

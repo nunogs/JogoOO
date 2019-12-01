@@ -23,8 +23,9 @@ public class Heroi implements Runnable{
    protected Boolean teclaParaCimaApertada;
    protected Boolean teclaParaBaixoApertada;
     //------------------------------
-    ImageIcon iRoboAnimadoDireita = new ImageIcon(getClass().getResource("res\\roboTDir.png"));
-    ImageIcon iRoboAnimadoEsquerda = new ImageIcon(getClass().getResource("res\\roboTEsqr.png"));
+    ImageIcon iRoboAnimadoDireita = new ImageIcon(getClass().getResource("res\\RoboTDirLento.gif"));
+    ImageIcon iRoboAnimadoDireitaRapido = new ImageIcon(getClass().getResource("res\\RoboTDirRapido.gif"));
+    ImageIcon iRoboAnimadoEsquerda = new ImageIcon(getClass().getResource("res\\RoboTDirFreando.gif"));
     ImageIcon iRoboMorto = new ImageIcon(getClass().getResource("res\\roboTMorto.gif"));
 
     
@@ -175,11 +176,13 @@ public class Heroi implements Runnable{
             andarParaBaixo();
         }
     }
+    
+    //--------------------------------------------RUN---------------------------------------------------------------RUN--------------
 
     @Override
     public void run() {
         while (true) {
-            try {sleep(1);} catch (Exception erro) {}
+            try {sleep(2);} catch (Exception erro) {}
 
             atualizarMovimentosDino();
 

@@ -12,6 +12,7 @@ public class Armas extends Heroi implements Runnable{
     private ImageIcon iPedra;
     private JLabel lPedra;
     private Boolean dispararPedra;
+//    private Boolean pedraNaMao;
 
     public Armas() {
         this.tamPedraX = 10;
@@ -21,6 +22,7 @@ public class Armas extends Heroi implements Runnable{
         this.dispararPedra = false;
         this.lPedra.setVisible(true);
         this.lPedra.setBounds(posPedraX, posPedraY, tamPedraX, tamPedraY);
+//        this.pedraNaMao = true;
 
     }
 

@@ -88,7 +88,7 @@ public class Inimigo implements Runnable{
     // METODOS ACESSORES
 
     
-    public JLabel getlCacto() {
+    public JLabel getlInimigo() {
         return lRobo;
     }
 

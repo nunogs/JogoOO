@@ -60,7 +60,7 @@ public class Armas extends Heroi implements Runnable{
         }
     }
 
-    public JLabel getlPedra() {
+    public JLabel getlTiro() {
         return lPedra;
     }
 

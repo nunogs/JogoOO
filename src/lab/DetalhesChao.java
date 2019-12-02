@@ -25,7 +25,7 @@ public class DetalhesChao{
 
     }
 
-    public void comportamento(){
+    public void movimentos(){
         //matar por sair
         if (this.lDetalhes.getX() < -1280){
             DetalhesSairam();

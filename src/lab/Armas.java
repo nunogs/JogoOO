@@ -73,8 +73,5 @@ public class Armas extends Heroi implements Runnable{
 		return pedraNaMao;
 	}
 
-	public void setPedraNaMao(Boolean pedraNaMao) {
-		this.pedraNaMao = pedraNaMao;
-	}
 
 }

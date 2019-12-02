@@ -1,8 +1,10 @@
 package lab;
 
+import static java.lang.Thread.sleep;
+
 import javax.swing.*;
 
-public class Nuvens{
+public class Nuvens implements Runnable{
     private int tamNuvensX;
     private int tamNuvensY;
     private int posNuvensX;
@@ -41,6 +43,16 @@ public class Nuvens{
             cont = 0;
         }
 
+    }
+    
+    @Override
+    public void run() {
+        while (true) {
+            try {sleep(2);} catch (Exception erro) {}
+            
+            comportamentoDasNuvens();
+
+        }
     }
 
     public void mateAsNuvens() {

@@ -12,7 +12,7 @@ public class Armas extends Heroi implements Runnable{
     private ImageIcon iPedra;
     private JLabel lPedra;
     private Boolean dispararPedra;
-//    private Boolean pedraNaMao;
+    private Boolean pedraNaMao;
 
     public Armas() {
         this.tamPedraX = 10;
@@ -22,7 +22,7 @@ public class Armas extends Heroi implements Runnable{
         this.dispararPedra = false;
         this.lPedra.setVisible(true);
         this.lPedra.setBounds(posPedraX, posPedraY, tamPedraX, tamPedraY);
-//        this.pedraNaMao = true;
+        this.pedraNaMao = true;
 
     }
 
@@ -36,6 +36,7 @@ public class Armas extends Heroi implements Runnable{
     }
     public void tacaPedra() {
         this.dispararPedra = true;
+        this.pedraNaMao = false;
     }
 
     public void movimentoTiro(){
@@ -48,6 +49,7 @@ public class Armas extends Heroi implements Runnable{
 
     public void pararPedra(){
         this.dispararPedra = false;
+        this.pedraNaMao = true;
         this.lPedra.setLocation(posPedraX, posPedraY);
 
     }
@@ -66,5 +68,13 @@ public class Armas extends Heroi implements Runnable{
         this.posPedraX = posHeroiX+50;
         this.posPedraY = posHeroiY+75;
     }
+
+	public Boolean getPedraNaMao() {
+		return pedraNaMao;
+	}
+
+	public void setPedraNaMao(Boolean pedraNaMao) {
+		this.pedraNaMao = pedraNaMao;
+	}
 
 }

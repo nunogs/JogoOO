@@ -46,9 +46,9 @@ public class Fase extends JFrame implements Runnable{
     protected Armas armas0 = new Armas();
     protected Armas armas1 = new Armas();
     protected Armas armas2 = new Armas();
-    protected Boolean pedraNaMao0= true;
-    protected Boolean pedraNaMao1= true;
-    protected Boolean pedraNaMao2= true;
+//    protected Boolean pedraNaMao0= true;
+//    protected Boolean pedraNaMao1= true;
+//    protected Boolean pedraNaMao2= true;
     protected int posHeroiX;
     protected int posHeroiY;
     protected int nivel;
@@ -131,6 +131,11 @@ public class Fase extends JFrame implements Runnable{
     public void iniciarThreads(){
         if(heroi.heroiVivo) {
             new Thread(heroi).start();
+            new Thread(nuvens0).start();
+            new Thread(nuvens1).start();
+            new Thread(nuvens2).start();
+            new Thread(nuvens3).start();
+            new Thread(nuvens4).start();
             new Thread(caixa).start();
             new Thread(armas0).start();
             new Thread(armas1).start();
@@ -154,10 +159,8 @@ public class Fase extends JFrame implements Runnable{
             try {sleep(velJogo/*NAO MECHE NESSA POHA*/);} catch (Exception erro) {}
             enviarNivel();
             atualizaPlacar();
-//            movimentosCactos();
             colisaoInimigoTiro();
             colisaoHeroiCacto();
-            movimentosNuvens();
             receberPosicaoDoHeroiParaMapearOTiro();
             colisaoTiroFora();
             detalhesChao.comportamento();
@@ -166,27 +169,22 @@ public class Fase extends JFrame implements Runnable{
     //--------------------------------------------CONTROLE DE MUNICOES-------------------------------------CONTROLE DE MUNICOES--------------
     private void tacarPedra() {
         if(nivel <= 2) {
-            if (pedraNaMao0 && pedraNaMao1) {
-                pedraNaMao0 = false;
+            if (armas0.getPedraNaMao() && armas1.getPedraNaMao()) {
                 armas0.tacaPedra();
 
-            } else if (pedraNaMao1 && !pedraNaMao0) {
-                pedraNaMao1 = false;
+            } else if (armas1.getPedraNaMao() && !armas0.getPedraNaMao()) {
                 armas1.tacaPedra();
             }
         }else if(nivel >= 3){
-            if ((pedraNaMao0 && pedraNaMao1 && pedraNaMao2) ||
-                    (pedraNaMao0 && pedraNaMao1 && !pedraNaMao2) ||
-                    (pedraNaMao0 && !pedraNaMao1 && pedraNaMao2) ) {
-                pedraNaMao0 = false;
+            if ((armas0.getPedraNaMao() && armas1.getPedraNaMao() && armas2.getPedraNaMao()) ||
+                    (armas0.getPedraNaMao() && armas1.getPedraNaMao() && !armas2.getPedraNaMao()) ||
+                    (armas0.getPedraNaMao() && !armas1.getPedraNaMao() && armas2.getPedraNaMao()) ) {
                 armas0.tacaPedra();
 
-            } else if ((!pedraNaMao0 && pedraNaMao1 && pedraNaMao2) ||
-                    (!pedraNaMao0 && pedraNaMao1 && !pedraNaMao2)) {
-                pedraNaMao1 = false;
+            } else if ((!armas0.getPedraNaMao() && armas1.getPedraNaMao() && armas2.getPedraNaMao()) ||
+                    (!armas0.getPedraNaMao() && armas1.getPedraNaMao() && !armas2.getPedraNaMao())) {
                 armas1.tacaPedra();
-            }else if((!pedraNaMao0 && !pedraNaMao1 && pedraNaMao2)){
-                pedraNaMao2 = false;
+            }else if((!armas0.getPedraNaMao() && !armas1.getPedraNaMao() && armas2.getPedraNaMao())){
                 armas2.tacaPedra();
             }
         }
@@ -195,15 +193,15 @@ public class Fase extends JFrame implements Runnable{
 
   //-----------------------------------------------------SE HEROI TROMBAR NO CACTO -------------------------SE HEROI TROMBAR NO CACTO
     public void colisaoHeroiCacto(){
-        if (verificaColisao(heroi.getlHeroi(), inimigo0.getlInimigo()) ||
-                verificaColisao(heroi.getlHeroi(), inimigo1.getlInimigo()) ||
-                verificaColisao(heroi.getlHeroi(), inimigo2.getlInimigo()) ||
-                verificaColisao(heroi.getlHeroi(), inimigo3.getlInimigo()) ||
-                verificaColisao(heroi.getlHeroi(), inimigo4.getlInimigo()) ||
-                verificaColisao(heroi.getlHeroi(), inimigo5.getlInimigo()) ||
-                verificaColisao(heroi.getlHeroi(), inimigo6.getlInimigo()) ||
-                verificaColisao(heroi.getlHeroi(), inimigo7.getlInimigo()) ||
-                verificaColisao(heroi.getlHeroi(), inimigo8.getlCacto())){
+        if (verificaColisao(heroi.getlHeroi(), inimigo0.getlInimigo(), false) ||
+                verificaColisao(heroi.getlHeroi(), inimigo1.getlInimigo(), false) ||
+                verificaColisao(heroi.getlHeroi(), inimigo2.getlInimigo(), false) ||
+                verificaColisao(heroi.getlHeroi(), inimigo3.getlInimigo(), false) ||
+                verificaColisao(heroi.getlHeroi(), inimigo4.getlInimigo(), false) ||
+                verificaColisao(heroi.getlHeroi(), inimigo5.getlInimigo(), false) ||
+                verificaColisao(heroi.getlHeroi(), inimigo6.getlInimigo(), false) ||
+                verificaColisao(heroi.getlHeroi(), inimigo7.getlInimigo(), false) ||
+                verificaColisao(heroi.getlHeroi(), inimigo8.getlCacto(), false)){
             heroi.matarDino();
             JOptionPane.showMessageDialog(null, "  Matou " + mortesInimigos + " inimigos.");
             System.exit(0);
@@ -215,179 +213,152 @@ public class Fase extends JFrame implements Runnable{
     public void colisaoInimigoTiro(){
 
         // tiro 0
-        if (verificaColisaoComMorte(armas0.getlPedra(), inimigo0.getlInimigo())){
-            inimigo0.matarRoboPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo0.getlInimigo(), true)){
+            inimigo0.matarInimigoPorTiro();
             armas0.pararPedra();
-            pedraNaMao0 = true;
         }
-        if (verificaColisaoComMorte(armas0.getlPedra(), inimigo1.getlInimigo())) {
-            inimigo1.matarRoboPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo1.getlInimigo(), true)) {
+            inimigo1.matarInimigoPorTiro();
             armas0.pararPedra();
-            pedraNaMao0 = true;
         }
-        if (verificaColisaoComMorte(armas0.getlPedra(), inimigo2.getlInimigo())) {
-            inimigo2.matarRoboPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo2.getlInimigo(), true)) {
+            inimigo2.matarInimigoPorTiro();
             armas0.pararPedra();
-            pedraNaMao0 = true;
         }
-        if (verificaColisaoComMorte(armas0.getlPedra(), inimigo3.getlInimigo())) {
-            inimigo3.matarRoboPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo3.getlInimigo(), true)) {
+            inimigo3.matarInimigoPorTiro();
             armas0.pararPedra();
-            pedraNaMao0 = true;
         }
-        if (verificaColisaoComMorte(armas0.getlPedra(), inimigo4.getlInimigo())) {
-            inimigo4.matarRoboPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo4.getlInimigo(), true)) {
+            inimigo4.matarInimigoPorTiro();
             armas0.pararPedra();
-            pedraNaMao0 = true;
         }
-        if (verificaColisaoComMorte(armas0.getlPedra(), inimigo5.getlInimigo())) {
-            inimigo5.matarRoboPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo5.getlInimigo(), true)) {
+            inimigo5.matarInimigoPorTiro();
             armas0.pararPedra();
-            pedraNaMao0 = true;
         }
-        if (verificaColisaoComMorte(armas0.getlPedra(), inimigo6.getlInimigo())) {
-            inimigo6.matarRoboPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo6.getlInimigo(), true)) {
+            inimigo6.matarInimigoPorTiro();
             armas0.pararPedra();
-            pedraNaMao0 = true;
         }
-        if (verificaColisaoComMorte(armas0.getlPedra(), inimigo7.getlInimigo())) {
-            inimigo7.matarRoboPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo7.getlInimigo(), true)) {
+            inimigo7.matarInimigoPorTiro();
             armas0.pararPedra();
-            pedraNaMao0 = true;
         }
-        if (verificaColisaoComMorte(armas0.getlPedra(), inimigo8.getlCacto())) {
-            inimigo8.matarCactoPorTiro();
+        if (verificaColisao(armas0.getlPedra(), inimigo8.getlCacto(), true)) {
+            inimigo8.matarInimigoPorTiro();
             armas0.pararPedra();
-            pedraNaMao0 = true;
         }
    
         // Tiro 2
-        if (verificaColisaoComMorte(armas1.getlPedra(), inimigo0.getlInimigo())) {
-            inimigo0.matarRoboPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo0.getlInimigo(), true)) {
+            inimigo0.matarInimigoPorTiro();
             armas1.pararPedra();
-            pedraNaMao1 = true;
         }
-        if (verificaColisaoComMorte(armas1.getlPedra(), inimigo1.getlInimigo())) {
-            inimigo1.matarRoboPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo1.getlInimigo(), true)) {
+            inimigo1.matarInimigoPorTiro();
             armas1.pararPedra();
-            pedraNaMao1 = true;
             mortesInimigos++;
-        if (verificaColisaoComMorte(armas1.getlPedra(), inimigo2.getlInimigo())) {
-            inimigo2.matarRoboPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo2.getlInimigo(), true)) {
+            inimigo2.matarInimigoPorTiro();
             armas1.pararPedra();
-            pedraNaMao1 = true;
         }
-        if (verificaColisaoComMorte(armas1.getlPedra(), inimigo3.getlInimigo())) {
-            inimigo3.matarRoboPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo3.getlInimigo(), true)) {
+            inimigo3.matarInimigoPorTiro();
             armas1.pararPedra();
-            pedraNaMao1 = true;
         }
-        if (verificaColisaoComMorte(armas1.getlPedra(), inimigo4.getlInimigo())) {
-            inimigo4.matarRoboPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo4.getlInimigo(), true)) {
+            inimigo4.matarInimigoPorTiro();
             armas1.pararPedra();
-            pedraNaMao1 = true;
         }
-        if (verificaColisaoComMorte(armas1.getlPedra(), inimigo5.getlInimigo())) {
-            inimigo5.matarRoboPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo5.getlInimigo(), true)) {
+            inimigo5.matarInimigoPorTiro();
             armas1.pararPedra();
-            pedraNaMao1 = true;
         }
-        if (verificaColisaoComMorte(armas1.getlPedra(), inimigo6.getlInimigo())) {
-            inimigo6.matarRoboPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo6.getlInimigo(), true)) {
+            inimigo6.matarInimigoPorTiro();
             armas1.pararPedra();
-            pedraNaMao1 = true;
         }
-        if (verificaColisaoComMorte(armas1.getlPedra(), inimigo7.getlInimigo())) {
-            inimigo7.matarRoboPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo7.getlInimigo(), true)) {
+            inimigo7.matarInimigoPorTiro();
             armas1.pararPedra();
-            pedraNaMao1 = true;
         }
-        if (verificaColisaoComMorte(armas1.getlPedra(), inimigo8.getlCacto())) {
-            inimigo8.matarCactoPorTiro();
+        if (verificaColisao(armas1.getlPedra(), inimigo8.getlCacto(), true)) {
+            inimigo8.matarInimigoPorTiro();
             armas1.pararPedra();
-            pedraNaMao1 = true;
         }
         
         // tiro 3
-        if (verificaColisaoComMorte(armas2.getlPedra(), inimigo0.getlInimigo())) {
-            inimigo0.matarRoboPorTiro();
+        if (verificaColisao(armas2.getlPedra(), inimigo0.getlInimigo(), true)) {
+            inimigo0.matarInimigoPorTiro();
             armas2.pararPedra();
-            pedraNaMao2 = true;
         }
-        if (verificaColisaoComMorte(armas2.getlPedra(), inimigo1.getlInimigo())) {
-            inimigo1.matarRoboPorTiro();
+        if (verificaColisao(armas2.getlPedra(), inimigo1.getlInimigo(), true)) {
+            inimigo1.matarInimigoPorTiro();
             armas2.pararPedra();
-            pedraNaMao2 = true;
         }
-        if (verificaColisaoComMorte(armas2.getlPedra(), inimigo2.getlInimigo())) {
-            inimigo2.matarRoboPorTiro();
+        if (verificaColisao(armas2.getlPedra(), inimigo2.getlInimigo(), true)) {
+            inimigo2.matarInimigoPorTiro();
             armas2.pararPedra();
-            pedraNaMao2 = true;
         }
-        if (verificaColisaoComMorte(armas2.getlPedra(), inimigo3.getlInimigo())) {
-            inimigo3.matarRoboPorTiro();
+        if (verificaColisao(armas2.getlPedra(), inimigo3.getlInimigo(), true)) {
+            inimigo3.matarInimigoPorTiro();
             armas2.pararPedra();
-            pedraNaMao2 = true;
         }
-        if (verificaColisaoComMorte(armas2.getlPedra(), inimigo4.getlInimigo())) {
-            inimigo4.matarRoboPorTiro();
+        if (verificaColisao(armas2.getlPedra(), inimigo4.getlInimigo(), true)) {
+            inimigo4.matarInimigoPorTiro();
             armas2.pararPedra();
-            pedraNaMao2 = true;
         }
-        if (verificaColisaoComMorte(armas2.getlPedra(), inimigo5.getlInimigo())) {
-            inimigo5.matarRoboPorTiro();
+        if (verificaColisao(armas2.getlPedra(), inimigo5.getlInimigo(), true)) {
+            inimigo5.matarInimigoPorTiro();
             armas2.pararPedra();
-            pedraNaMao2 = true;
         }
-        if (verificaColisaoComMorte(armas2.getlPedra(), inimigo6.getlInimigo())) {
-            inimigo6.matarRoboPorTiro();
+        if (verificaColisao(armas2.getlPedra(), inimigo6.getlInimigo(), true)) {
+            inimigo6.matarInimigoPorTiro();
             armas2.pararPedra();
-            pedraNaMao2 = true;
         }
-        if (verificaColisaoComMorte(armas2.getlPedra(), inimigo7.getlInimigo())) {
-            inimigo7.matarRoboPorTiro();
+        if (verificaColisao(armas2.getlPedra(), inimigo7.getlInimigo(), true)) {
+            inimigo7.matarInimigoPorTiro();
             armas2.pararPedra();
-            pedraNaMao2 = true;
         }
-        if (verificaColisaoComMorte(armas2.getlPedra(), inimigo8.getlCacto())) {
-            inimigo8.matarCactoPorTiro();
+        if (verificaColisao(armas2.getlPedra(), inimigo8.getlCacto(), true)) {
+            inimigo8.matarInimigoPorTiro();
             armas2.pararPedra();
-            pedraNaMao2 = true;
         }
     }
  }
 
     //----------------------------------------INICIALIZAR MOVIMENTOS DAS NUVENS ---------------------INICIALIZAR MOVIMENTOS DAS NUVENS
-    public void movimentosNuvens(){
-        nuvens0.comportamentoDasNuvens();
-        nuvens1.comportamentoDasNuvens();
-        nuvens2.comportamentoDasNuvens();
-        nuvens3.comportamentoDasNuvens();
-    }
+//    public void movimentosNuvens(){
+//        nuvens0.comportamentoDasNuvens();
+//        nuvens1.comportamentoDasNuvens();
+//        nuvens2.comportamentoDasNuvens();
+//        nuvens3.comportamentoDasNuvens();
+//    }
 
     //-----------------------------------------------------SE TIRO SAIR DA TELA  -------------------------------SE TIRO SAIR  DA TELA  
     public void colisaoTiroFora(){
         // Tiro sair pela direita
 
-        if (verificaColisao(fundoForaDireita.getLfundo(), armas0.getlPedra())){
-            pedraNaMao0 = true;
+        if (verificaColisao(fundoForaDireita.getLfundo(), armas0.getlPedra(), false)){
+        	armas0.pararPedra();
         }
-        if (verificaColisao(fundoForaDireita.getLfundo(), armas1.getlPedra())){
-            pedraNaMao1 = true;
+        if (verificaColisao(fundoForaDireita.getLfundo(), armas1.getlPedra(), false)){
+        	armas1.pararPedra();
         }
-        if (verificaColisao(fundoForaDireita.getLfundo(), armas2.getlPedra())){
-            pedraNaMao2 = true;
+        if (verificaColisao(fundoForaDireita.getLfundo(), armas2.getlPedra(), false)){
+        	armas2.pararPedra();
         }
         // Tiro sair pela esquerda
 
-        if (verificaColisao(fundoForaEsquerda.getLfundo(), armas0.getlPedra())){
-            pedraNaMao0 = true;
+        if (verificaColisao(fundoForaEsquerda.getLfundo(), armas0.getlPedra(), false)){
+        	armas0.pararPedra();
         }
-        if (verificaColisao(fundoForaEsquerda.getLfundo(), armas1.getlPedra())){
-            pedraNaMao1 = true;
+        if (verificaColisao(fundoForaEsquerda.getLfundo(), armas1.getlPedra(), false)){
+        	armas1.pararPedra();
         }
-        if (verificaColisao(fundoForaEsquerda.getLfundo(), armas2.getlPedra())){
-            pedraNaMao2 = true;
+        if (verificaColisao(fundoForaEsquerda.getLfundo(), armas2.getlPedra(), false)){
+        	armas2.pararPedra();
         }
 
 
@@ -418,11 +389,10 @@ public class Fase extends JFrame implements Runnable{
         armas2.atualizarPosHeroi(posHeroiX, posHeroiY);
         
         inimigo8.atualizarPosHeroi(posHeroiX, posHeroiY);
-//        inimigo0.atualizarPosHeroi(posHeroiX, posHeroiY);
-        
+   
     }
     //---------------------------------VERIFICADOR DE COLISÃO----------------------------------------VERIFICADOR DE COLISÃO-------------
-    public boolean verificaColisao(Component objetoA, Component objetoB) {
+    public boolean verificaColisao(Component objetoA, Component objetoB, Boolean comMorte) {
         int aX = objetoA.getX();
         int aY = objetoA.getY();
         int ladoDireitoA = aX+objetoA.getWidth();
@@ -458,49 +428,10 @@ public class Fase extends JFrame implements Runnable{
 
         if(colidiuDireita && colidiuEsquerda && colidiuBaixo && colidiuCima) {
             colidiu = true;
+            if(comMorte) {
+            	mortesInimigos ++;
+            }
         }
-        return colidiu;
-    }
-    
-    public boolean verificaColisaoComMorte(Component objetoA, Component objetoB) {
-        int aX = objetoA.getX();
-        int aY = objetoA.getY();
-        int ladoDireitoA = aX+objetoA.getWidth();
-        int ladoEsquerdoA= aX;
-        int ladoBaixoA= aY+objetoA.getHeight();
-        int ladoCimaA= aY;
-
-        int bX = objetoB.getX();
-        int bY = objetoB.getY();
-        int ladoDireitoB = bX+objetoB.getWidth();
-        int ladoEsquerdoB= bX;
-        int ladoBaixoB= bY+objetoB.getHeight();
-        int ladoCimaB= bY;
-
-        boolean colidiu = false;
-        boolean colidiuDireita=false;
-        boolean colidiuCima=false;
-        boolean colidiuBaixo=false;
-        boolean colidiuEsquerda=false;
-
-        if(ladoDireitoA>=ladoEsquerdoB) {
-            colidiuDireita=true;
-        }
-        if(ladoCimaA<=ladoBaixoB) {
-            colidiuCima=true;
-        }
-        if(ladoBaixoA>=ladoCimaB) {
-            colidiuBaixo=true;
-        }
-        if(ladoEsquerdoA<=ladoDireitoB) {
-            colidiuEsquerda=true;
-        }
-
-        if(colidiuDireita && colidiuEsquerda && colidiuBaixo && colidiuCima) {
-            colidiu = true;
-            mortesInimigos ++;
-        }
-    
         return colidiu;
     }
     

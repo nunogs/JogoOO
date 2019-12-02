@@ -115,7 +115,7 @@ public class InimigoQueSegue implements Runnable{
         return lRobo;
     }
 
-    public void matarCactoPorTiro() {
+    public void matarInimigoPorTiro() {
         mateORobo();
     }
 }

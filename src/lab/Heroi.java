@@ -68,10 +68,10 @@ public class Heroi implements Runnable{
     public void pular(){
         if(heroiVivo) {
             // PULO DINO - MOVIMENTO PARA CIMA
-            int velPulo = 2;// Apenas numeros pares
-            int estagioLento = (velPulo / 2);
-            int estagioRapido = velPulo;
-            int alturaDeDesaceleracaoDoPulo = 130;
+//            int velPulo = 2;// Apenas numeros pares
+            int estagioLento = 2;
+            int estagioRapido = 4;
+            int alturaDeDesaceleracaoDoPulo = 140;
             int alturaMaximaDoPulo = 200;
             if (this.puloHeroiCimaInicial) {
                 this.lHeroi.setLocation(lHeroi.getX(), lHeroi.getY() - estagioRapido);
@@ -125,8 +125,8 @@ public class Heroi implements Runnable{
     }
     public void andarDireita(){
         if(teclaParaDireitaApertada && lHeroi.getX() < 1150 ){
-            this.lHeroi.setIcon(iRoboAnimadoDireita);
-            this.lHeroi.setLocation(lHeroi.getX()+1, lHeroi.getY());
+            this.lHeroi.setIcon(iRoboAnimadoDireitaRapido);
+            this.lHeroi.setLocation(lHeroi.getX()+2, lHeroi.getY());
         }
         if(lHeroi.getX() >= 1150){
             this.teclaParaDireitaApertada = false;
@@ -134,7 +134,7 @@ public class Heroi implements Runnable{
     }
     public void andarParaCima(){
         if (teclaParaCimaApertada && posHeroiY > 270){
-            this.lHeroi.setLocation(lHeroi.getX(),lHeroi.getY()-1);
+            this.lHeroi.setLocation(lHeroi.getX(),lHeroi.getY()-2);
         }
         if(posHeroiY <=270){
             teclaParaCimaApertada = false;
@@ -150,7 +150,7 @@ public class Heroi implements Runnable{
     }
     public void andarParaBaixo(){
         if (teclaParaBaixoApertada && posHeroiY < 550){
-            this.lHeroi.setLocation(lHeroi.getX(),lHeroi.getY()+1);
+            this.lHeroi.setLocation(lHeroi.getX(),lHeroi.getY()+2);
         }
         if(posHeroiY >= 550){
             teclaParaBaixoApertada = false;
@@ -182,7 +182,7 @@ public class Heroi implements Runnable{
     @Override
     public void run() {
         while (true) {
-            try {sleep(2);} catch (Exception erro) {}
+            try {sleep(4);} catch (Exception erro) {}
 
             atualizarMovimentosDino();
 

@@ -421,7 +421,7 @@ public class Fase extends JFrame implements Runnable{
     //-----------------------------------------------------DIFICULDADE PLACAR-------------------------------DIFICULDADE PLACAR
     public void atualizaPlacar() {
         txtPlacar.setText(String.valueOf(mortesInimigos));
-        if(mortesInimigos >= 3){
+        if(mortesInimigos >= 5){
             nivel = 2;
         }
         if(mortesInimigos >= 20){

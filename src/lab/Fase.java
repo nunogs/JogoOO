@@ -22,7 +22,7 @@ public class Fase extends JFrame implements Runnable{
     protected int mortesInimigos;
     JLabel txtPlacar = new JLabel(String.valueOf(mortesInimigos));
     protected JLabel placar = new JLabel(iPlacar);
-//    protected Fundo fundo = new Fundo(0,0);
+    protected Fundo fundo = new Fundo(0,0);
     protected Fundo fundoForaDireita = new Fundo(1280,0);
     protected Fundo fundoForaEsquerda = new Fundo(-1280,0);
     protected Chao chao = new Chao();
@@ -43,9 +43,9 @@ public class Fase extends JFrame implements Runnable{
     protected Nuvens nuvens3 = new Nuvens();
     protected Nuvens nuvens4 = new Nuvens();
     protected Heroi heroi= new Heroi();
-    protected Armas armas0 = new Armas();
-    protected Armas armas1 = new Armas();
-    protected Armas armas2 = new Armas();
+    protected Bugs armas0 = new Bugs();
+    protected Bugs armas1 = new Bugs();
+    protected Bugs armas2 = new Bugs();
 //    protected Boolean pedraNaMao0= true;
 //    protected Boolean pedraNaMao1= true;
 //    protected Boolean pedraNaMao2= true;
@@ -99,7 +99,7 @@ public class Fase extends JFrame implements Runnable{
         add(nuvens2.getlNuvens());
         add(detalhesChao.getlDetalhes());
         add(chao.getlChao());
-//        add(fundo.getLfundo());
+        add(fundo.getLfundo());
     }
   //---------------------------------CARREGAR PLACAR---------------------------------------- CARREGAR PLACAR--------------
     private void loadPlacar() {
@@ -461,5 +461,7 @@ public class Fase extends JFrame implements Runnable{
     	inimigo6.nivelDoJogo(nivel);
     	inimigo7.nivelDoJogo(nivel);
     	inimigo8.nivelDoJogo(nivel);
+    	
+    	heroi.nivelDoJogo(nivel);
 	}
 }

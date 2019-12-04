@@ -5,13 +5,15 @@ import javax.swing.*;
 import static java.lang.Thread.sleep;
 
 public class Heroi implements Runnable{
+	protected Integer nivel;
+	//--------------------------------------
     protected int tamHeroiX;
     protected int tamHeroiY;
     protected int posHeroiX;
     protected int posHeroiY;
     protected ImageIcon iHeroi;
     public JLabel lHeroi;
-    //------------------------------
+    //--------------------------------------
    protected int posAtualHeroiY;
    protected Boolean heroiVivo;
    protected Boolean puloHeroiCimaInicial;
@@ -22,7 +24,7 @@ public class Heroi implements Runnable{
    protected Boolean teclaParaDireitaApertada;
    protected Boolean teclaParaCimaApertada;
    protected Boolean teclaParaBaixoApertada;
-    //------------------------------
+   //-----------------------------------------
     ImageIcon iRoboAnimadoDireita = new ImageIcon(getClass().getResource("res\\RoboTDirLento.gif"));
     ImageIcon iRoboAnimadoDireitaRapido = new ImageIcon(getClass().getResource("res\\RoboTDirRapido.gif"));
     ImageIcon iRoboAnimadoEsquerda = new ImageIcon(getClass().getResource("res\\RoboTDirFreando.gif"));
@@ -47,9 +49,15 @@ public class Heroi implements Runnable{
         lHeroi.setBounds(getPosHeroiX(), getPosHeroiY(), getTamHeroiX(),getTamHeroiY());
         lHeroi.setVisible(true);
     }
+    
+    public void nivelDoJogo(Integer nivel) {
+    	this.nivel = nivel;
+    }
+    
     public int atualizarPosX(){
         return this.lHeroi.getX();
     }
+    
     public int atualizarPosY(){
         return this.lHeroi.getY();
     }

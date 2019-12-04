@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import static java.lang.Thread.sleep;
 
-public class Armas extends Heroi implements Runnable{
+public class Bugs extends Heroi implements Runnable{
     private int tamPedraX;
     private int tamPedraY;
     private int posPedraX;
@@ -14,10 +14,10 @@ public class Armas extends Heroi implements Runnable{
     private Boolean dispararPedra;
     private Boolean pedraNaMao;
 
-    public Armas() {
+    public Bugs() {
         this.tamPedraX = 10;
         this.tamPedraY = 15;
-        this.iPedra = new ImageIcon(getClass().getResource("res\\pedra.png"));
+        this.iPedra = new ImageIcon(getClass().getResource("res\\bug.png"));
         this.lPedra = new JLabel(iPedra);
         this.dispararPedra = false;
         this.lPedra.setVisible(true);
@@ -29,7 +29,7 @@ public class Armas extends Heroi implements Runnable{
     @Override
     public void run() {
         while (true){
-            try {sleep(4);} catch (Exception erro) {}
+            try {sleep(5);} catch (Exception erro) {}
             pedraSaiu();
             movimentoTiro();
         }

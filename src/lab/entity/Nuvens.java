@@ -1,33 +1,30 @@
 package lab.entity;
 
+
 import static java.lang.Thread.sleep;
 
 import javax.swing.*;
 
-public class Nuvens implements Runnable{
-    private int tamNuvensX;
-    private int tamNuvensY;
-    private int posNuvensX;
-    private int posNuvensY;
+public class Nuvens extends Cenario implements Runnable{
     private ImageIcon iNuvens;
     private JLabel lNuvens;
     private int cont;
     private int velNuvens;
 
     public Nuvens() {
-        this.tamNuvensX = 88;
-        this.tamNuvensY = 90;
-        this.posNuvensX = (int)( 1300 + (Math.random() * 1280) + ( 1 + (Math.random() * 100)));
+    	super();
+        this.tamanhoX = 88;
+        this.tamanhoY = 90;
+        this.posicaoX = (int)( 1300 + (Math.random() * 1280) + ( 1 + (Math.random() * 100)));
         this.velNuvens = (int)((1 + (Math.random() * 2)) + (1 + (Math.random() * 2)));
-        this.posNuvensY = (int)( 80 + (Math.random() * 150));
+        this.posicaoY = (int)( 80 + (Math.random() * 150));
         this.iNuvens = new ImageIcon(getClass().getResource("../img/cenario/nuvens.png"));
         this.lNuvens = new JLabel(this.iNuvens);
-        this.lNuvens.setBounds(this.posNuvensX, this.posNuvensY, this.tamNuvensX, this.tamNuvensY);
+        this.lNuvens.setBounds(this.posicaoX, this.posicaoY, this.tamanhoX, this.tamanhoY);
         this.lNuvens.setVisible(true);
         cont = 0;
 
     }
-
     public void comportamentoDasNuvens(){
         //matar nuvem por sair
         if (this.lNuvens.getX() < -50){
@@ -56,7 +53,7 @@ public class Nuvens implements Runnable{
     }
 
     public void mateAsNuvens() {
-        this.lNuvens.setLocation(posNuvensX, posNuvensY);
+        this.lNuvens.setLocation(posicaoX, posicaoY);
     }
 
 

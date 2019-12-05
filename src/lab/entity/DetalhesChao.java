@@ -2,24 +2,20 @@ package lab.entity;
 
 import javax.swing.*;
 
-public class DetalhesChao{
-    private int tamDetalhesX;
-    private int tamDetalhesY;
-    private int posDetalhesX;
-    private int posDetalhesY;
+public class DetalhesChao extends Cenario{
     private ImageIcon iDetalhes;
     private JLabel lDetalhes;
     private int redutorDeVelocidade;
 
     public DetalhesChao() {
-
-        this.tamDetalhesX = 2560;
-        this.tamDetalhesY = 50;
-        this.posDetalhesX = 0;
-        this.posDetalhesY = 365;
+    	super();
+        this.tamanhoX = 2560;
+        this.tamanhoY = 50;
+        this.posicaoX = 0;
+        this.posicaoY = 365;
         this.iDetalhes = new ImageIcon(getClass().getResource("../img/cenario/detalhechao.png"));
         this.lDetalhes = new JLabel(this.iDetalhes);
-        this.lDetalhes.setBounds(this.posDetalhesX, this.posDetalhesY, this.tamDetalhesX, this.tamDetalhesY);
+        this.lDetalhes.setBounds(this.posicaoX, this.posicaoY, this.tamanhoX, this.tamanhoY);
         this.lDetalhes.setVisible(true);
         this.redutorDeVelocidade =1;
 
@@ -42,8 +38,9 @@ public class DetalhesChao{
     }
 
     public void DetalhesSairam() {
-        this.lDetalhes.setLocation(posDetalhesX, posDetalhesY);
+        this.lDetalhes.setLocation(posicaoX, posicaoY);
     }
+    
 
     public JLabel getlDetalhes() {
         return lDetalhes;

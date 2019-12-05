@@ -18,7 +18,7 @@ public class Fase extends JFrame implements Runnable{
     public Integer velJogo = 1;
     //---MUDA A VELOCIDADE DO JOGO ---
 
-    protected ImageIcon iPlacar = new ImageIcon(getClass().getResource("../img/cenario/bug.png"));
+    protected ImageIcon iPlacar = new ImageIcon(getClass().getResource("../img/cenario/placar.png"));
     protected int mortesInimigos;
     JLabel txtPlacar = new JLabel(String.valueOf(mortesInimigos));
     protected JLabel placar = new JLabel(iPlacar);

@@ -1,4 +1,4 @@
-package lab;
+package lab.entity;
 
 import javax.swing.*;
 
@@ -17,7 +17,7 @@ public class Bugs extends Heroi implements Runnable{
     public Bugs() {
         this.tamPedraX = 10;
         this.tamPedraY = 15;
-        this.iPedra = new ImageIcon(getClass().getResource("res\\bug.png"));
+        this.iPedra = new ImageIcon(getClass().getResource("../img/cenario/bug.png"));
         this.lPedra = new JLabel(iPedra);
         this.dispararPedra = false;
         this.lPedra.setVisible(true);

@@ -1,4 +1,4 @@
-package lab;
+package lab.entity;
 
 import static java.lang.Thread.sleep;
 
@@ -20,7 +20,7 @@ public class Nuvens implements Runnable{
         this.posNuvensX = (int)( 1300 + (Math.random() * 1280) + ( 1 + (Math.random() * 100)));
         this.velNuvens = (int)((1 + (Math.random() * 2)) + (1 + (Math.random() * 2)));
         this.posNuvensY = (int)( 80 + (Math.random() * 150));
-        this.iNuvens = new ImageIcon(getClass().getResource("res\\nuvens.png"));
+        this.iNuvens = new ImageIcon(getClass().getResource("../img/cenario/nuvens.png"));
         this.lNuvens = new JLabel(this.iNuvens);
         this.lNuvens.setBounds(this.posNuvensX, this.posNuvensY, this.tamNuvensX, this.tamNuvensY);
         this.lNuvens.setVisible(true);

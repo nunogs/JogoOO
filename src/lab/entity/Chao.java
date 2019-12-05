@@ -1,4 +1,4 @@
-package lab;
+package lab.entity;
 
 import javax.swing.*;
 
@@ -16,7 +16,7 @@ public class Chao {
         tamChaoY = 3;
         posChaoX = 0;
         posChaoY = 360;
-        iChao = new ImageIcon(getClass().getResource("res\\chao.png"));
+        iChao = new ImageIcon(getClass().getResource("../img/cenario/chao.png"));
         lChao = new JLabel(iChao);
         this.lChao.setBounds(getPosChaoX(), getPosChaoY(), getTamChaoX(), getTamChaoY());
         lChao.setVisible(true);

@@ -1,10 +1,10 @@
-package lab;
+package lab.entity;
 
 import javax.swing.*;
 
 import static java.lang.Thread.sleep;
 
-public class Inimigo implements Runnable{
+public class InimigoQueSegue implements Runnable{
     private int tamRoboX;
     private int tamRoboY;
     private int posRoboX;
@@ -15,14 +15,17 @@ public class Inimigo implements Runnable{
     private int velRobo;
     private int nivel;
     private int velocidadeDoRobo;
+//    private int posHeroiX;
+//    private int posHeroiY;
 
-    public Inimigo() {
+    public InimigoQueSegue() {
     	this.tamRoboY = 128;
     	this.tamRoboX = 75;
-
+//    	posHeroiX = 0 ;
+//    	posHeroiY = 0 ;
         this.posRoboX = (int)( 1300 + (Math.random() * 1400));
         this.posRoboY = (int)( 280 + (Math.random() * 300));
-        this.iRobo = new ImageIcon(getClass().getResource("res\\robo.png"));
+        this.iRobo = new ImageIcon(getClass().getResource("res/robo.png"));
         this.lRobo = new JLabel(this.iRobo);
         this.lRobo.setBounds(this.posRoboX, this.posRoboY, this.tamRoboX, this.tamRoboY);
         this.lRobo.setVisible(true);
@@ -45,15 +48,30 @@ public class Inimigo implements Runnable{
     public void ajusteDeNivel() {
     	if (nivel <= 1) {
     		this.velocidadeDoRobo = 1;
+    		seguirOheroi();
     	}else if (nivel == 2) {
-    		this.velocidadeDoRobo = 2;
+    		this.velocidadeDoRobo = 1;
+    		seguirOheroi();
     	}else if (nivel == 3) {
-    		this.velocidadeDoRobo = 2;
+    		this.velocidadeDoRobo = 1;
+    		seguirOheroi();
+    		
     	}else if (nivel == 4) {
-    		this.velocidadeDoRobo = 3;
+    		seguirOheroi();
+    		this.velocidadeDoRobo = 1;
+    		
     	}
     }
-
+    public void seguirOheroi() {
+//    	while(this.posRoboY < posHeroiY) {
+//    		this.lRobo.setLocation(this.lRobo.getX(), this.lRobo.getY() + 1);
+//    	}
+//    	while(this.posRoboY > posHeroiY) {
+//    		this.lRobo.setLocation(this.lRobo.getX(), this.lRobo.getY() - 1);
+//    	}
+    	
+  
+    }
     
     public void movimentoDaRobo() {
         if (cont == 0 || cont == velRobo) {
@@ -77,18 +95,23 @@ public class Inimigo implements Runnable{
     @Override
     public void run() {
         while (true){
-            try {sleep(2/*NAO MECHE NESSA POHA*/);} catch (Exception erro) {}
+            try {sleep(2 );} catch (Exception erro) {}
             atualizarMovimentosDosRobos();
             
 
         }
     }
     
+    public void atualizarPosHeroi(int posHeroiX, int posHeroiY){
+//    	this.posHeroiX = posHeroiX;
+//    	this.posHeroiY = posHeroiY;
+    	
+    }
 
     // METODOS ACESSORES
 
     
-    public JLabel getlInimigo() {
+    public JLabel getlCacto() {
         return lRobo;
     }
 

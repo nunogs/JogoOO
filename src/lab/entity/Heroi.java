@@ -1,4 +1,4 @@
-package lab;
+package lab.entity;
 
 import javax.swing.*;
 
@@ -25,10 +25,10 @@ public class Heroi implements Runnable{
    protected Boolean teclaParaCimaApertada;
    protected Boolean teclaParaBaixoApertada;
    //-----------------------------------------
-    ImageIcon iRoboAnimadoDireita = new ImageIcon(getClass().getResource("res\\RoboTDirLento.gif"));
-    ImageIcon iRoboAnimadoDireitaRapido = new ImageIcon(getClass().getResource("res\\RoboTDirRapido.gif"));
-    ImageIcon iRoboAnimadoEsquerda = new ImageIcon(getClass().getResource("res\\RoboTDirFreando.gif"));
-    ImageIcon iRoboMorto = new ImageIcon(getClass().getResource("res\\roboTMorto.gif"));
+    ImageIcon iRoboAnimadoDireita = new ImageIcon(getClass().getResource("../img/heroi/roboTDirLento.gif"));
+    ImageIcon iRoboAnimadoDireitaRapido = new ImageIcon(getClass().getResource("../img/heroi/roboTDirRapido.gif"));
+    ImageIcon iRoboAnimadoEsquerda = new ImageIcon(getClass().getResource("../img/heroi/roboTDirFreando.gif"));
+    ImageIcon iRoboMorto = new ImageIcon(getClass().getResource("../img/heroi/roboTMorto.gif"));
 
     
     public Heroi(){

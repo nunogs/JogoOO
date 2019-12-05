@@ -1,4 +1,4 @@
-package lab;
+package lab.entity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +18,7 @@ public class Fase extends JFrame implements Runnable{
     public Integer velJogo = 1;
     //---MUDA A VELOCIDADE DO JOGO ---
 
-    protected ImageIcon iPlacar = new ImageIcon(getClass().getResource("res\\placar.png"));
+    protected ImageIcon iPlacar = new ImageIcon(getClass().getResource("../img/cenario/bug.png"));
     protected int mortesInimigos;
     JLabel txtPlacar = new JLabel(String.valueOf(mortesInimigos));
     protected JLabel placar = new JLabel(iPlacar);
@@ -28,7 +28,7 @@ public class Fase extends JFrame implements Runnable{
     protected Chao chao = new Chao();
     protected DetalhesChao detalhesChao = new DetalhesChao();
     protected Inimigo inimigo0 = new Inimigo();
-    protected Caixa caixa = new Caixa();
+//    protected Caixa caixa = new Caixa();
     protected Inimigo inimigo1 = new Inimigo();
     protected Inimigo inimigo2 = new Inimigo();
     protected Inimigo inimigo3 = new Inimigo();
@@ -91,7 +91,7 @@ public class Fase extends JFrame implements Runnable{
         add(inimigo6.getlInimigo());
         add(inimigo7.getlInimigo());
         add(inimigo8.getlInimigo());
-        add(caixa.getlCaixa());
+//        add(caixa.getlCaixa());
         add(nuvens3.getlNuvens());
         add(nuvens4.getlNuvens());
         add(nuvens1.getlNuvens());
@@ -136,7 +136,7 @@ public class Fase extends JFrame implements Runnable{
             new Thread(nuvens2).start();
             new Thread(nuvens3).start();
             new Thread(nuvens4).start();
-            new Thread(caixa).start();
+//            new Thread(caixa).start();
             new Thread(armas0).start();
             new Thread(armas1).start();
             new Thread(armas2).start();
@@ -353,7 +353,7 @@ public class Fase extends JFrame implements Runnable{
         armas2.atualizarPosHeroi(posHeroiX, posHeroiY);
            
     }
-    //---------------------------------VERIFICADOR DE COLISÃO----------------------------------------VERIFICADOR DE COLISÃO-------------
+    //---------------------------------VERIFICADOR DE COLISï¿½O----------------------------------------VERIFICADOR DE COLISï¿½O-------------
     public boolean verificaColisao(Component objetoA, Component objetoB, Boolean comMorte) {
         int aX = objetoA.getX();
         int aY = objetoA.getY();

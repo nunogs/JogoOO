@@ -1,4 +1,4 @@
-package lab;
+package lab.entity;
 
 import javax.swing.*;
 
@@ -17,7 +17,7 @@ public class DetalhesChao{
         this.tamDetalhesY = 50;
         this.posDetalhesX = 0;
         this.posDetalhesY = 365;
-        this.iDetalhes = new ImageIcon(getClass().getResource("res\\detalhechao.png"));
+        this.iDetalhes = new ImageIcon(getClass().getResource("../img/cenario/detalhechao.png"));
         this.lDetalhes = new JLabel(this.iDetalhes);
         this.lDetalhes.setBounds(this.posDetalhesX, this.posDetalhesY, this.tamDetalhesX, this.tamDetalhesY);
         this.lDetalhes.setVisible(true);

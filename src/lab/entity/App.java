@@ -1,4 +1,4 @@
-package lab;
+package lab.entity;
 
 public class App {
 

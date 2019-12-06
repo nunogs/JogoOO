@@ -4,11 +4,8 @@ import javax.swing.*;
 
 import static java.lang.Thread.sleep;
 
-public class Inimigo implements Runnable{
-    private int tamRoboX;
-    private int tamRoboY;
-    private int posRoboX;
-    private int posRoboY;
+public class Inimigo extends Personagem implements Runnable{
+    
     private ImageIcon iRobo;
     private JLabel lRobo;
     private Integer cont;
@@ -17,14 +14,15 @@ public class Inimigo implements Runnable{
     private int velocidadeDoRobo;
 
     public Inimigo() {
-    	this.tamRoboY = 128;
-    	this.tamRoboX = 75;
+    	super();
+    	this.tamanhoY = 128;
+    	this.tamanhoX = 75;
 
-        this.posRoboX = (int)( 1300 + (Math.random() * 1400));
-        this.posRoboY = (int)( 280 + (Math.random() * 300));
+        this.posicaoX = (int)( 1300 + (Math.random() * 1400));
+        this.posicaoY = (int)( 280 + (Math.random() * 300));
         this.iRobo = new ImageIcon(getClass().getResource("../img/inimigo/robo.png"));
         this.lRobo = new JLabel(this.iRobo);
-        this.lRobo.setBounds(this.posRoboX, this.posRoboY, this.tamRoboX, this.tamRoboY);
+        this.lRobo.setBounds(this.posicaoX, this.posicaoY, this.tamanhoX, this.tamanhoY);
         this.lRobo.setVisible(true);
         cont = 0;
         this.velRobo = (int)(1 + (Math.random() * 20));
@@ -72,7 +70,7 @@ public class Inimigo implements Runnable{
     }
 
     public void mateORobo() {
-        this.lRobo.setLocation(this.posRoboX, this.posRoboY);
+        this.lRobo.setLocation(this.posicaoX, this.posicaoY);
     }
     @Override
     public void run() {

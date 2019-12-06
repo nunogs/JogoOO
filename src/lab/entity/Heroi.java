@@ -4,13 +4,10 @@ import javax.swing.*;
 
 import static java.lang.Thread.sleep;
 
-public class Heroi implements Runnable{
+public class Heroi  extends Personagem implements Runnable{
 	protected Integer nivel;
 	//--------------------------------------
-    protected int tamHeroiX;
-    protected int tamHeroiY;
-    protected int posHeroiX;
-    protected int posHeroiY;
+    
     protected ImageIcon iHeroi;
     public JLabel lHeroi;
     //--------------------------------------
@@ -25,17 +22,17 @@ public class Heroi implements Runnable{
    protected Boolean teclaParaCimaApertada;
    protected Boolean teclaParaBaixoApertada;
    //-----------------------------------------
-    ImageIcon iRoboAnimadoDireita = new ImageIcon(getClass().getResource("../img/heroi/roboTDirLento.gif"));
-    ImageIcon iRoboAnimadoDireitaRapido = new ImageIcon(getClass().getResource("../img/heroi/roboTDirRapido.gif"));
-    ImageIcon iRoboAnimadoEsquerda = new ImageIcon(getClass().getResource("../img/heroi/roboTDirFreando.gif"));
-    ImageIcon iRoboMorto = new ImageIcon(getClass().getResource("../img/heroi/roboTMorto.gif"));
+   ImageIcon iRoboAnimadoDireita = new ImageIcon(getClass().getResource("../img/heroi/roboTDirLento.gif"));
+   ImageIcon iRoboAnimadoDireitaRapido = new ImageIcon(getClass().getResource("../img/heroi/roboTDirRapido.gif"));
+   ImageIcon iRoboAnimadoEsquerda = new ImageIcon(getClass().getResource("../img/heroi/roboTDirFreando.gif"));
+   ImageIcon iRoboMorto = new ImageIcon(getClass().getResource("../img/heroi/roboTMorto.gif"));
 
     
     public Heroi(){
-        tamHeroiX = 62;
-        tamHeroiY = 130;
-        posHeroiX = 200;
-        posHeroiY = 300;
+        tamanhoX = 62;
+        tamanhoY = 130;
+        posicaoX = 200;
+        posicaoY = 300;
         puloHeroiCimaInicial = false;
         puloHeroiCimaFinal = false;
         puloHeroiBaixoInicial = false;
@@ -50,10 +47,10 @@ public class Heroi implements Runnable{
         lHeroi.setVisible(true);
     }
     
-    public void nivelDoJogo(Integer nivel) {
-    	this.nivel = nivel;
-    }
-    
+//    public void nivelDoJogo(Integer nivel) {
+//    	this.nivel = nivel;
+//    }
+//    
     public int atualizarPosX(){
         return this.lHeroi.getX();
     }
@@ -141,15 +138,15 @@ public class Heroi implements Runnable{
         }
     }
     public void andarParaCima(){
-        if (teclaParaCimaApertada && posHeroiY > 270){
+        if (teclaParaCimaApertada && posicaoY > 270){
             this.lHeroi.setLocation(lHeroi.getX(),lHeroi.getY()-2);
         }
-        if(posHeroiY <=270){
+        if(posicaoY <=270){
             teclaParaCimaApertada = false;
         }
     }
     public void apertouTeclaParaCima(boolean teclaParaCimaApertada) {
-        if ((heroiVivo && posHeroiY > 270 && !puloHeroiCimaInicial) && !(puloHeroiCimaInicial ||
+        if ((heroiVivo && posicaoY > 270 && !puloHeroiCimaInicial) && !(puloHeroiCimaInicial ||
                 puloHeroiCimaFinal ||
                 puloHeroiBaixoInicial ||
                 puloHeroiBaixoFinal)){
@@ -157,15 +154,15 @@ public class Heroi implements Runnable{
         }
     }
     public void andarParaBaixo(){
-        if (teclaParaBaixoApertada && posHeroiY < 550){
+        if (teclaParaBaixoApertada && posicaoY < 550){
             this.lHeroi.setLocation(lHeroi.getX(),lHeroi.getY()+2);
         }
-        if(posHeroiY >= 550){
+        if(posicaoY >= 550){
             teclaParaBaixoApertada = false;
         }
     }
     public void apertouTeclaParaBaixo(boolean teclaParaBaixoApertada) {
-        if ((heroiVivo && posHeroiY < 550 ) && !(puloHeroiCimaInicial ||
+        if ((heroiVivo && posicaoY < 550 ) && !(puloHeroiCimaInicial ||
                 puloHeroiCimaFinal ||
                 puloHeroiBaixoInicial ||
                 puloHeroiBaixoFinal)){
@@ -175,8 +172,8 @@ public class Heroi implements Runnable{
 
     public void atualizarMovimentosDino(){
         if(heroiVivo) {
-            posHeroiX = lHeroi.getX();
-            posHeroiY = lHeroi.getY();
+            posicaoX = lHeroi.getX();
+            posicaoY = lHeroi.getY();
             pular();
             andarEsquerda();
             andarDireita();
@@ -208,19 +205,19 @@ public class Heroi implements Runnable{
     //Metodos getters e setters
 
     public int getTamHeroiX() {
-        return tamHeroiX;
+        return tamanhoX;
     }
 
     public int getTamHeroiY() {
-        return tamHeroiY;
+        return tamanhoY;
     }
 
     public int getPosHeroiX() {
-        return posHeroiX;
+        return posicaoX;
     }
 
     public int getPosHeroiY() {
-        return posHeroiY;
+        return posicaoY;
     }
 
     public JLabel getlHeroi() {

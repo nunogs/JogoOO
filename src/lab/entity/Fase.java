@@ -462,6 +462,6 @@ public class Fase extends JFrame implements Runnable{
     	inimigo7.nivelDoJogo(nivel);
     	inimigo8.nivelDoJogo(nivel);
     	
-    	heroi.nivelDoJogo(nivel);
+//    	heroi.nivelDoJogo(nivel);
 	}
 }
